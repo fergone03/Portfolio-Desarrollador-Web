@@ -1,14 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
+import SectionContainer from "../components/SectionContainer.astro";
 import GitHubIcon from "../assets/media/icons/GitHubIcon.astro";
 import LinkedInIcon from "../assets/media/icons/LinkedInIcon.astro";
 import SocialPill from "../components/SocialPill.astro";
+import MailIcon from "../assets/media/icons/MailIcon.astro";
+import Experience from "../components/Experience.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout
+  title="Dev Esteban Portfolio - Desarrollador y Programador Web"
+  description="Este es mi portfolio web, donde puedo mostrar mis habilidades y experiencia en desarrollo web."
+>
   <main>
-    <section class="w-full mx-auto lg:w-[740px] py-44">
+    <SectionContainer>
       <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
         Hey, soy Esteban
         <a
@@ -29,21 +35,23 @@ import SocialPill from "../components/SocialPill.astro";
           pero también me defiendo con Backend.</span
         >
       </h2>
-      <nav class="flex gap-x-2">
+      <nav class="flex gap-x-4 mt-8">
         <SocialPill
           href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
         >
-          <LinkedInIcon class="w-6 h-6" />
+          <LinkedInIcon class="size-6" />
           LinkedIn
         </SocialPill>
-        <SocialPill 
-		href="https://github.com/fergone03"        
-		>
-		<GitHubIcon class="w-6 h-6" />
-		GitHub
+        <SocialPill href="https://github.com/fergone03">
+          <GitHubIcon class="size-6" />
+          GitHub
         </SocialPill>
-
+        <SocialPill href="mailto:fergonesteban03@gmail.com">
+          <MailIcon class="size-6" />
+          fergonesteban03@gmail.com
+        </SocialPill>
       </nav>
-    </section>
+    </SectionContainer>
+    <SectionContainer />
   </main>
 </Layout>
