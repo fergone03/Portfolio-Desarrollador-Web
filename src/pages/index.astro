@@ -7,6 +7,7 @@ import LinkedInIcon from "../assets/media/icons/LinkedInIcon.astro";
 import SocialPill from "../components/SocialPill.astro";
 import MailIcon from "../assets/media/icons/MailIcon.astro";
 import Experience from "../components/Experience.astro";
+import WorkIcon from "../assets/media/icons/WorkIcon.astro";
 ---
 
 <Layout
@@ -14,7 +15,7 @@ import Experience from "../components/Experience.astro";
   description="Este es mi portfolio web, donde puedo mostrar mis habilidades y experiencia en desarrollo web."
 >
   <main>
-    <SectionContainer>
+    <SectionContainer class="py-44 pb-24">
       <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
         Hey, soy Esteban
         <a
@@ -52,6 +53,13 @@ import Experience from "../components/Experience.astro";
         </SocialPill>
       </nav>
     </SectionContainer>
-    <SectionContainer />
+    <SectionContainer>
+      <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center">
+        <WorkIcon class="size-7" />
+        Experiencia laboral
+      </h2>
+      <Experience />
+      <SectionContainer />
+    </SectionContainer>
   </main>
 </Layout>
