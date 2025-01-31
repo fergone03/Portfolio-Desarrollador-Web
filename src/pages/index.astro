@@ -8,6 +8,8 @@ import SocialPill from "../components/SocialPill.astro";
 import MailIcon from "../assets/media/icons/MailIcon.astro";
 import Experience from "../components/Experience.astro";
 import WorkIcon from "../assets/media/icons/WorkIcon.astro";
+import ProyectoIcon from "../assets/media/icons/ProyectoIcon.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <Layout
@@ -55,6 +57,7 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
         </SocialPill>
       </nav>
     </SectionContainer>
+    
     <SectionContainer id="experiencia">
       <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center">
         <WorkIcon class="size-7" />
@@ -62,6 +65,13 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
       </h2>
       <Experience />
       <SectionContainer />
-    </SectionContainer>
+
+      <SectionContainer id="proyectos">
+        <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center">
+          <ProyectoIcon class="size-7" />
+          Proyectos
+        </h2>
+        <Projects />
+        <SectionContainer />
   </main>
 </Layout>
