@@ -14,9 +14,11 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
   title="Dev Esteban Portfolio - Desarrollador y Programador Web"
   description="Este es mi portfolio web, donde puedo mostrar mis habilidades y experiencia en desarrollo web."
 >
-  <main>
+  <main class="px-4">
     <SectionContainer class="py-44 pb-24">
-      <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
+      <h1
+        class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+      >
         Hey, soy Esteban
         <a
           href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
@@ -27,7 +29,7 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
           <Badge> Disponible para trabajar </Badge>
         </a>
       </h1>
-      <h2 class="text-2xl opacity-80 text-wrap">
+      <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px]">
         <span>0 años de experiencia.</span>
         <span class="text-yellow-200/90">Desarrollador Web.</span>
         <span class="text-red-200/90">De Granada, España.</span>
@@ -36,19 +38,19 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
           pero también me defiendo con Backend.</span
         >
       </h2>
-      <nav class="flex gap-x-4 mt-8">
+      <nav class="flex gap-4 mt-9 flex-wrap">
         <SocialPill
           href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
         >
-          <LinkedInIcon class="size-6" />
+          <LinkedInIcon class="size-4 md:size-6" />
           LinkedIn
         </SocialPill>
         <SocialPill href="https://github.com/fergone03">
-          <GitHubIcon class="size-6" />
+          <GitHubIcon class="size-4 md:size-6" />
           GitHub
         </SocialPill>
         <SocialPill href="mailto:fergonesteban03@gmail.com">
-          <MailIcon class="size-6" />
+          <MailIcon class="size-4 md:size-6" />
           fergonesteban03@gmail.com
         </SocialPill>
       </nav>
