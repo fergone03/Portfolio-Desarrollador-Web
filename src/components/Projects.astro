@@ -10,7 +10,6 @@ const PROJECTS = [
   },
 ];
 ---
-
 {
   PROJECTS.map(({ image, title, description, tags }) => (
     <article>
@@ -23,7 +22,7 @@ const PROJECTS = [
           ))}
         </li>
       </ul>
-      <img src={image} alt={title} />
+      <img src={image} alt={`Captura de pantalla del proyecto ${title}` } />
     </article>
   ))
 }
