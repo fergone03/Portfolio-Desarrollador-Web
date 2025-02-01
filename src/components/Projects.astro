@@ -1,28 +1,67 @@
 ---
+import HTMLIcon from "../assets/media/icons/HTMLIcon.astro";
+import CSSIcon from "../assets/media/icons/CSSIcon.astro";
+import JavaScriptIcon from "../assets/media/icons/JavaScriptIcon.astro";
+import ReactIcon from "../assets/media/icons/ReactIcon.astro";
+
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-white text-[#E44D26]",
+    icon: HTMLIcon,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-white text-[#1572B7]",
+    icon: CSSIcon,
+  },
+  JavaScript: {
+    name: "JavaScript",
+    class: "bg-white text-[#D1B400]",
+    icon: JavaScriptIcon,
+  },
+  React: {
+    name: "React",
+    class: "bg-white text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+};
+
 const PROJECTS = [
   {
-    title: "Project 1",
-    description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc ultricies tincidunt. Nullam nec purus nec nunc ultricies tincidunt. Nullam nec purus nec nunc ultricies tincidunt. Nullam nec purus nec nunc ultricies tincidunt.",
-    link: "#",
-    github: "#",
-    image: "https://via.placeholder.com/300x200",
-    tags: ["HTML", "CSS", "JavaScript"],
+    title: "49% -  Página de agencia con formulario de contacto funcional",
+    description:
+      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional, y secciones como los servicios, beneficios y contacto. La navegación es intuitiva, con animaciones y transiciones suaves para mejorar la experiencia del usuario. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules, siguiendo buenas prácticas de desarrollo para una estructura de proyecto organizada.",
+    link: "https://49percent.netlify.app",
+    github: "https://github.com/fergone03/pag-agencia",
+    image: "/public/projects/svgl.webp",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.JavaScript, TAGS.React],
   },
 ];
 ---
+
 {
   PROJECTS.map(({ image, title, description, tags }) => (
     <article>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <ul>
-        <li>
-          {tags.map((tag) => (
-            <li>{tag}</li>
-          ))}
-        </li>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
       </ul>
-      <img src={image} alt={`Captura de pantalla del proyecto ${title}` } />
+      <img
+        class="rounded shadow-2xl shadow-white/10"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${title}`}
+      />
     </article>
   ))
 }
