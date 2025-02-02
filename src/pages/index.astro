@@ -10,6 +10,7 @@ import Experience from "../components/Experience.astro";
 import WorkIcon from "../assets/media/icons/WorkIcon.astro";
 import ProyectoIcon from "../assets/media/icons/ProyectoIcon.astro";
 import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout
@@ -17,7 +18,7 @@ import Projects from "../components/Projects.astro";
   description="Este es mi portfolio web, donde puedo mostrar mis habilidades y experiencia en desarrollo web."
 >
   <main class="px-4">
-    <SectionContainer class="py-44 pb-24">
+    <SectionContainer class="py-44 pb-24" id="top">
       <h1
         class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
       >
@@ -58,13 +59,18 @@ import Projects from "../components/Projects.astro";
       </nav>
     </SectionContainer>
 
-    <SectionContainer id="experiencia">
+    <SectionContainer id="sobre-mi">
       <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-        <WorkIcon class="size-10" />
-        Experiencia laboral
+        <Badge> Sobre mí </Badge>
       </h2>
-      <Experience />
-      <SectionContainer />
+      <p class="text-lg mb-4 text-pretty">
+        Soy un desarrollador web con experiencia en el desarrollo de sitios web,
+        aplicaciones web y aplicaciones móviles. Actualmente trabajo como
+        desarrollador web en una empresa de tecnología, donde me dedico a crear
+        soluciones para mejorar la experiencia del usuario y mejorar la
+        eficiencia en el trabajo.
+      </p>
+    </SectionContainer>
 
       <SectionContainer id="proyectos">
         <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
@@ -72,8 +78,22 @@ import Projects from "../components/Projects.astro";
           Proyectos
         </h2>
         <Projects />
-        <SectionContainer />
       </SectionContainer>
-    </SectionContainer>
-  </main></Layout
->
+
+      <SectionContainer id="experiencia">
+        <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+          <WorkIcon class="size-10" />
+          Experiencia laboral
+        </h2>
+        <Experience />
+        <SectionContainer />
+
+      <SectionContainer id="contacto">
+        <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+          <MailIcon class="size-10" />
+          Contacto
+        </h2>
+        <Contact />
+      </SectionContainer>
+  </main>
+</Layout>
