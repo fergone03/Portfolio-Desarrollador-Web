@@ -3,6 +3,9 @@ import HTMLIcon from "../assets/media/icons/HTMLIcon.astro";
 import CSSIcon from "../assets/media/icons/CSSIcon.astro";
 import JavaScriptIcon from "../assets/media/icons/JavaScriptIcon.astro";
 import ReactIcon from "../assets/media/icons/ReactIcon.astro";
+import GitHub from "../assets/media/icons/GitHubIcon.astro";
+import LinkButton from "./LinkButton.astro";
+import Link from "../assets/media/icons/Link.astro";
 
 const TAGS = {
   HTML: {
@@ -31,7 +34,7 @@ const PROJECTS = [
   {
     title: "49% -  Página de agencia con formulario de contacto funcional",
     description:
-      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional, y secciones como los servicios, beneficios y contacto. La navegación es intuitiva, con animaciones y transiciones suaves para mejorar la experiencia del usuario. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules, siguiendo buenas prácticas de desarrollo para una estructura de proyecto organizada.",
+      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
     link: "https://49percent.netlify.app",
     github: "https://github.com/fergone03/pag-agencia",
     image: "/public/projects/svgl.webp",
@@ -40,28 +43,62 @@ const PROJECTS = [
 ];
 ---
 
-{
-  PROJECTS.map(({ image, title, description, tags }) => (
-    <article>
-      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
-      <p class="text-lg mb-4 text-pretty">{description}</p>
-      <ul class="flex gap-x-2 flex-row mb-4">
-        {tags.map((tag) => (
-          <li>
-            <span
-              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
-            >
-              <tag.icon class="size-4" />
-              {tag.name}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        class="rounded shadow-2xl shadow-white/10"
-        src={image}
-        alt={`Captura de pantalla del proyecto ${title}`}
-      />
-    </article>
-  ))
-}
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt={`imagen del proyecto ${title}`}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+              
+            </footer>
+            
+          </div>
+          
+        </div>
+        
+      </article>
+               <div class="mt-2 text-gray-300 ">
+              {description}
+            </div>
+    ))
+  }
+</div>

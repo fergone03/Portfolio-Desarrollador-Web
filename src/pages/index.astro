@@ -11,6 +11,10 @@ import WorkIcon from "../assets/media/icons/WorkIcon.astro";
 import ProyectoIcon from "../assets/media/icons/ProyectoIcon.astro";
 import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
+import ContactIcon from "../assets/media/icons/ContactIcon.astro";
+import AboutMeIcon from "../assets/media/icons/AboutMeIcon.astro";
+import SobreMi from "../components/SobreMi.astro";
+import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
 ---
 
 <Layout
@@ -61,39 +65,41 @@ import Contact from "../components/Contact.astro";
 
     <SectionContainer id="sobre-mi">
       <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-        <Badge> Sobre mí </Badge>
+        <AboutMeIcon class="size-10" />
+        Sobre mí
       </h2>
-      <p class="text-lg mb-4 text-pretty">
-        Soy un desarrollador web con experiencia en el desarrollo de sitios web,
-        aplicaciones web y aplicaciones móviles. Actualmente trabajo como
-        desarrollador web en una empresa de tecnología, donde me dedico a crear
-        soluciones para mejorar la experiencia del usuario y mejorar la
-        eficiencia en el trabajo.
-      </p>
+      <SobreMi />
+      <nav class="flex gap-4 mt-9 flex-wrap">
+        <SocialPill href="/files/CV_Esteban_Fernandez.pdf">
+          <DownloadIcon class="size-4 md:size-10" />
+          Descargar CV
+        </SocialPill>
+      </nav>
     </SectionContainer>
 
-      <SectionContainer id="proyectos">
-        <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-          <ProyectoIcon class="size-10" />
-          Proyectos
-        </h2>
-        <Projects />
-      </SectionContainer>
+    <SectionContainer id="proyectos">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <ProyectoIcon class="size-10" />
+        Proyectos
+      </h2>
+      <Projects />
+    </SectionContainer>
 
-      <SectionContainer id="experiencia">
-        <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-          <WorkIcon class="size-10" />
-          Experiencia laboral
-        </h2>
-        <Experience />
-        <SectionContainer />
+    <SectionContainer id="experiencia">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <WorkIcon class="size-10" />
+        Experiencia laboral
+      </h2>
+      <Experience />
+      <SectionContainer />
 
       <SectionContainer id="contacto">
         <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-          <MailIcon class="size-10" />
+          <ContactIcon class="size-10" />
           Contacto
         </h2>
         <Contact />
       </SectionContainer>
+    </SectionContainer>
   </main>
 </Layout>
