@@ -16,7 +16,7 @@ import MailIcon from "../assets/media/icons/MailIcon.astro";
 
     <div class="flex justify-center space-x-6">
       <div
-        class="flex pointer items-center text-red-700 hover:text-red-300 transition duration-300"
+        class="flex pointer items-center text-red-700/70 hover:text-red-300 transition duration-300"
       >
         <MailIcon />
         <a href="mailto:fergonesteban03@gmail.com" class="ml-1 text-xl">
@@ -24,21 +24,28 @@ import MailIcon from "../assets/media/icons/MailIcon.astro";
         </a>
       </div>
       <div
-        class="flex pointer items-center text-blue-700 hover:text-blue-300 transition duration-300"
+        class="flex pointer items-center text-blue-700/70 hover:text-blue-300 transition duration-300"
       >
         <LinkedInIcon class="size-5" />
         <a
           href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
+          target="_blank"
           class="ml-1 text-xl"
         >
           LinkedIn
         </a>
       </div>
       <div
-        class="flex pointer items-center text-gray-200 hover:text-gray-400 transition duration-300"
+        class="flex pointer items-center text-gray-200/70 hover:text-gray-400 transition duration-300"
       >
         <GitHubIcon class="size-5" />
-        <a href="https://github.com/fergone03" class="ml-1 text-xl"> GitHub </a>
+        <a
+          href="https://github.com/fergone03"
+          target="_blank"
+          class="ml-1 text-xl"
+        >
+          GitHub
+        </a>
       </div>
     </div>
   </div>
