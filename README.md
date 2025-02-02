@@ -15,3 +15,4 @@ En mi portfolio encontrarás ejemplos de proyectos que he desarrollado, demostra
 📫 **Contacta conmigo:**
 - Email: [fergonesteban03@gmail.com]
 - LinkedIn: [https://www.linkedin.com/in/estebanfernandezgonzalez/]
+![readmethumbnail](public/imgs/readmethumbnail.webp)
