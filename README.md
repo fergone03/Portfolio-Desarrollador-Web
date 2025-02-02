@@ -7,7 +7,7 @@ A lo largo de mis proyectos, he trabajado en la implementación de funcionalidad
 En mi portfolio encontrarás ejemplos de proyectos que he desarrollado, demostrando mi capacidad para transformar ideas en soluciones funcionales y visualmente atractivas. Estoy siempre buscando nuevos retos y colaboraciones que me permitan seguir creciendo profesionalmente.
 
 🚀 **Tecnologías que utilizo:**
-- Frontend: **HTML5**, **CSS3**, **JavaScript**, **React**, **Vue**, **Angular**, **Astro**.
+- Frontend: **HTML5**, **CSS3**, **JavaScript**, **React**, **Vue**, **Angular**, **Astro**, **TailwindCSS**, **Bootstrap**.
 - Backend: **Java**, **.Net** **Node.js**, **Express**, **Python**, **PHP**, **Laravel**.
 - Bases de datos: **MySQL**, **MariaDB**, **MongoDB**.
 - Control de versiones: **Git**, **GitHub**.
