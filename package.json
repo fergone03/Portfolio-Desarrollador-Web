@@ -6,9 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "postinstall": "bun --version"
-
+    "astro": "astro"
+    
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
