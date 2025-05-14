@@ -15,6 +15,8 @@ import ContactIcon from "../assets/media/icons/ContactIcon.astro";
 import AboutMeIcon from "../assets/media/icons/AboutMeIcon.astro";
 import SobreMi from "../components/SobreMi.astro";
 import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
+import SoftSkills from "../components/SoftSkills.astro";
+import Certificates from "../components/Certificates.astro";
 ---
 
 <Layout
@@ -36,7 +38,9 @@ import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
           <Badge> Disponible para trabajar </Badge>
         </a>
       </h1>
-      <h2 class="text-xl text-gray-300 lg:text-2xl opacity-80 text-wrap max-w-[700px]">
+      <h2
+        class="text-xl text-gray-300 lg:text-2xl opacity-80 text-wrap max-w-[700px]"
+      >
         <span class="opacity-85">Desarrollador creativo y entusiasta.</span>
         <span class="text-yellow-200/90">Desarrollador Web.</span>
         <span class="text-red-200/90">De Granada, España.</span>
@@ -65,7 +69,9 @@ import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
     </SectionContainer>
 
     <SectionContainer id="sobre-mi">
-      <h2 class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
         <AboutMeIcon class="size-10 text-white" />
         Sobre mí
       </h2>
@@ -78,8 +84,20 @@ import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
       </nav>
     </SectionContainer>
 
+    <SectionContainer id="soft-skills">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
+        <ProyectoIcon class="text-white size-10" />
+        Soft Skills
+      </h2>
+      <SoftSkills />
+    </SectionContainer>
+
     <SectionContainer id="proyectos">
-      <h2 class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
         <ProyectoIcon class="text-white size-10" />
         Proyectos
       </h2>
@@ -87,15 +105,29 @@ import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
     </SectionContainer>
 
     <SectionContainer id="experiencia">
-      <h2 class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
         <WorkIcon class="text-white size-10" />
         Experiencia laboral
       </h2>
       <Experience />
-    </SectionContainer> 
+    </SectionContainer>
+
+    <SectionContainer id="certificates">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
+        <ProyectoIcon class="text-white size-10" />
+        Certificates
+      </h2>
+      <Certificates />
+    </SectionContainer>
 
     <SectionContainer id="contacto">
-      <h2 class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+      <h2
+        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
+      >
         <ContactIcon class="text-white size-10" />
         Contacto
       </h2>

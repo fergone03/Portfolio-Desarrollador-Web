@@ -1,0 +1,65 @@
+---
+import GitHub from "../assets/media/icons/GitHubIcon.astro";
+import LinkButton from "./LinkButton.astro";
+import Link from "../assets/media/icons/Link.astro";
+
+const PROJECTS = [
+  {
+    title: "Amabilidad",
+    description:
+      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
+    link: "https://49percent.netlify.app",
+    github: "https://github.com/fergone03/pag-agencia",
+    image: "./projects/svgl.webp",
+  },
+  
+];
+---
+
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt={`imagen del proyecto ${title}`}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+              
+            </footer>
+            
+          </div>
+          
+        </div>
+        
+      </article>
+            <div class="mt-2 text-gray-300">
+            {description}
+            </div>
+    ))
+  }
+</div>

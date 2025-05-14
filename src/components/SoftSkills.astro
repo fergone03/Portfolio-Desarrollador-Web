@@ -1,0 +1,20 @@
+---
+import SoftSkillItem from "./SoftSkillItem.astro";
+
+const SOFTSKILLS = [
+  {
+    title: "Amabilidad",
+    description:
+      "WIP",
+  },
+  {
+    title: "Amabilidad2",
+    description:
+      "WIP",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3">
+  {SOFTSKILLS.map((softskill) => <SoftSkillItem {...softskill} />)}
+</ol>
