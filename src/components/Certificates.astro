@@ -1,23 +1,393 @@
 ---
-import GitHub from "../assets/media/icons/GitHubIcon.astro";
+import HTMLIcon from "../assets/media/icons/HTMLIcon.astro";
+import CSSIcon from "../assets/media/icons/CSSIcon.astro";
+import JavaScriptIcon from "../assets/media/icons/JavaScriptIcon.astro";
+import ReactIcon from "../assets/media/icons/ReactIcon.astro";
 import LinkButton from "./LinkButton.astro";
 import Link from "../assets/media/icons/Link.astro";
 
-const PROJECTS = [
-  {
-    title: "Amabilidad",
-    description:
-      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
-    link: "https://49percent.netlify.app",
-    github: "https://github.com/fergone03/pag-agencia",
-    image: "./projects/svgl.webp",
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-gray-800 text-[#E44D26]",
+    icon: HTMLIcon,
   },
-  
+  CSS: {
+    name: "CSS",
+    class: "bg-gray-800 text-blue-400",
+    icon: CSSIcon,
+  },
+  JavaScript: {
+    name: "JavaScript",
+    class: "bg-gray-800 text-[#D1B400]",
+    icon: JavaScriptIcon,
+  },
+  React: {
+    name: "React",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  PHP: {
+    name: "PHP",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Boostrap: {
+    name: "Boostrap",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Tailwind: {
+    name: "Tailwind",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  NextJS: {
+    name: "Next.JS",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Angular: {
+    name: "Angular",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  VueJS: {
+    name: "Vue.js",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Node: {
+    name: "Node",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Express: {
+    name: "Express",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  NET: {
+    name: ".NET",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Java: {
+    name: "Java",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  CSharp: {
+    name: "C#",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  Python: {
+    name: "Python",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+  TypeScript: {
+    name: "TypeScript",
+    class: "bg-gray-800 text-[#61DAFB]",
+    icon: ReactIcon,
+  },
+};
+
+const PROJECTS = [ 
+  {
+    title: "Master en Ciberseguridad", 
+    description:
+      "Certificado por la UCAM",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Grado Medio en Sistemas Microinformáticos y Redes",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Grado Superior en Desarrollo de Aplicaciones Web",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Scrum Técnico",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Gestión de tiempo",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Comunicación de equipo",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Automotivación y Resiliencia",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Diseño de plantillas web",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Inteligencia Artificial aplicada a la Ciberseguridad",   
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Fundamentos de la Inteligencia Artificial",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Dominando ChatGPT con la API de OpenAI",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Amazon Web Services (AWS)",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "JQuery",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Hacking Web",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Cloud Computing",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Maquetación web con CSS",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Flexbox y CSS Grid",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Responsive Web Design",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Hacking Tools: Blue Team",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Hacking Tools: Red Team",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Prompt Engineering",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "AI Concepts",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Python for data science",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },   
+  {
+    title: "Python for data science, AI & Development",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Data Science 101",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Chatbot",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Agile Development and Scrum",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Text Analytics 101",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Pytorch",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Kubernetes Operators Advanced",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Scalable Web Applications on Kubernetes",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Containers, Kubernetes and OpenShift",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "C#",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Google: Inteligencia Artificial y productividad",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
+  {
+    title: "Gestión de proyectos de Google",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },  
+  {
+    title: "Microsoft Azure AI",
+    description:
+      ".",
+    link: "",
+    image: "./projects/svgl.webp",
+    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+  },
 ];
 ---
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, link, github }) => (
+    PROJECTS.map(({ image, title, description, link }) => (
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
@@ -36,12 +406,6 @@ const PROJECTS = [
           </h3>
           <div class="flex flex-wrap mt-2">
             <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  Code
-                </LinkButton>
-              )}
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
