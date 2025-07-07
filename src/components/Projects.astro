@@ -6,6 +6,11 @@ import ReactIcon from "../assets/media/icons/ReactIcon.astro";
 import GitHub from "../assets/media/icons/GitHubIcon.astro";
 import LinkButton from "./LinkButton.astro";
 import Link from "../assets/media/icons/Link.astro";
+import PHPIcon from "../assets/media/icons/PHPIcon.astro";
+import BootstrapIcon from "../assets/media/icons/BootstrapIcon.astro";
+import TailwindIcon from "../assets/media/icons/TailwindIcon.astro";
+import TypescriptIcon from "../assets/media/icons/TypeScriptIcon.astro";
+
 
 const TAGS = {
   HTML: {
@@ -30,18 +35,18 @@ const TAGS = {
   },
   PHP: {
     name: "PHP",
-    class: "bg-gray-800 text-[#61DAFB]",
-    icon: ReactIcon,
+    class: "bg-gray-800 text-[#777BB3]",
+    icon: PHPIcon,
   },
   Boostrap: {
     name: "Boostrap",
-    class: "bg-gray-800 text-[#61DAFB]",
-    icon: ReactIcon,
+    class: "bg-gray-800 text-purple-500",
+    icon: BootstrapIcon,
   },
   Tailwind: {
     name: "Tailwind",
-    class: "bg-gray-800 text-[#61DAFB]",
-    icon: ReactIcon,
+    class: "bg-gray-800 text-[#44a8b3]",
+    icon: TailwindIcon,
   },
   NextJS: {
     name: "Next.JS",
@@ -90,8 +95,8 @@ const TAGS = {
   },
   TypeScript: {
     name: "TypeScript",
-    class: "bg-gray-800 text-[#61DAFB]",
-    icon: ReactIcon,
+    class: "bg-gray-800 text-[#007ACC]",
+    icon: TypescriptIcon,
   },
   Svelt: {
     name: "Svelte",
@@ -134,7 +139,7 @@ const PROJECTS = [
   {
     title: "49% - Página de agencia con formulario de contacto funcional",
     description:
-      "La página de la agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
+      "Una página de agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
     link: "https://49percent.netlify.app",
     github: "https://github.com/fergone03/pag-agencia",
     image: "./projects/svgl.webp",
@@ -148,6 +153,16 @@ const PROJECTS = [
     image: "./projects/thumbnail-mainpage_github_finder.webp",
     tags: [TAGS.PHP, TAGS.Boostrap, TAGS.JavaScript, TAGS.React],
   }, 
+  {
+    title: "Material para desarrolladores - Por y para la comunidad",
+    description:
+      "Material para desarrolladores es una plataforma pensada para programadores que buscan tener a mano una recopilación organizada de páginas útiles y recursos esenciales. Puedes explorar libremente como visitante o registrarte para guardar tus propias páginas favoritas, totalmente privadas y accesibles solo para ti. Una herramienta práctica, sencilla y hecha por y para desarrolladores.",
+    link: "https://material-para-desarrolladores.netlify.app",
+    github: "https://github.com/fergone03/material-para-desarrolladores",
+    image: "./projects/material_para_desarrolladores.webp",
+    tags: [TAGS.Tailwind, TAGS.TypeScript, TAGS.React],
+  },
+  
   /* 
   {
     title: "eFCT - Sistema de gestión de prácticas de Formación Profesional",
