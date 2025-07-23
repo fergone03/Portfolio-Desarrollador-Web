@@ -1,0 +1,31 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  filter?: string[];
+}
+
+const props = Astro.props;
+---
+<div
+ class="absolute w-3 h-3 bg-sky-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
+>
+</div>
+<li class="mb-10 ms-4">
+  <div
+    class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
+  >
+  </div>
+
+  <time class="mb-1 text-sm font-normal leading-none text-sky-200/80">
+    {props.filter}
+  </time>
+
+  <h3 class="text-lg font-semibold text-yellow-200">
+    {props.title}
+  </h3>
+
+  <p class="mb-4 text-base font-normal text-gray-200 text-pretty">
+    {props.description}
+  </p>
+</li>

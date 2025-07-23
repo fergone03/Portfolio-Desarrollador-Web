@@ -10,6 +10,7 @@ import PHPIcon from "../assets/media/icons/PHPIcon.astro";
 import BootstrapIcon from "../assets/media/icons/BootstrapIcon.astro";
 import TailwindIcon from "../assets/media/icons/TailwindIcon.astro";
 import TypescriptIcon from "../assets/media/icons/TypeScriptIcon.astro";
+import JQueryIcon from "../assets/media/icons/JQueryIcon.astro";
 
 
 const TAGS = {
@@ -38,8 +39,8 @@ const TAGS = {
     class: "bg-gray-800 text-[#777BB3]",
     icon: PHPIcon,
   },
-  Boostrap: {
-    name: "Boostrap",
+  Bootstrap: {
+    name: "Bootstrap",
     class: "bg-gray-800 text-purple-500",
     icon: BootstrapIcon,
   },
@@ -98,7 +99,7 @@ const TAGS = {
     class: "bg-gray-800 text-[#007ACC]",
     icon: TypescriptIcon,
   },
-  Svelt: {
+  Svelte: {
     name: "Svelte",
     class: "bg-gray-800 text-[#61DAFB]",
     icon: ReactIcon,
@@ -113,10 +114,10 @@ const TAGS = {
     class: "bg-gray-800 text-[#61DAFB]",
     icon: ReactIcon,
   },
-  Jquery: {
+  JQuery: {
     name: "JQuery",
-    class: "bg-gray-800 text-[#61DAFB]",
-    icon: ReactIcon,
+    class: "bg-gray-800 text-gray-400",
+    icon: JQueryIcon,
   },
   PostgreSQL: {
     name: "PostgreSQL",
@@ -139,7 +140,7 @@ const PROJECTS = [
   {
     title: "49% - Página de agencia con formulario de contacto funcional",
     description:
-      "Una página de agencia cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
+      "49% es una página de agencia que cuenta con un diseño responsivo y una estructura clara. Incluye un formulario de contacto funcional. El código es modular y reutilizable, utilizando hooks personalizados y componentes estilizados con CSS Modules.",
     link: "https://49percent.netlify.app",
     github: "https://github.com/fergone03/pag-agencia",
     image: "./projects/svgl.webp",
@@ -148,10 +149,10 @@ const PROJECTS = [
   {
     title: "GitHub Finder - Una vista simplificada de perfiles de GitHub",
     description:
-      "La aplicación presenta un diseño responsivo y una estructura clara, desarrollada con React y un backend en PHP. Permite consultar información de perfiles de GitHub a través de una vista simplificada, integrando datos mediante llamadas a la API. El código es modular y reutilizable, empleando hooks personalizados para la gestión del estado y componentes estilizados con Bootstrap.",
+      "GitHub Finder  presenta un diseño responsivo y una estructura clara, desarrollada con React y un backend en PHP. Permite consultar información de perfiles de GitHub a través de una vista simplificada, integrando datos mediante llamadas a la API. El código es modular y reutilizable, empleando hooks personalizados para la gestión del estado y componentes estilizados con Bootstrap.",
     github: "https://github.com/fergone03/github-finder",
     image: "./projects/thumbnail-mainpage_github_finder.webp",
-    tags: [TAGS.PHP, TAGS.Boostrap, TAGS.JavaScript, TAGS.React],
+    tags: [TAGS.PHP, TAGS.Bootstrap, TAGS.JavaScript, TAGS.React],
   }, 
   {
     title: "Material para desarrolladores - Por y para la comunidad",
@@ -160,9 +161,17 @@ const PROJECTS = [
     link: "https://material-para-desarrolladores.netlify.app",
     github: "https://github.com/fergone03/material-para-desarrolladores",
     image: "./projects/material_para_desarrolladores.webp",
-    tags: [TAGS.Boostrap, TAGS.TypeScript, TAGS.React],
+    tags: [TAGS.Bootstrap, TAGS.TypeScript, TAGS.React],
   },
-
+  {
+    title: "DevSpark",
+    description:
+      "Proyecto de subida de notas, DevSpark es una plataforma de gestión para empresas de desarrollo web y software. Permite asignar proyectos a los usuarios con roles diferenciados: los administradores controlan todo y los trabajadores solo ven sus proyectos. Cuenta con una interfaz moderna, contraseñas cifradas y estructura segura en PHP, MySQL y JavaScript. Ideal para organizar equipos y tareas de forma eficiente y sencilla..",
+    link: "https://google.com", 
+    github: "https://github.com/fergone03/devspark",
+    image: "./projects/devspark.webp",
+    tags: [TAGS.HTML, TAGS.Bootstrap, TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.JQuery],
+  },
   /* 
   {
     title: "eFCT - Sistema de gestión de prácticas de Formación Profesional",
@@ -250,15 +259,6 @@ const PROJECTS = [
       "WIP",
     link: "https://google.com", 
     github: "https://github.com/fergone03/pokeproject",
-    image: "./projects/thumbnail-mainpage_github_finder.webp",
-    tags: [TAGS.Python, TAGS.Tailwind, TAGS.TypeScript, TAGS.React],
-  },
-  {
-    title: "Subida de nota",
-    description:
-      "WIP",
-    link: "https://google.com", 
-    github: "https://github.com/fergone03/subida-de-nota",
     image: "./projects/thumbnail-mainpage_github_finder.webp",
     tags: [TAGS.Python, TAGS.Tailwind, TAGS.TypeScript, TAGS.React],
   },

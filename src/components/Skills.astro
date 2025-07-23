@@ -1,0 +1,461 @@
+---
+import SkillsItem from "./SkillsItem.astro";
+import ReactIcon from "../assets/media/icons/ReactIcon.astro";
+
+const FILTERS = [
+  "Todas",
+  "frontend",
+  "backend",
+  "devops",
+  "other",
+  "herramientas",
+  "framework",
+  "database",
+  "systems",
+  "ai",
+  "cloud",
+];
+
+const SKILLS = [
+    {
+        title: "Angular",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-red-500",
+    },
+    {
+        title: "AWS",
+        filter: ["devops", "cloud"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-yellow-500",
+    },
+    {
+        title: "Azure",
+        filter: ["devops", "cloud"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-500",
+    },
+    {
+        title: "Bash",
+        filter: ["devops"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-500",
+    },
+    {
+        title: "Bootstrap",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "C#",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-purple-400",
+    },
+    {
+        title: "CSS",
+        filter: ["frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-purple-400",
+    },
+    {
+        title: "Django",
+        filter: ["backend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-purple-400",
+    },
+    {
+        title: "Docker",
+        filter: ["devops", "backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-300",
+    },
+    {
+        title: ".NET",
+        filter: ["backend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-300",
+    },
+    {
+        title: "Express",
+        filter: ["backend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-300",
+    },
+    {
+        title: "Figma",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-300",
+    },
+    {
+        title: "Framer",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-300",
+    },
+    {
+        title: "Git",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "GraphQL",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "HTML",
+        filter: ["frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-purple-400",
+    },
+    {
+        title: "IFTTT",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-purple-400",
+    },
+    {
+        title: "Java",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-orange-500",
+    },
+    {
+        title: "JavaScript",
+        filter: ["frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-orange-500",
+    },
+    {
+        title: "Jenkins",
+        filter: ["devops"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-orange-500",
+    },
+    {
+        title: "Jest",
+        filter: ["framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "Jira/ClickUp",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-orange-500",
+    },
+    {
+        title: "Kubernetes",
+        filter: ["devops", "backend", "cloud"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Laravel",
+        filter: ["backend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Linux",
+        filter: ["systems"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Windows Server",
+        filter: ["systems"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "MariaDB",
+        filter: ["database", "backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "MongoDB",
+        filter: ["database", "backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "MySQL",
+        filter: ["database", "backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "Next.js",
+        filter: ["framework", "backend", "frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "nginx",
+        filter: ["other"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Node.js",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-500",
+    },
+    {
+        title: "Pandas",
+        filter: ["framework", "backend", "Data Analyst"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Photoshop",
+        filter: ["other"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "PHP",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "PostgreSQL",
+        filter: ["database", "backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Postman",
+        filter: ["other"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Puppeteer",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Python",
+        filter: ["backend", "ai"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "PyTorch",
+        filter: ["backend", "ai"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "React",
+        filter: ["framework", "frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-cyan-400",
+    },
+    {
+        title: "Rust",
+        filter: ["backend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Sass",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Svelte",
+        filter: ["framework", "frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Symfony",
+        filter: ["backend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Tailwind",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "TypeScript",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Vue.js",
+        filter: ["framework", "frontend"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Webpack Encore",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Zapier",
+        filter: ["other", "ai"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "npm",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-red-500",
+    },
+    {
+        title: "bun",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-yellow-400",
+    },
+    {
+        title: "yarn",
+        filter: ["frontend", "herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-400",
+    },
+    {
+        title: "GitHub",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-blue-500",
+    },
+    {
+        title: "Bitbucket",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Astro",
+        filter: ["frontend", "framework"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "Microsoft Office",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+    {
+        title: "LibreOffice",
+        filter: ["herramientas"],
+        icon: ReactIcon,
+        class: "bg-gray-800 text-green-400",
+    },
+];
+// Get the selected filter from the URL query (default to "Todas" if not set)
+const url = new URL(Astro.request.url);
+const selected = url.searchParams.get("filter") || "Todas";
+
+// Filter skills based on the selected filter
+const filteredSkills = selected === "Todas"
+  ? SKILLS
+  : SKILLS.filter(skill => skill.filter.includes(selected));
+
+---
+
+<div class="flex flex-col gap-2 mb-6">
+  <div class="flex flex-wrap gap-3 justify-center mb-2">
+    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-blue-700 hover:text-white transition-all" data-filter="devops">DevOps</button>
+    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-purple-700 hover:text-white transition-all" data-filter="ai">IA</button>
+    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all" data-filter="Data Analyst">Data Analyst</button>
+  </div>
+  <div class="flex flex-wrap gap-2 justify-center mb-2">
+    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all" data-filter="frontend">Frontend</button>
+    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-rose-600 hover:text-white transition-all" data-filter="backend">Backend</button>
+    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-emerald-600 hover:text-white transition-all" data-filter="fullstack">Fullstack</button>
+  </div>
+  <div class="flex flex-wrap gap-2 justify-center">
+    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all" data-filter="todas">Todas</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="herramientas">Herramientas</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="framework">Frameworks</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="database">Bases de datos</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="systems">Sistemas</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="cloud">Cloud</button>
+    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="other">Otros</button>
+  </div>
+</div>
+
+<ul id="skills-list" class="flex flex-wrap gap-3 mt-4">
+  {SKILLS.map((skill) => (
+    <li
+      data-filters={skill.filter.join(',')}
+      style="display: block;"
+    >
+      <span
+        class={`inline-flex items-center rounded-full font-semibold text-sm px-4 py-2 ${skill.class}`}
+      >
+        {skill.icon && (
+          <skill.icon
+            class="w-5 h-5 mr-2 flex-shrink-0"
+            style="color:inherit;"
+          />
+        )}
+        <span class="whitespace-nowrap">{skill.title}</span>
+      </span>
+    </li>
+  ))}
+</ul>
+
+<script is:inline>
+  // Selecciona todos los botones de filtro
+  const filters = Array.from(document.querySelectorAll('button[data-filter]'));
+  const skillsList = document.getElementById('skills-list');
+  const skills = Array.from(skillsList.querySelectorAll('li'));
+  let selected = 'todas'; // Por defecto
+
+  function renderSkills() {
+    filters.forEach(btn => {
+      const isActive = btn.dataset.filter === selected;
+      btn.classList.toggle('ring-2', isActive);
+      btn.classList.toggle('ring-blue-400', isActive);
+      btn.classList.toggle('scale-105', isActive);
+      btn.classList.toggle('bg-blue-600', isActive && btn.dataset.filter === 'Frontend');
+      btn.classList.toggle('bg-rose-600', isActive && btn.dataset.filter === 'Backend');
+      btn.classList.toggle('bg-emerald-600', isActive && btn.dataset.filter === 'Fullstack');
+      btn.classList.toggle('bg-blue-700', isActive && btn.dataset.filter === 'DevOps');
+      btn.classList.toggle('bg-purple-700', isActive && btn.dataset.filter === 'IA');
+      btn.classList.toggle('bg-green-700', isActive && btn.dataset.filter === 'Data Analyst');
+      btn.classList.toggle('text-white', isActive);
+      // Quita el fondo si no está activo
+      if (!isActive) {
+        btn.classList.remove('bg-blue-600','bg-rose-600','bg-emerald-600','bg-blue-700','bg-purple-700','bg-green-700','text-white','ring-2','ring-blue-400','scale-105');
+      }
+    });
+    skills.forEach(li => {
+      const filtersArr = li.dataset.filters.split(',');
+      li.style.display = (selected === 'todas' || filtersArr.includes(selected)) ? 'block' : 'none';
+    });
+  }
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selected = btn.dataset.filter;
+      renderSkills();
+    });
+  });
+  renderSkills();
+</script>
