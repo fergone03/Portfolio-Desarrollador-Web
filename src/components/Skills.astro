@@ -503,7 +503,17 @@ const filteredSkills = selected === "Todas"
     });
     skills.forEach(li => {
       const filtersArr = li.dataset.filters.split(',');
-      li.style.display = (selected === 'todas' || filtersArr.includes(selected)) ? 'block' : 'none';
+      let shouldShow = false;
+      
+      if (selected === 'todas') {
+        shouldShow = true;
+      } else if (selected === 'fullstack') {
+        shouldShow = filtersArr.includes('fullstack') || filtersArr.includes('frontend') || filtersArr.includes('backend');
+      } else {
+        shouldShow = filtersArr.includes(selected);
+      }
+      
+      li.style.display = shouldShow ? 'block' : 'none';
     });
   }
 
