@@ -8,7 +8,7 @@ import BootstrapIcon from "../assets/media/icons/BootstrapIcon.astro";
 import CSharpIcon from "../assets/media/icons/CSharpIcon.astro";
 import CSSIcon from "../assets/media/icons/CSSIcon.astro";
 import DjangoIcon from "../assets/media/icons/DjangoIcon.astro";
-import DockerIcon from "../assets/media/icons/DockerIcon.astro";   
+import DockerIcon from "../assets/media/icons/DockerIcon.astro";
 import NETIcon from "../assets/media/icons/NETIcon.astro";
 import ExpressIcon from "../assets/media/icons/ExpressIcon.astro";
 import FigmaIcon from "../assets/media/icons/FigmaIcon.astro";
@@ -45,7 +45,7 @@ import TypeScriptIcon from "../assets/media/icons/TypeScriptIcon.astro";
 import VueIcon from "../assets/media/icons/VueIcon.astro";
 import WebpackIcon from "../assets/media/icons/WebpackIcon.astro";
 import WindowsIcon from "../assets/media/icons/WindowsIcon.astro";
-import MariaDBIcon from "../assets/media/icons/MariaDBIcon.astro";  
+import MariaDBIcon from "../assets/media/icons/MariaDBIcon.astro";
 import NginxIcon from "../assets/media/icons/NginxIcon.astro";
 import SvelteIcon from "../assets/media/icons/SvelteIcon.astro";
 import GitHubIcon from "../assets/media/icons/GitHubIcon.astro";
@@ -53,24 +53,24 @@ import ZapierIcon from "../assets/media/icons/ZapierIcon.astro";
 import YarnIcon from "../assets/media/icons/YarnIcon.astro";
 import NPMIcon from "../assets/media/icons/NPMIcon.astro";
 import BunIcon from "../assets/media/icons/BunIcon.astro";
-import BitbucketIcon from "../assets/media/icons/BitbucketIcon.astro";  
+import BitbucketIcon from "../assets/media/icons/BitbucketIcon.astro";
 import AstroIcon from "../assets/media/icons/AstroIcon.astro";
 import MicrosoftIcon from "../assets/media/icons/MicrosoftIcon.astro";
 import LibreOfficeIcon from "../assets/media/icons/LibreOfficeIcon.astro";
 
 const FILTERS = [
-  "Todas",
-  "frontend",
-  "backend",
-  "fullstack",
-  "devops",
-  "other",
-  "herramientas",
-  "framework",
-  "database",
-  "systems",
-  "ai",
-  "cloud",
+    "Todas",
+    "frontend",
+    "backend",
+    "fullstack",
+    "devops",
+    "other",
+    "herramientas",
+    "framework",
+    "database",
+    "systems",
+    "ai",
+    "cloud",
 ];
 
 const SKILLS = [
@@ -424,104 +424,188 @@ const SKILLS = [
     },
 ];
 
-
 const url = new URL(Astro.request.url);
 const selected = url.searchParams.get("filter") || "Todas";
 
-const filteredSkills = selected === "Todas"
-  ? SKILLS
-  : SKILLS.filter(skill => skill.filter.includes(selected));
-
+const filteredSkills =
+    selected === "Todas"
+        ? SKILLS
+        : SKILLS.filter((skill) => skill.filter.includes(selected));
 ---
 
 <div class="flex flex-col gap-2 mb-6">
-  <div class="flex flex-wrap gap-3 justify-center mb-2">
-    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-blue-700 hover:text-white transition-all" data-filter="devops">DevOps</button>
-    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-purple-700 hover:text-white transition-all" data-filter="ai">IA</button>
-    <button type="button" class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all" data-filter="Data Analyst">Data Analyst</button>
-  </div>
-  <div class="flex flex-wrap gap-2 justify-center mb-2">
-    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all" data-filter="frontend">Frontend</button>
-    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-rose-600 hover:text-white transition-all" data-filter="backend">Backend</button>
-    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-emerald-600 hover:text-white transition-all" data-filter="fullstack">Fullstack</button>
-  </div>
-  <div class="flex flex-wrap gap-2 justify-center">
-    <button type="button" class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all" data-filter="todas">Todas</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="herramientas">Herramientas</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="framework">Frameworks</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="database">Bases de datos</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="systems">Sistemas</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="cloud">Cloud</button>
-    <button type="button" class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all" data-filter="other">Otros</button>
-  </div>
+    <div class="flex flex-wrap gap-3 justify-center mb-2">
+        <button
+            type="button"
+            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-blue-700 hover:text-white transition-all"
+            data-filter="devops">DevOps</button
+        >
+        <button
+            type="button"
+            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-purple-700 hover:text-white transition-all"
+            data-filter="ai">IA</button
+        >
+        <button
+            type="button"
+            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all"
+            data-filter="Data Analyst">Data Analyst</button
+        >
+    </div>
+    <div class="flex flex-wrap gap-2 justify-center mb-2">
+        <button
+            type="button"
+            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all"
+            data-filter="frontend">Frontend</button
+        >
+        <button
+            type="button"
+            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-rose-600 hover:text-white transition-all"
+            data-filter="backend">Backend</button
+        >
+        <button
+            type="button"
+            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-emerald-600 hover:text-white transition-all"
+            data-filter="fullstack">Fullstack</button
+        >
+    </div>
+    <div class="flex flex-wrap gap-2 justify-center">
+        <button
+            type="button"
+            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all"
+            data-filter="todas">Todas</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="herramientas">Herramientas</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="framework">Frameworks</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="database">Bases de datos</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="systems">Sistemas</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="cloud">Cloud</button
+        >
+        <button
+            type="button"
+            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
+            data-filter="other">Otros</button
+        >
+    </div>
 </div>
 
 <ul id="skills-list" class="flex flex-wrap gap-3 mt-4">
-  {SKILLS.map((skill) => (
-    <li
-      data-filters={skill.filter.join(',')}
-      style="display: block;"
-    >
-      <span
-        class={`inline-flex items-center rounded-full font-semibold text-sm px-4 py-2 ${skill.class}`}
-      >
-        {skill.icon && (
-          <skill.icon
-            class="w-5 h-5 mr-2 flex-shrink-0"
-            style="color:inherit;"
-          />
-        )}
-        <span class="whitespace-nowrap">{skill.title}</span>
-      </span>
-    </li>
-  ))}
+    {
+        SKILLS.map((skill) => (
+            <li data-filters={skill.filter.join(",")} style="display: block;">
+                <span
+                    class={`inline-flex items-center rounded-full font-semibold text-sm px-4 py-2 ${skill.class}`}
+                >
+                    {skill.icon && (
+                        <skill.icon
+                            class="w-5 h-5 mr-2 flex-shrink-0"
+                            style="color:inherit;"
+                        />
+                    )}
+                    <span class="whitespace-nowrap">{skill.title}</span>
+                </span>
+            </li>
+        ))
+    }
 </ul>
 
 <script is:inline>
-  const filters = Array.from(document.querySelectorAll('button[data-filter]'));
-  const skillsList = document.getElementById('skills-list');
-  const skills = Array.from(skillsList.querySelectorAll('li'));
-  let selected = 'todas'; 
+    const filters = Array.from(
+        document.querySelectorAll("button[data-filter]"),
+    );
+    const skillsList = document.getElementById("skills-list");
+    const skills = Array.from(skillsList.querySelectorAll("li"));
+    let selected = "todas";
 
-  function renderSkills() {
-    filters.forEach(btn => {
-      const isActive = btn.dataset.filter === selected;
-      btn.classList.toggle('ring-2', isActive);
-      btn.classList.toggle('ring-blue-400', isActive);
-      btn.classList.toggle('scale-105', isActive);
-      btn.classList.toggle('bg-blue-600', isActive && btn.dataset.filter === 'Frontend');
-      btn.classList.toggle('bg-rose-600', isActive && btn.dataset.filter === 'Backend');
-      btn.classList.toggle('bg-emerald-600', isActive && btn.dataset.filter === 'fullstack');
-      btn.classList.toggle('bg-blue-700', isActive && btn.dataset.filter === 'DevOps');
-      btn.classList.toggle('bg-purple-700', isActive && btn.dataset.filter === 'IA');
-      btn.classList.toggle('bg-green-700', isActive && btn.dataset.filter === 'Data Analyst');
-      btn.classList.toggle('text-white', isActive);
+    function renderSkills() {
+        filters.forEach((btn) => {
+            const isActive = btn.dataset.filter === selected;
+            btn.classList.toggle("ring-2", isActive);
+            btn.classList.toggle("ring-blue-400", isActive);
+            btn.classList.toggle("scale-105", isActive);
+            btn.classList.toggle(
+                "bg-blue-600",
+                isActive && btn.dataset.filter === "Frontend",
+            );
+            btn.classList.toggle(
+                "bg-rose-600",
+                isActive && btn.dataset.filter === "Backend",
+            );
+            btn.classList.toggle(
+                "bg-emerald-600",
+                isActive && btn.dataset.filter === "fullstack",
+            );
+            btn.classList.toggle(
+                "bg-blue-700",
+                isActive && btn.dataset.filter === "DevOps",
+            );
+            btn.classList.toggle(
+                "bg-purple-700",
+                isActive && btn.dataset.filter === "IA",
+            );
+            btn.classList.toggle(
+                "bg-green-700",
+                isActive && btn.dataset.filter === "Data Analyst",
+            );
+            btn.classList.toggle("text-white", isActive);
 
-      if (!isActive) {
-        btn.classList.remove('bg-blue-600','bg-rose-600','bg-emerald-600','bg-blue-700','bg-purple-700','bg-green-700','text-white','ring-2','ring-blue-400','scale-105');
-      }
-    });
-    skills.forEach(li => {
-      const filtersArr = li.dataset.filters.split(',');
-      let shouldShow = false;
-      
-      if (selected === 'todas') {
-        shouldShow = true;
-      } else if (selected === 'fullstack') {
-        shouldShow = filtersArr.includes('fullstack') || filtersArr.includes('frontend') || filtersArr.includes('backend');
-      } else {
-        shouldShow = filtersArr.includes(selected);
-      }
-      
-      li.style.display = shouldShow ? 'block' : 'none';
-    });
-  }
+            if (!isActive) {
+                btn.classList.remove(
+                    "bg-blue-600",
+                    "bg-rose-600",
+                    "bg-emerald-600",
+                    "bg-blue-700",
+                    "bg-purple-700",
+                    "bg-green-700",
+                    "text-white",
+                    "ring-2",
+                    "ring-blue-400",
+                    "scale-105",
+                );
+            }
+        });
+        skills.forEach((li) => {
+            const filtersArr = li.dataset.filters.split(",");
+            let shouldShow = false;
 
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      selected = btn.dataset.filter;
-      renderSkills();
+            if (selected === "todas") {
+                shouldShow = true;
+            } else if (selected === "fullstack") {
+                shouldShow =
+                    filtersArr.includes("fullstack") ||
+                    filtersArr.includes("frontend") ||
+                    filtersArr.includes("backend");
+            } else {
+                shouldShow = filtersArr.includes(selected);
+            }
+
+            li.style.display = shouldShow ? "block" : "none";
+        });
+    }
+
+    filters.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            selected = btn.dataset.filter;
+            renderSkills();
+        });
     });
-  });
-  renderSkills();
+    renderSkills();
 </script>
