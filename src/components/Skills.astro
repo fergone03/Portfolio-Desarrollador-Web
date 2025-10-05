@@ -62,6 +62,7 @@ const FILTERS = [
   "Todas",
   "frontend",
   "backend",
+  "fullstack",
   "devops",
   "other",
   "herramientas",
@@ -117,7 +118,7 @@ const SKILLS = [
     },
     {
         title: "Django",
-        filter: ["backend", "framework"],
+        filter: ["backend", "framework", "fullstack"],
         icon: DjangoIcon,
         class: "bg-gray-800 text-green-400",
     },
@@ -129,15 +130,15 @@ const SKILLS = [
     },
     {
         title: ".NET",
-        filter: ["backend", "framework"],
+        filter: ["backend", "framework", "fullstack"],
         icon: NETIcon,
         class: "bg-gray-800 text-blue-300",
     },
     {
         title: "Express",
-        filter: ["backend", "framework"],
+        filter: ["backend", "framework", "fullstack"],
         icon: ExpressIcon,
-        class: "bg-gray-800 text-gray-500",
+        class: "bg-gray-800 text-gray-400",
     },
     {
         title: "Figma",
@@ -213,7 +214,7 @@ const SKILLS = [
     },
     {
         title: "Laravel",
-        filter: ["backend", "framework"],
+        filter: ["backend", "framework", "fullstack"],
         icon: LaravelIcon,
         class: "bg-gray-800 text-red-500",
     },
@@ -249,7 +250,7 @@ const SKILLS = [
     },
     {
         title: "Next.js",
-        filter: ["framework", "backend", "frontend"],
+        filter: ["framework", "backend", "frontend", "fullstack"],
         icon: NextIcon,
         class: "bg-gray-800 text-gray",
     },
@@ -261,9 +262,9 @@ const SKILLS = [
     },
     {
         title: "Node.js",
-        filter: ["backend"],
+        filter: ["backend", "framework", "fullstack"],
         icon: NodeIcon,
-        class: "bg-gray-800 text-green-500",
+        class: "bg-gray-800 text-green-600",
     },
     {
         title: "Pandas",
@@ -339,7 +340,7 @@ const SKILLS = [
     },
     {
         title: "Symfony",
-        filter: ["backend", "framework"],
+        filter: ["backend", "framework", "fullstack"],
         icon: SymfonyIcon,
         class: "bg-gray-800 text-cyan-400",
     },
@@ -490,7 +491,7 @@ const filteredSkills = selected === "Todas"
       btn.classList.toggle('scale-105', isActive);
       btn.classList.toggle('bg-blue-600', isActive && btn.dataset.filter === 'Frontend');
       btn.classList.toggle('bg-rose-600', isActive && btn.dataset.filter === 'Backend');
-      btn.classList.toggle('bg-emerald-600', isActive && btn.dataset.filter === 'Fullstack');
+      btn.classList.toggle('bg-emerald-600', isActive && btn.dataset.filter === 'fullstack');
       btn.classList.toggle('bg-blue-700', isActive && btn.dataset.filter === 'DevOps');
       btn.classList.toggle('bg-purple-700', isActive && btn.dataset.filter === 'IA');
       btn.classList.toggle('bg-green-700', isActive && btn.dataset.filter === 'Data Analyst');
