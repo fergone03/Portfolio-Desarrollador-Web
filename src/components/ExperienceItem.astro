@@ -1,6 +1,7 @@
 ---
 interface Props {
   title?: string;
+  company?: string;
   description?: string;
   date?: string;
 }
@@ -24,6 +25,12 @@ const props = Astro.props;
   <h3 class="text-lg font-semibold text-yellow-200">
     {props.title}
   </h3>
+
+  {props.company && (
+    <p class="mb-1 text-sm font-medium text-sky-300/70">
+      {props.company}
+    </p>
+  )}
 
   <p class="mb-4 text-base font-normal text-gray-200 text-pretty">
     {props.description}

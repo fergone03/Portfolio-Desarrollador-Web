@@ -57,21 +57,9 @@ import BitbucketIcon from "../assets/media/icons/BitbucketIcon.astro";
 import AstroIcon from "../assets/media/icons/AstroIcon.astro";
 import MicrosoftIcon from "../assets/media/icons/MicrosoftIcon.astro";
 import LibreOfficeIcon from "../assets/media/icons/LibreOfficeIcon.astro";
+import SnowflakeIcon from "../assets/media/icons/SnowflakeIcon.astro";
+import DbtIcon from "../assets/media/icons/DbtIcon.astro";
 
-const FILTERS = [
-    "Todas",
-    "frontend",
-    "backend",
-    "fullstack",
-    "devops",
-    "other",
-    "herramientas",
-    "framework",
-    "database",
-    "systems",
-    "ai",
-    "cloud",
-];
 
 const SKILLS = [
     {
@@ -82,19 +70,19 @@ const SKILLS = [
     },
     {
         title: "AWS",
-        filter: ["devops", "cloud"],
+        filter: ["devops", "cloud", "Data Engineer"],
         icon: AWSIcon,
         class: "bg-gray-800 text-yellow-500",
     },
     {
         title: "Azure",
-        filter: ["devops", "cloud"],
+        filter: ["devops", "cloud", "Data Engineer"],
         icon: AzureIcon,
         class: "bg-gray-800 text-blue-500",
     },
     {
         title: "Bash",
-        filter: ["devops"],
+        filter: ["devops", "Data Engineer"],
         icon: BashIcon,
         class: "bg-gray-800 text-green-700",
     },
@@ -124,7 +112,7 @@ const SKILLS = [
     },
     {
         title: "Docker",
-        filter: ["devops", "backend"],
+        filter: ["devops", "backend", "Data Engineer"],
         icon: DockerIcon,
         class: "bg-gray-800 text-blue-300",
     },
@@ -154,7 +142,7 @@ const SKILLS = [
     },
     {
         title: "Git",
-        filter: ["frontend", "herramientas"],
+        filter: ["frontend", "herramientas", "Data Engineer"],
         icon: GitIcon,
         class: "bg-gray-800 text-orange-500",
     },
@@ -208,7 +196,7 @@ const SKILLS = [
     },
     {
         title: "Kubernetes",
-        filter: ["devops", "backend", "cloud"],
+        filter: ["devops", "backend", "cloud", "Data Engineer"],
         icon: KubernetesIcon,
         class: "bg-gray-800 text-blue-500",
     },
@@ -220,7 +208,7 @@ const SKILLS = [
     },
     {
         title: "Linux",
-        filter: ["systems"],
+        filter: ["systems", "Data Engineer"],
         icon: LinuxIcon,
         class: "bg-gray-800 text-gray-400",
     },
@@ -232,19 +220,19 @@ const SKILLS = [
     },
     {
         title: "MariaDB",
-        filter: ["database", "backend"],
+        filter: ["database", "backend", "Data Engineer"],
         icon: MariaDBIcon,
         class: "bg-gray-800 text-amber-400",
     },
     {
         title: "MongoDB",
-        filter: ["database", "backend"],
+        filter: ["database", "backend", "Data Engineer"],
         icon: MongoDBIcon,
         class: "bg-gray-800 text-green-500",
     },
     {
         title: "MySQL",
-        filter: ["database", "backend"],
+        filter: ["database", "backend", "Data Engineer"],
         icon: MySQLIcon,
         class: "bg-gray-800 text-cyan-500",
     },
@@ -268,7 +256,7 @@ const SKILLS = [
     },
     {
         title: "Pandas",
-        filter: ["framework", "backend", "Data Analyst"],
+        filter: ["framework", "backend", "Data Engineer"],
         icon: PandasIcon,
         class: "bg-gray-800 text-purple-400",
     },
@@ -286,7 +274,7 @@ const SKILLS = [
     },
     {
         title: "PostgreSQL",
-        filter: ["database", "backend"],
+        filter: ["database", "backend", "Data Engineer"],
         icon: PostgreSQLIcon,
         class: "bg-gray-800 text-blue-400",
     },
@@ -304,7 +292,7 @@ const SKILLS = [
     },
     {
         title: "Python",
-        filter: ["backend", "ai"],
+        filter: ["backend", "ai", "Data Engineer"],
         icon: PythonIcon,
         class: "bg-gray-800 text-yellow-400",
     },
@@ -394,7 +382,7 @@ const SKILLS = [
     },
     {
         title: "GitHub",
-        filter: ["herramientas"],
+        filter: ["herramientas", "Data Engineer"],
         icon: GitHubIcon,
         class: "bg-gray-800",
     },
@@ -422,18 +410,31 @@ const SKILLS = [
         icon: LibreOfficeIcon,
         class: "bg-gray-800 text-blue-400",
     },
+    {
+        title: "Snowflake",
+        filter: ["database", "cloud", "Data Engineer"],
+        icon: SnowflakeIcon,
+        class: "bg-gray-800 text-sky-300",
+    },
+    {
+        title: "dbt",
+        filter: ["backend", "Data Engineer"],
+        icon: DbtIcon,
+        class: "bg-gray-800 text-orange-400",
+    },
 ];
 
-const url = new URL(Astro.request.url);
-const selected = url.searchParams.get("filter") || "Todas";
 
-const filteredSkills =
-    selected === "Todas"
-        ? SKILLS
-        : SKILLS.filter((skill) => skill.filter.includes(selected));
 ---
 
 <div class="flex flex-col gap-2 mb-6">
+    <div class="flex flex-wrap gap-3 justify-center mb-2">
+        <button
+            type="button"
+            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all"
+            data-filter="Data Engineer">Data Engineer</button
+        >
+    </div>
     <div class="flex flex-wrap gap-3 justify-center mb-2">
         <button
             type="button"
@@ -444,11 +445,6 @@ const filteredSkills =
             type="button"
             class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-purple-700 hover:text-white transition-all"
             data-filter="ai">IA</button
-        >
-        <button
-            type="button"
-            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all"
-            data-filter="Data Analyst">Data Analyst</button
         >
     </div>
     <div class="flex flex-wrap gap-2 justify-center mb-2">
@@ -543,11 +539,11 @@ const filteredSkills =
             btn.classList.toggle("scale-105", isActive);
             btn.classList.toggle(
                 "bg-blue-600",
-                isActive && btn.dataset.filter === "Frontend",
+                isActive && btn.dataset.filter === "frontend",
             );
             btn.classList.toggle(
                 "bg-rose-600",
-                isActive && btn.dataset.filter === "Backend",
+                isActive && btn.dataset.filter === "backend",
             );
             btn.classList.toggle(
                 "bg-emerald-600",
@@ -555,15 +551,15 @@ const filteredSkills =
             );
             btn.classList.toggle(
                 "bg-blue-700",
-                isActive && btn.dataset.filter === "DevOps",
+                isActive && btn.dataset.filter === "devops",
             );
             btn.classList.toggle(
                 "bg-purple-700",
-                isActive && btn.dataset.filter === "IA",
+                isActive && btn.dataset.filter === "ai",
             );
             btn.classList.toggle(
                 "bg-green-700",
-                isActive && btn.dataset.filter === "Data Analyst",
+                isActive && btn.dataset.filter === "Data Engineer",
             );
             btn.classList.toggle("text-white", isActive);
 
