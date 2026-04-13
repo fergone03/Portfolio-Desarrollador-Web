@@ -1,27 +1,20 @@
-<footer
-  class="rounded-lg shadow-sm m-4 bg-[#090909]/20 backdrop-blur-lg py-5 xl:w-[1120px] mx-auto mb-10"
->
-  <div class="max-w-screen-xl text-center p-4 flex flex-col items-center">
-    <span class="text-sm text-zinc-200/90 mb-4 md:mb-0"
-      >© 2025 <a
-        href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
-        class="hover:underline">Esteban Fernández</a
-      >. Casi todos los derechos reservados.
-    </span>
-  </div>
-  <div>
-    <ul
-      class="flex flex-wrap w-full justify-center mt-3 text-sm font-medium text-white/90 sm:mt-0"
-    >
-      <li class="mb-2 sm:mb-0 sm:mr-6">
-        <a href="#" class="hover:underline">Inicio</a>
-      </li>
-      <li class="mb-2 sm:mb-0 sm:mr-6">
-        <a href="#sobre-mi" class="hover:underline ml-5">Sobre mí</a>
-      </li>
-      <li class="mb-2 sm:mb-0 sm:mr-6">
-        <a href="#proyectos" class="hover:underline ml-5">Proyectos</a>
-      </li>
-    </ul>
+<footer class="mt-8 py-8" style="border-top:1px solid var(--border);">
+  <div class="mx-auto max-w-4xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm"
+       style="color:var(--text-3);">
+    <span data-i18n="footer.r">© 2026 Esteban Fernández.</span>
+    <nav class="flex gap-5">
+      <a href="#sobre-mi"    data-i18n="nav.about"      class="footer-link">Sobre mí</a>
+      <a href="#skills"      data-i18n="nav.skills"     class="footer-link">Habilidades</a>
+      <a href="#proyectos"   data-i18n="nav.projects"   class="footer-link">Proyectos</a>
+      <a href="#experiencia" data-i18n="nav.experience" class="footer-link">Experiencia</a>
+    </nav>
   </div>
 </footer>
+
+<style>
+  .footer-link {
+    color: var(--text-3);
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--text); }
+</style>

@@ -427,94 +427,41 @@ const SKILLS = [
 
 ---
 
-<div class="flex flex-col gap-2 mb-6">
-    <div class="flex flex-wrap gap-3 justify-center mb-2">
-        <button
-            type="button"
-            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-green-700 hover:text-white transition-all"
-            data-filter="Data Engineer">Data Engineer</button
-        >
-    </div>
-    <div class="flex flex-wrap gap-3 justify-center mb-2">
-        <button
-            type="button"
-            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-blue-700 hover:text-white transition-all"
-            data-filter="devops">DevOps</button
-        >
-        <button
-            type="button"
-            class="px-5 py-2 rounded-lg mr-2 mb-2 text-lg font-bold bg-gray-700 text-gray-200 hover:bg-purple-700 hover:text-white transition-all"
-            data-filter="ai">IA</button
-        >
-    </div>
-    <div class="flex flex-wrap gap-2 justify-center mb-2">
-        <button
-            type="button"
-            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all"
-            data-filter="frontend">Frontend</button
-        >
-        <button
-            type="button"
-            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-rose-600 hover:text-white transition-all"
-            data-filter="backend">Backend</button
-        >
-        <button
-            type="button"
-            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-emerald-600 hover:text-white transition-all"
-            data-filter="fullstack">Fullstack</button
-        >
-    </div>
+<!-- ── Fila 1: Rol principal ── -->
+<div class="flex flex-col gap-3 mb-6">
     <div class="flex flex-wrap gap-2 justify-center">
-        <button
-            type="button"
-            class="px-4 py-1.5 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white transition-all"
-            data-filter="todas">Todas</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="herramientas">Herramientas</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="framework">Frameworks</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="database">Bases de datos</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="systems">Sistemas</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="cloud">Cloud</button
-        >
-        <button
-            type="button"
-            class="px-3 py-1 rounded mr-2 mb-2 bg-gray-700 text-gray-200 hover:bg-gray-800 hover:text-white transition-all"
-            data-filter="other">Otros</button
-        >
+        <button class="sf-btn sf-primary" data-filter="Data Engineer" data-i18n="f.de">Data Engineer</button>
+    </div>
+    <!-- ── Fila 2: Especialidades ── -->
+    <div class="flex flex-wrap gap-2 justify-center">
+        <button class="sf-btn" data-filter="devops"   data-i18n="f.devops">DevOps</button>
+        <button class="sf-btn" data-filter="ai"       data-i18n="f.ai">IA</button>
+    </div>
+    <!-- ── Fila 3: Roles ── -->
+    <div class="flex flex-wrap gap-2 justify-center">
+        <button class="sf-btn" data-filter="frontend"  data-i18n="f.fe">Frontend</button>
+        <button class="sf-btn" data-filter="backend"   data-i18n="f.be">Backend</button>
+        <button class="sf-btn" data-filter="fullstack" data-i18n="f.fs">Fullstack</button>
+    </div>
+    <!-- ── Fila 4: Categorías ── -->
+    <div class="flex flex-wrap gap-1.5 justify-center">
+        <button class="sf-btn sf-sm" data-filter="todas"        data-i18n="f.all">Todas</button>
+        <button class="sf-btn sf-sm" data-filter="herramientas" data-i18n="f.tools">Herramientas</button>
+        <button class="sf-btn sf-sm" data-filter="framework"    data-i18n="f.fw">Frameworks</button>
+        <button class="sf-btn sf-sm" data-filter="database"     data-i18n="f.db">Bases de datos</button>
+        <button class="sf-btn sf-sm" data-filter="systems"      data-i18n="f.sys">Sistemas</button>
+        <button class="sf-btn sf-sm" data-filter="cloud"        data-i18n="f.cloud">Cloud</button>
+        <button class="sf-btn sf-sm" data-filter="other"        data-i18n="f.other">Otros</button>
     </div>
 </div>
 
-<ul id="skills-list" class="flex flex-wrap gap-3 mt-4">
+<ul id="skills-list" class="flex flex-wrap gap-2 mt-4">
     {
         SKILLS.map((skill) => (
-            <li data-filters={skill.filter.join(",")} style="display: block;">
-                <span
-                    class={`inline-flex items-center rounded-full font-semibold text-sm px-4 py-2 ${skill.class}`}
-                >
+            <li data-filters={skill.filter.join(",")} style="display:block;">
+                <span class={`skill-chip inline-flex items-center rounded-full text-xs font-semibold px-3 py-1.5 ${skill.class}`}>
                     {skill.icon && (
-                        <skill.icon
-                            class="w-5 h-5 mr-2 flex-shrink-0"
-                            style="color:inherit;"
-                        />
+                        <skill.icon class="w-4 h-4 mr-1.5 flex-shrink-0" style="color:inherit;" />
                     )}
                     <span class="whitespace-nowrap">{skill.title}</span>
                 </span>
@@ -523,85 +470,88 @@ const SKILLS = [
     }
 </ul>
 
+<style>
+    .sf-btn {
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text-2);
+        padding: 0.45rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .sf-btn:hover {
+        color: var(--text);
+        background: color-mix(in srgb, var(--surface) 50%, var(--border));
+    }
+    .sf-btn.sf-primary {
+        font-size: 1rem;
+        padding: 0.55rem 1.4rem;
+        border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+        color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+    .sf-btn.sf-primary:hover {
+        background: color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+    .sf-btn.sf-sm {
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .sf-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+        transform: scale(1.04);
+    }
+    .sf-btn.sf-primary.active {
+        background: var(--accent);
+        color: #fff;
+    }
+    .skill-chip {
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .skill-chip:hover {
+        transform: scale(1.06);
+        box-shadow: 0 0 12px color-mix(in srgb, currentColor 25%, transparent);
+    }
+</style>
+
 <script is:inline>
-    const filters = Array.from(
-        document.querySelectorAll("button[data-filter]"),
-    );
-    const skillsList = document.getElementById("skills-list");
-    const skills = Array.from(skillsList.querySelectorAll("li"));
+(function () {
+    const btns   = Array.from(document.querySelectorAll(".sf-btn"));
+    const list   = document.getElementById("skills-list");
+    const items  = Array.from(list.querySelectorAll("li"));
     let selected = "todas";
 
-    function renderSkills() {
-        filters.forEach((btn) => {
-            const isActive = btn.dataset.filter === selected;
-            btn.classList.toggle("ring-2", isActive);
-            btn.classList.toggle("ring-blue-400", isActive);
-            btn.classList.toggle("scale-105", isActive);
-            btn.classList.toggle(
-                "bg-blue-600",
-                isActive && btn.dataset.filter === "frontend",
-            );
-            btn.classList.toggle(
-                "bg-rose-600",
-                isActive && btn.dataset.filter === "backend",
-            );
-            btn.classList.toggle(
-                "bg-emerald-600",
-                isActive && btn.dataset.filter === "fullstack",
-            );
-            btn.classList.toggle(
-                "bg-blue-700",
-                isActive && btn.dataset.filter === "devops",
-            );
-            btn.classList.toggle(
-                "bg-purple-700",
-                isActive && btn.dataset.filter === "ai",
-            );
-            btn.classList.toggle(
-                "bg-green-700",
-                isActive && btn.dataset.filter === "Data Engineer",
-            );
-            btn.classList.toggle("text-white", isActive);
-
-            if (!isActive) {
-                btn.classList.remove(
-                    "bg-blue-600",
-                    "bg-rose-600",
-                    "bg-emerald-600",
-                    "bg-blue-700",
-                    "bg-purple-700",
-                    "bg-green-700",
-                    "text-white",
-                    "ring-2",
-                    "ring-blue-400",
-                    "scale-105",
-                );
-            }
+    function render() {
+        btns.forEach(function (btn) {
+            btn.classList.toggle("active", btn.dataset.filter === selected);
         });
-        skills.forEach((li) => {
-            const filtersArr = li.dataset.filters.split(",");
-            let shouldShow = false;
-
+        items.forEach(function (li) {
+            const fs = li.dataset.filters.split(",");
+            let show = false;
             if (selected === "todas") {
-                shouldShow = true;
+                show = true;
             } else if (selected === "fullstack") {
-                shouldShow =
-                    filtersArr.includes("fullstack") ||
-                    filtersArr.includes("frontend") ||
-                    filtersArr.includes("backend");
+                show = fs.includes("fullstack") || fs.includes("frontend") || fs.includes("backend");
             } else {
-                shouldShow = filtersArr.includes(selected);
+                show = fs.includes(selected);
             }
-
-            li.style.display = shouldShow ? "block" : "none";
+            li.style.display = show ? "block" : "none";
         });
     }
 
-    filters.forEach((btn) => {
-        btn.addEventListener("click", () => {
+    btns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
             selected = btn.dataset.filter;
-            renderSkills();
+            render();
         });
     });
-    renderSkills();
+
+    render();
+})();
 </script>

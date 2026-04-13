@@ -2,43 +2,40 @@
 const personalImageAlt = "Esteban Fernández";
 ---
 
-<article
-  class="flex flex-col items-center justify-center gap-8 text-gray-300 md:flex-row"
->
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p class="text-gray-300">
-      Me llamo Esteban y soy desarrollador web. Empecé en la programación con
-      PHP en mis prácticas de FP de Grado Medio, Sistemas Microinformáticos y
-      Redes. En ellas tuve mi primer contacto con la programación
-      <strong
-        >donde programé un sistema de facturación automatizado con php en el que
-        reenviaba recibos firmados a clientes.</strong
-      >
-    </p>
+<article class="flex flex-col md:flex-row items-start gap-10">
 
-    <p class="text-gray-300">
-      Durante mis estudios de grado superior, <strong
-        >decidí no estancarme con los lenguajes que me enseñaban y aprendí otros
-        lenguajes y tecnologías</strong
-      > de forma autodidacta.
+  <div class="flex-1 space-y-4 text-base leading-relaxed order-2 md:order-1" style="color:var(--text-2);">
+    <p data-i18n="about.p1">
+      Me llamo Esteban y soy desarrollador con perfil <strong>Full Stack y Data Engineer</strong>.
+      Empecé en la programación durante mis prácticas de FP de Grado Medio, donde desarrollé un sistema
+      de facturación automatizado en PHP que gestionaba el envío de recibos firmados a clientes.
     </p>
-
-    <p class="text-gray-300">
-      Para mí, la lealtad en una empresa es fundamental. No busco ser formado
-      para luego llevar mis conocimientos a otra parte. Mi objetivo es crecer
-      junto a la empresa que me brinde la oportunidad, devolviendo con años de
-      éxitos y calidad la confianza y formación que se me otorgue.
+    <p data-i18n="about.p2">
+      Durante el grado superior <strong>no me limité al temario</strong>: aprendí de forma autodidacta
+      tecnologías como React, TypeScript, Docker o Symfony, construyendo proyectos reales mientras estudiaba.
+    </p>
+    <p data-i18n="about.p3">
+      Hoy me muevo con comodidad tanto en el desarrollo web fullstack como en el mundo del dato —
+      pipelines, dashboards y ciclo de vida del dato incluidos. Busco una empresa donde
+      <strong>crecer a largo plazo</strong> y aportar valor desde el primer día.
     </p>
   </div>
 
-  <img
-    width="200"
-    height="200"
-    src="./imgs/imgdevesteban2.webp"
-    alt={personalImageAlt}
-    class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-yellow-500/5 ring-1 ring-white/20"
-    style="object-position: 50% 50%"
-  />
+  <div class="order-1 md:order-2 flex-shrink-0">
+    <img
+      width="200" height="200"
+      src="./imgs/imgdevesteban2.webp"
+      alt={personalImageAlt}
+      class="w-48 aspect-square object-cover rounded-2xl rotate-2"
+      style="border:1px solid var(--border); box-shadow:0 8px 32px color-mix(in srgb,var(--accent) 20%,transparent);"
+    />
+  </div>
+
 </article>
+
+<style>
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>

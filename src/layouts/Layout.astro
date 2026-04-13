@@ -12,45 +12,366 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/code.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>{title}</title>
+    <!-- Anti-FOUC: apply theme before paint -->
+    <script is:inline>
+      const t = localStorage.getItem("theme") ?? "dark";
+      document.documentElement.classList.toggle("dark", t === "dark");
+    </script>
   </head>
-  <body>
-    <div
-      class="absolute top-0 z-[-2] w-full h-full min-h-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
-    </div>
 
-    <Header />
-    <slot />
-    <Footer />
+  <body>
+    <!-- Background orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
 
+<!-- ───────────────────────────────────────────── GLOBAL STYLES -->
 <style is:global>
+  /* === CSS Custom Properties === */
   :root {
-    color-scheme: light dark;
+    /* Light mode */
+    --bg:        #F2F4FF;
+    --surface:   rgba(0,0,0,0.04);
+    --border:    rgba(0,0,0,0.09);
+    --text:      #0F172A;
+    --text-2:    #475569;
+    --text-3:    #94A3B8;
+    --accent:    #7C3AED;
+    --accent-2:  #0EA5E9;
+    --grid-dot:  rgba(0,0,0,0.045);
+    --card-glow: rgba(124,58,237,0.10);
+    --orb1:      rgba(124,58,237,0.08);
+    --orb2:      rgba(99,102,241,0.06);
+    --orb3:      rgba(14,165,233,0.05);
+    --header-bg: rgba(242,244,255,0.80);
   }
+  html.dark {
+    /* Dark mode */
+    --bg:        #08090F;
+    --surface:   rgba(255,255,255,0.04);
+    --border:    rgba(255,255,255,0.09);
+    --text:      #F1F5F9;
+    --text-2:    #94A3B8;
+    --text-3:    #64748B;
+    --accent:    #A78BFA;
+    --accent-2:  #38BDF8;
+    --grid-dot:  rgba(255,255,255,0.045);
+    --card-glow: rgba(167,139,250,0.12);
+    --orb1:      rgba(167,139,250,0.14);
+    --orb2:      rgba(99,102,241,0.11);
+    --orb3:      rgba(56,189,248,0.08);
+    --header-bg: rgba(8,9,15,0.80);
+  }
+
+  /* === Base === */
   html {
     font-family: "Onest Variable", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   body {
-    background: #090909;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* === Orbs === */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 {
+    width: 550px; height: 550px;
+    background: var(--orb1);
+    top: -120px; left: -120px;
+    animation: float1 22s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 420px; height: 420px;
+    background: var(--orb2);
+    top: -80px; right: -100px;
+    animation: float2 18s ease-in-out infinite;
+    animation-delay: -6s;
+  }
+  .orb-3 {
+    width: 350px; height: 350px;
+    background: var(--orb3);
+    bottom: 15%; left: 45%;
+    animation: float3 25s ease-in-out infinite;
+    animation-delay: -12s;
+  }
+  @keyframes float1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(40px,-30px) scale(1.04); }
+    66%      { transform: translate(-25px, 20px) scale(0.97); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    40%     { transform: translate(-35px, 40px) scale(1.05); }
+    80%     { transform: translate(20px,-20px) scale(0.96); }
+  }
+  @keyframes float3 {
+    0%,100% { transform: translate(-50%,0) scale(1); }
+    50%     { transform: translate(calc(-50% + 30px), -25px) scale(1.06); }
+  }
+
+  /* === Hero animations === */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity:0; }
+    to   { opacity:1; }
+  }
+  .animate-fade-up  { animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) both; }
+  .animate-fade-in  { animation: fadeIn 0.6s ease both; }
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+
+  /* === Scroll animations === */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1);
+  }
+  [data-animate].in-view { opacity:1; transform:none; }
+  [data-animate-delay="150"] { transition-delay:150ms; }
+  [data-animate-delay="300"] { transition-delay:300ms; }
+  [data-animate-delay="450"] { transition-delay:450ms; }
+
+  /* === Gradient text === */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* === Glass surface === */
+  .glass {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+
+  /* === Spotlight card === */
+  .spotlight {
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      500px circle at var(--mx,50%) var(--my,50%),
+      var(--card-glow),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .spotlight:hover::before { opacity: 1; }
+
+  /* === Section labels === */
+  .section-label {
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2rem;
+    transition: color 0.35s ease;
+  }
+
+  /* === Smooth theme transition for key elements === */
+  header, footer, .glass, button {
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
   }
 </style>
+
+<!-- ───────────────────────────────────────────── SCRIPTS -->
+<script is:inline>
+(function () {
+
+  /* ── TRANSLATIONS ── */
+  const T = {
+    es: {
+      "nav.about":"Sobre mí","nav.skills":"Habilidades","nav.projects":"Proyectos",
+      "nav.experience":"Experiencia","nav.contact":"Contacto",
+      "hero.badge":"Disponible para trabajar",
+      "hero.greeting":"Hey, soy",
+      "hero.desc":"<strong style='color:var(--text)'>Full Stack Developer & Data Engineer</strong> con base en Granada, España. Apasionado por crear soluciones innovadoras y transformar datos en decisiones.",
+      "hero.cv":"Descargar CV","hero.email":"Correo",
+      "title.about":"Sobre mí","title.skills":"Habilidades",
+      "title.projects":"Proyectos","title.experience":"Experiencia laboral",
+      "about.p1":"Me llamo Esteban y soy desarrollador con perfil <strong>Full Stack y Data Engineer</strong>. Empecé en la programación durante mis prácticas de FP de Grado Medio, donde desarrollé un sistema de facturación automatizado en PHP que gestionaba el envío de recibos firmados a clientes.",
+      "about.p2":"Durante el grado superior <strong>no me limité al temario</strong>: aprendí de forma autodidacta tecnologías como React, TypeScript, Docker o Symfony, construyendo proyectos reales mientras estudiaba.",
+      "about.p3":"Hoy me muevo con comodidad tanto en el desarrollo web fullstack como en el mundo del dato — pipelines, dashboards y ciclo de vida del dato incluidos. Busco una empresa donde <strong>crecer a largo plazo</strong> y aportar valor desde el primer día.",
+      "about.cv":"CV Estándar","about.cva":"CV ATS",
+      "f.all":"Todas","f.de":"Data Engineer","f.devops":"DevOps","f.ai":"IA",
+      "f.fe":"Frontend","f.be":"Backend","f.fs":"Fullstack","f.tools":"Herramientas",
+      "f.fw":"Frameworks","f.db":"Bases de datos","f.sys":"Sistemas",
+      "f.cloud":"Cloud","f.other":"Otros",
+      "e1.title":"Data Engineer","e1.co":"Realidad Docente","e1.date":"Marzo 2026 — Actualidad",
+      "e1.desc":"Diseño e implementación del ciclo de vida del dato completo: desde la ingesta y transformación hasta la visualización. Desarrollo de dashboards interactivos que proporcionan visibilidad en tiempo real sobre métricas clave del negocio, facilitando la toma de decisiones estratégicas basadas en datos.",
+      "e2.title":"Técnico de Sistemas Cloud de Google","e2.co":"TDTandem","e2.date":"Enero 2026 — Actualidad",
+      "e2.desc":"Administración y optimización de la infraestructura de datos en la suite Cloud de Google. Gestión centralizada del alumnado, diseño de flujos de tratamiento de datos y mantenimiento de bases de datos en entornos cloud, garantizando la integridad, disponibilidad y seguridad de la información.",
+      "e3.title":"Fullstack Developer","e3.co":"Realidad Docente","e3.date":"Enero 2026 — Marzo 2026",
+      "e3.desc":"Desarrollo end-to-end de la plataforma web corporativa utilizando TypeScript, React y Tailwind CSS en el frontend, y Supabase como backend-as-a-service. Integración de múltiples APIs y librerías externas, asegurando una arquitectura escalable y una experiencia de usuario fluida desde el primer día de lanzamiento.",
+      "e4.title":"Fullstack Developer y Creador de Contenido","e4.co":"Grupo Ecos","e4.date":"Octubre 2025 — Marzo 2026",
+      "e4.desc":"Gestión técnica y mantenimiento de webs corporativas en WordPress y Wix para múltiples clientes, con desarrollo de funcionalidades a medida en PHP y JavaScript. Construcción de herramientas web internas con React y Tailwind CSS, integrando APIs para automatizar procesos de negocio. Diseñé y ejecuté estrategias de contenido para redes sociales, elaborando informes de rendimiento y auditorías digitales.",
+      "e5.title":"Desarrollador Fullstack","e5.co":"Prácticas — Turismo e IA","e5.date":"Marzo 2025",
+      "e5.desc":"Integrado en un equipo de producto de software de alquiler vacacional, contribuí al desarrollo de la API backend con Symfony, implementando filtros avanzados mediante GraphQL y ApiFilter. Expuse nuevos campos al frontend y a EasyAdmin con lógica condicional y soporte i18n. Corregí errores críticos en el sistema de mensajería automática y realicé la sincronización de amenities con la API de Bedloop.",
+      "e6.title":"Técnico IT y Desarrollador Web","e6.co":"Grupo Eurocenter 2000","e6.date":"Marzo 2023",
+      "e6.desc":"Primera experiencia profesional en un entorno IT multisede. Resolución de incidencias de hardware y software de forma remota y presencial, optimizando el rendimiento de los equipos. Primer contacto con el desarrollo web mediante la gestión y actualización de contenido en WordPress.",
+      "c.title":"¿Hablamos?",
+      "c.desc":"Estoy abierto a nuevas oportunidades, colaboraciones o simplemente a charlar sobre tecnología y datos.",
+      "footer.r":"© 2026 Esteban Fernández."
+    },
+    en: {
+      "nav.about":"About me","nav.skills":"Skills","nav.projects":"Projects",
+      "nav.experience":"Experience","nav.contact":"Contact",
+      "hero.badge":"Available for work",
+      "hero.greeting":"Hey, I'm",
+      "hero.desc":"<strong style='color:var(--text)'>Full Stack Developer & Data Engineer</strong> based in Granada, Spain. Passionate about building innovative solutions and transforming data into decisions.",
+      "hero.cv":"Download CV","hero.email":"Email",
+      "title.about":"About me","title.skills":"Skills",
+      "title.projects":"Projects","title.experience":"Work Experience",
+      "about.p1":"My name is Esteban and I'm a developer with a <strong>Full Stack and Data Engineering</strong> profile. I started programming during my vocational training internship, where I built an automated billing system in PHP that managed the sending of signed receipts to clients.",
+      "about.p2":"During my advanced training I <strong>didn't limit myself to the curriculum</strong>: I self-taught technologies like React, TypeScript, Docker, and Symfony, building real projects while studying.",
+      "about.p3":"Today I work comfortably in both fullstack web development and the data world — pipelines, dashboards, and the full data lifecycle included. I'm looking for a company where I can <strong>grow long-term</strong> and add value from day one.",
+      "about.cv":"Standard CV","about.cva":"ATS CV",
+      "f.all":"All","f.de":"Data Engineer","f.devops":"DevOps","f.ai":"AI",
+      "f.fe":"Frontend","f.be":"Backend","f.fs":"Fullstack","f.tools":"Tools",
+      "f.fw":"Frameworks","f.db":"Databases","f.sys":"Systems",
+      "f.cloud":"Cloud","f.other":"Others",
+      "e1.title":"Data Engineer","e1.co":"Realidad Docente","e1.date":"March 2026 — Present",
+      "e1.desc":"Design and implementation of the complete data lifecycle: from ingestion and transformation to visualization. Development of interactive dashboards providing real-time visibility into key business metrics, enabling strategic data-driven decision making.",
+      "e2.title":"Google Cloud Systems Technician","e2.co":"TDTandem","e2.date":"January 2026 — Present",
+      "e2.desc":"Administration and optimization of data infrastructure on Google Cloud Suite. Centralized student management, data processing flow design, and database maintenance in cloud environments, ensuring data integrity, availability and security.",
+      "e3.title":"Fullstack Developer","e3.co":"Realidad Docente","e3.date":"January 2026 — March 2026",
+      "e3.desc":"End-to-end development of the corporate web platform using TypeScript, React and Tailwind CSS on the frontend, with Supabase as backend-as-a-service. Integration of multiple external APIs and libraries, ensuring a scalable architecture and smooth user experience from launch day.",
+      "e4.title":"Fullstack Developer & Content Creator","e4.co":"Grupo Ecos","e4.date":"October 2025 — March 2026",
+      "e4.desc":"Technical management and maintenance of corporate websites in WordPress and Wix for multiple clients, with custom feature development in PHP and JavaScript. Built internal web tools with React and Tailwind CSS, integrating APIs to automate business processes. Designed and executed social media content strategies, producing performance reports and digital audits.",
+      "e5.title":"Fullstack Developer","e5.co":"Internship — Tourism & AI","e5.date":"March 2025",
+      "e5.desc":"Integrated into a vacation rental software product team, contributed to backend API development with Symfony, implementing advanced filters via GraphQL and ApiFilter. Exposed new fields to frontend and EasyAdmin with conditional logic and full i18n support. Fixed critical bugs in the guest automated messaging system and performed amenity synchronization with the Bedloop API.",
+      "e6.title":"IT Technician & Web Developer","e6.co":"Grupo Eurocenter 2000","e6.date":"March 2023",
+      "e6.desc":"First professional experience in a multi-site IT environment. Resolved hardware and software incidents remotely and on-site, optimizing equipment performance across different locations. First contact with web development through WordPress content management.",
+      "c.title":"Let's talk?",
+      "c.desc":"I'm open to new opportunities, collaborations, or simply chatting about technology and data.",
+      "footer.r":"© 2026 Esteban Fernández."
+    }
+  };
+
+  /* ── Apply language ── */
+  function applyLang(lang) {
+    localStorage.setItem("lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+    const dict = T[lang] || T["es"];
+    document.querySelectorAll("[data-i18n]").forEach(function(el) {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    const btn = document.getElementById("lang-btn");
+    if (btn) btn.textContent = lang === "es" ? "EN" : "ES";
+  }
+
+  /* ── Apply theme ── */
+  function applyTheme(theme) {
+    localStorage.setItem("theme", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    const icon = document.getElementById("theme-icon");
+    if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
+  }
+
+  /* ── Init ── */
+  function init() {
+    const lang  = localStorage.getItem("lang")  ?? "es";
+    const theme = localStorage.getItem("theme") ?? "dark";
+    applyTheme(theme);
+    applyLang(lang);
+
+    /* Theme toggle */
+    const themeBtn = document.getElementById("theme-btn");
+    if (themeBtn) themeBtn.addEventListener("click", function() {
+      const isDark = document.documentElement.classList.contains("dark");
+      applyTheme(isDark ? "light" : "dark");
+    });
+
+    /* Lang toggle */
+    const langBtn = document.getElementById("lang-btn");
+    if (langBtn) langBtn.addEventListener("click", function() {
+      const cur = document.documentElement.getAttribute("lang") ?? "es";
+      applyLang(cur === "es" ? "en" : "es");
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in-view");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll("[data-animate]").forEach(function(el) {
+      observer.observe(el);
+    });
+
+    /* Spotlight cards */
+    document.querySelectorAll(".spotlight").forEach(function(card) {
+      card.addEventListener("mousemove", function(e) {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top)  + "px");
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>

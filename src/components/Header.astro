@@ -1,33 +1,70 @@
-<header
-  class="flex flex-col sm:flex-row justify-center items-center sm:justify-between py-5 xl:w-[1120px] mx-auto"
->
-  <img
-    class="rounded-full size-16 mb-4 sm:mb-0 sm:mr-6"
-    src="./imgs/imgdevsteban.webp"
-    alt="photo of Web developer esteban "
-  />
-  <nav
-    class="flex flex-row gap-x-4 sm:gap-x-10 opacity-80 flex-wrap justify-center"
-  >
-    <a
-      href="#sobre-mi"
-      class="text-gray-300 mb-2 sm:mb-0 hover:drop-shadow-xl hover:text-yellow-300 hover:scale-105 transition duration-300"
-      >Sobre mí</a
-    >
-    <a
-      href="#proyectos"
-      class="text-gray-300 mb-2 sm:mb-0 hover:drop-shadow-xl hover:text-yellow-300 hover:scale-105 transition duration-300"
-      >Proyectos</a
-    >
-    <!-- <a
-      href="#experiencia"
-      class="mb-2 sm:mb-0 hover:drop-shadow-xl hover:text-yellow-300 hover:scale-105 transition duration-300"
-      >Experiencia</a
-    > -->
-    <a
-      href="#contacto"
-      class="text-gray-300 mb-2 sm:mb-0 hover:drop-shadow-xl hover:text-yellow-300 hover:scale-105 transition duration-300"
-      >Contacto</a
-    >
-  </nav>
+<header style="background:var(--header-bg); border-bottom:1px solid var(--border);"
+  class="sticky top-0 z-50 w-full backdrop-blur-xl">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+
+    <!-- Logo -->
+    <a href="#top" class="flex items-center gap-3 group">
+      <img
+        class="rounded-full size-9 ring-1 transition duration-300"
+        style="border-color:var(--border);"
+        src="./imgs/imgdevsteban.webp"
+        alt="Esteban Fernández"
+      />
+      <span class="hidden sm:block text-sm font-semibold transition duration-200"
+            style="color:var(--text-2);">
+        Dev Esteban
+      </span>
+    </a>
+
+    <!-- Nav -->
+    <nav class="flex items-center gap-1">
+      <a href="#sobre-mi"    data-i18n="nav.about"      class="nav-link hidden md:block">Sobre mí</a>
+      <a href="#skills"      data-i18n="nav.skills"     class="nav-link hidden lg:block">Habilidades</a>
+      <a href="#proyectos"   data-i18n="nav.projects"   class="nav-link hidden sm:block">Proyectos</a>
+      <a href="#experiencia" data-i18n="nav.experience" class="nav-link hidden md:block">Experiencia</a>
+      <a href="#contacto"    data-i18n="nav.contact"
+         class="ml-1 rounded-lg border px-3 py-1.5 text-sm font-medium transition duration-200"
+         style="border-color:var(--accent); color:var(--accent); background:transparent;"
+         onmouseover="this.style.background='color-mix(in srgb,var(--accent) 15%,transparent)'"
+         onmouseout="this.style.background='transparent'">
+        Contacto
+      </a>
+    </nav>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-2 ml-3">
+      <!-- Lang toggle -->
+      <button
+        id="lang-btn"
+        class="rounded-lg px-2.5 py-1.5 text-xs font-bold font-mono border transition duration-200"
+        style="border-color:var(--border); color:var(--text-2); background:var(--surface);"
+        aria-label="Toggle language"
+      >EN</button>
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-btn"
+        class="rounded-lg px-2.5 py-1.5 text-sm border transition duration-200"
+        style="border-color:var(--border); background:var(--surface);"
+        aria-label="Toggle theme"
+      >
+        <span id="theme-icon">☀️</span>
+      </button>
+    </div>
+
+  </div>
 </header>
+
+<style>
+  .nav-link {
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+</style>

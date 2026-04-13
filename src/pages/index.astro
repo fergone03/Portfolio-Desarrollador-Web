@@ -4,152 +4,143 @@ import Badge from "../components/Badge.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import GitHubIcon from "../assets/media/icons/GitHubIcon.astro";
 import LinkedInIcon from "../assets/media/icons/LinkedInIcon.astro";
-import SocialPill from "../components/SocialPill.astro";
 import MailIcon from "../assets/media/icons/MailIcon.astro";
+import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
 import Experience from "../components/Experience.astro";
-import WorkIcon from "../assets/media/icons/WorkIcon.astro";
-import ProyectoIcon from "../assets/media/icons/ProyectoIcon.astro";
 import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
-import ContactIcon from "../assets/media/icons/ContactIcon.astro";
-import AboutMeIcon from "../assets/media/icons/AboutMeIcon.astro";
 import SobreMi from "../components/SobreMi.astro";
-import DownloadIcon from "../assets/media/icons/DownloadIcon.astro";
-import SoftSkills from "../components/SoftSkills.astro";
-import Certificates from "../components/Certificates.astro";
 import Skills from "../components/Skills.astro";
-import SkillsIcon from "../assets/media/icons/SkillsIcon.astro";
 ---
 
 <Layout
-  title="Dev Esteban Portfolio | Full Stack Developer & Data Engineer"
-  description="Este es mi portfolio web, donde puedo mostrar mis habilidades y experiencia en desarrollo web."
+  title="Dev Esteban | Full Stack Developer & Data Engineer"
+  description="Portfolio de Esteban Fernández, Full Stack Developer y Data Engineer con base en Granada, España."
 >
-  <main class="px-4">
-    <SectionContainer class="py-44 pb-24" id="top">
-      <h1
-        class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
-      >
-        Hey, soy Esteban
-        <a
-          href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
-          target="_blank"
-          rel="noopener"
-          class="flex justify-cente items-center"
-        >
-          <Badge> Disponible para trabajar </Badge>
+  <main>
+
+    <!-- ══ HERO ══ -->
+    <SectionContainer class="flex flex-col justify-center min-h-[90vh] pt-8 pb-16" id="top">
+      <div class="animate-fade-in">
+        <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener">
+          <Badge>Disponible para trabajar</Badge>
         </a>
+      </div>
+
+      <h1 class="mt-7 font-bold tracking-tight animate-fade-up animate-delay-100">
+        <span class="block text-lg mb-1 font-mono animate-fade-up animate-delay-100"
+              style="color:var(--text-3);" data-i18n="hero.greeting">Hey, soy</span>
+        <span class="block text-6xl sm:text-7xl lg:text-8xl gradient-text leading-none pb-2">Esteban</span>
       </h1>
-      <h2
-        class="text-xl text-gray-300 lg:text-2xl opacity-80 text-wrap max-w-[700px]"
-      >
-        <span class="opacity-85">Desarrollador creativo y entusiasta.</span>
-        <span class="text-yellow-200/90">Full Stack Developer / Data Engineer.</span>
-        <span class="text-red-200/90">De Granada, España.</span>
-        <span class="opacity-85">
-          Apasionado por crear soluciones innovadoras, con experiencia en
-          desarrollo web fullstack y en el ciclo de vida del dato.
-        </span>
-      </h2>
 
-      <nav class="flex gap-4 mt-9 flex-wrap">
-        <SocialPill
-          href="https://www.linkedin.com/in/estebanfernandezgonzalez/"
-        >
-          <LinkedInIcon class="size-4 md:size-6" />
-          LinkedIn
-        </SocialPill>
-        <SocialPill href="https://github.com/fergone03">
-          <GitHubIcon class="size-4 md:size-6" />
-          GitHub
-        </SocialPill>
-        <SocialPill href="mailto:fergonesteban03@gmail.com">
-          <MailIcon class="size-4 md:size-6" />
-          fergonesteban03@gmail.com
-        </SocialPill>
+      <p class="mt-6 max-w-lg text-base leading-relaxed animate-fade-up animate-delay-200"
+         style="color:var(--text-2);" data-i18n="hero.desc">
+        <strong>Full Stack Developer & Data Engineer</strong> con base en Granada, España.
+        Apasionado por crear soluciones innovadoras y transformar datos en decisiones.
+      </p>
+
+      <nav class="mt-8 flex flex-wrap gap-3 animate-fade-up animate-delay-300">
+        <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener"
+           class="pill-btn">
+          <LinkedInIcon class="size-4" style="color:var(--accent-2);" /> LinkedIn
+        </a>
+        <a href="https://github.com/fergone03" target="_blank" rel="noopener"
+           class="pill-btn">
+          <GitHubIcon class="size-4" /> GitHub
+        </a>
+        <a href="mailto:fergonesteban03@gmail.com" class="pill-btn">
+          <MailIcon class="size-4" style="color:#4ade80;" />
+          <span data-i18n="hero.email">Correo</span>
+        </a>
+        <a href="/files/CV_Esteban_Fernandez_es.pdf" target="_blank"
+           class="pill-btn pill-accent">
+          <DownloadIcon class="size-4" />
+          <span data-i18n="hero.cv">Descargar CV</span>
+        </a>
       </nav>
     </SectionContainer>
 
+    <!-- ══ SOBRE MÍ ══ -->
     <SectionContainer id="sobre-mi">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <AboutMeIcon class="size-10 text-white" />
-        Sobre mí
-      </h2>
-      <SobreMi />
-      <nav class="flex gap-4 mt-9 flex-wrap">
-        <SocialPill href="/files/CV_Esteban_Fernandez_es.pdf">
-          <DownloadIcon class="text-white size-4 md:size-10" />
-          Descargar CV
-        </SocialPill>
-        <SocialPill href="/files/CV_Esteban_Fernandez_ATS_es.pdf">
-          <DownloadIcon class="text-white size-4 md:size-10" />
-          Descargar CV ATS
-        </SocialPill>
-      </nav>
+      <div data-animate>
+        <p class="section-label">// 01</p>
+        <h2 class="section-title" data-i18n="title.about">Sobre mí</h2>
+        <SobreMi />
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/files/CV_Esteban_Fernandez_es.pdf" target="_blank" class="pill-btn">
+            <DownloadIcon class="size-4" />
+            <span data-i18n="about.cv">CV Estándar</span>
+          </a>
+          <a href="/files/CV_Esteban_Fernandez_ATS_es.pdf" target="_blank" class="pill-btn">
+            <DownloadIcon class="size-4" />
+            <span data-i18n="about.cva">CV ATS</span>
+          </a>
+        </div>
+      </div>
     </SectionContainer>
 
+    <!-- ══ HABILIDADES ══ -->
     <SectionContainer id="skills">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <SkillsIcon class="text-white size-10" />
-        Habilidades
-      </h2>
-      <Skills />
+      <div data-animate>
+        <p class="section-label">// 02</p>
+        <h2 class="section-title" data-i18n="title.skills">Habilidades</h2>
+        <Skills />
+      </div>
     </SectionContainer>
 
+    <!-- ══ PROYECTOS ══ -->
     <SectionContainer id="proyectos">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <ProyectoIcon class="text-white size-10" />
-        Proyectos
-      </h2>
-      <Projects />
+      <div data-animate>
+        <p class="section-label">// 03</p>
+        <h2 class="section-title" data-i18n="title.projects">Proyectos</h2>
+        <Projects />
+      </div>
     </SectionContainer>
 
+    <!-- ══ EXPERIENCIA ══ -->
     <SectionContainer id="experiencia">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <WorkIcon class="text-white size-10" />
-        Experiencia laboral
-      </h2>
-      <Experience />
+      <div data-animate>
+        <p class="section-label">// 04</p>
+        <h2 class="section-title" data-i18n="title.experience">Experiencia laboral</h2>
+        <Experience />
+      </div>
     </SectionContainer>
-    <!--
-    <SectionContainer id="certificates">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <ProyectoIcon class="text-white size-10" />
-        Certificates
-      </h2>
-      <Certificates />
-    </SectionContainer>
-   -->
-    <!--
-    <SectionContainer id="soft-skills">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <ProyectoIcon class="text-white size-10" />
-        Soft Skills
-      </h2>
-      <SoftSkills />
-    </SectionContainer>
-   -->
 
+    <!-- ══ CONTACTO ══ -->
     <SectionContainer id="contacto">
-      <h2
-        class="text-white text-3xl font-semibold mb-6 flex gap-x-3 items-center"
-      >
-        <ContactIcon class="text-white size-10" />
-        Contacto
-      </h2>
-      <Contact />
+      <div data-animate>
+        <Contact />
+      </div>
     </SectionContainer>
+
   </main>
 </Layout>
+
+<style>
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .pill-btn:hover {
+    background: color-mix(in srgb, var(--surface) 50%, var(--border));
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+  .pill-accent {
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+  .pill-accent:hover {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    color: var(--accent);
+  }
+</style>

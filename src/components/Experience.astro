@@ -47,6 +47,6 @@ const EXPERIENCE = [
 ];
 ---
 
-<ol class="relative border-s border-gray-200 ml-3">
-  {EXPERIENCE.map((experience) => <ExperienceItem {...experience} />)}
+<ol class="flex flex-col">
+  {EXPERIENCE.map((experience, i) => <ExperienceItem {...experience} index={i + 1} />)}
 </ol>

@@ -1,5 +1,9 @@
-<span 
-class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300"
->
-<slot />
+<span class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium"
+      style="border-color:rgba(34,197,94,0.35); background:rgba(34,197,94,0.10); color:#4ade80;">
+  <span class="relative flex size-2">
+    <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
+          style="background:#4ade80;"></span>
+    <span class="relative inline-flex size-2 rounded-full" style="background:#22c55e;"></span>
+  </span>
+  <span data-i18n="hero.badge"><slot /></span>
 </span>
