@@ -11,25 +11,117 @@ const { title, company, date, description, index } = Astro.props;
 const i = index ?? 0;
 ---
 
-<li class="relative pl-6 pb-8 group">
-  <span class="absolute left-0 top-2.5 bottom-0 w-px" style="background:var(--border);"></span>
-  <span class="absolute left-[-4px] top-2.5 size-2.5 rounded-full ring-4"
-        style="background:var(--accent); ring-color:var(--bg);"></span>
+<li class="exp-item group">
+  <!-- Timeline connector -->
+  <div class="exp-connector" aria-hidden="true">
+    <span class="exp-dot"></span>
+    <span class="exp-line"></span>
+  </div>
 
-  <div class="spotlight glass rounded-xl p-5 transition duration-300 group-hover:border-opacity-30"
-       style="border-radius:12px;">
-    <time class="text-xs font-mono tracking-wide uppercase" style="color:var(--accent);"
-          data-i18n={`e${i}.date`}>{date}</time>
-
-    <h3 class="mt-1 text-base font-semibold" style="color:var(--text);"
-        data-i18n={`e${i}.title`}>{title}</h3>
-
-    {company && (
-      <p class="text-xs font-medium mt-0.5 mb-3" style="color:var(--accent-2);"
-         data-i18n={`e${i}.co`}>{company}</p>
-    )}
-
-    <p class="text-sm leading-relaxed" style="color:var(--text-2);"
-       data-i18n={`e${i}.desc`}>{description}</p>
+  <!-- Card -->
+  <div class="exp-card spotlight glass">
+    <div class="exp-header">
+      <div class="exp-meta">
+        <time class="exp-date" data-i18n={`e${i}.date`}>{date}</time>
+        {company && (
+          <span class="exp-company" data-i18n={`e${i}.co`}>{company}</span>
+        )}
+      </div>
+      <h3 class="exp-title" data-i18n={`e${i}.title`}>{title}</h3>
+    </div>
+    <p class="exp-desc" data-i18n={`e${i}.desc`}>{description}</p>
   </div>
 </li>
+
+<style>
+  .exp-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 0 1rem;
+    padding-bottom: 1.5rem;
+  }
+  .exp-item:last-child { padding-bottom: 0; }
+  .exp-item:last-child .exp-line { display: none; }
+
+  .exp-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.1rem;
+  }
+
+  .exp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+    transition: box-shadow 0.25s;
+    z-index: 1;
+  }
+  .exp-item:hover .exp-dot {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+
+  .exp-line {
+    flex: 1;
+    width: 1px;
+    margin-top: 6px;
+    background: linear-gradient(to bottom, var(--border) 0%, transparent 100%);
+  }
+
+  .exp-card {
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem 1.2rem;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), border-color 0.25s;
+  }
+  .exp-item:hover .exp-card {
+    transform: translateX(3px);
+    border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+  }
+
+  .exp-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .exp-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-date {
+    font-family: "Courier New", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .exp-company {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent-2);
+    letter-spacing: 0.03em;
+  }
+
+  .exp-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .exp-desc {
+    font-size: 0.825rem;
+    line-height: 1.65;
+    color: var(--text-2);
+  }
+</style>

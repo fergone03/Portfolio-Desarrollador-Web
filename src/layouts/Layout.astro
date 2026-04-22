@@ -28,6 +28,9 @@ const { description, title } = Astro.props;
   </head>
 
   <body>
+    <!-- Scroll progress -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
     <!-- Background orbs -->
     <div class="orb orb-1" aria-hidden="true"></div>
     <div class="orb orb-2" aria-hidden="true"></div>
@@ -176,13 +179,54 @@ const { description, title } = Astro.props;
     background-clip: text;
   }
 
-  /* === Glass surface === */
+  /* === Scroll progress === */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    z-index: 200;
+    pointer-events: none;
+    will-change: width;
+  }
+
+  /* === Noise overlay === */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.022;
+  }
+
+  /* === Glass surface — Liquid Glass Refraction === */
   .glass {
     background: var(--surface);
     border: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: background 0.35s ease, border-color 0.35s ease;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.04);
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  /* === Tag chip (theme-aware) === */
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .tag-chip:hover {
+    background: color-mix(in srgb, var(--surface) 60%, var(--border));
   }
 
   /* === Spotlight card === */
@@ -317,11 +361,14 @@ const { description, title } = Astro.props;
   }
 
   /* ── Apply theme ── */
+  const SVG_SUN = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const SVG_MOON = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
   function applyTheme(theme) {
     localStorage.setItem("theme", theme);
     document.documentElement.classList.toggle("dark", theme === "dark");
     const icon = document.getElementById("theme-icon");
-    if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
+    if (icon) icon.innerHTML = theme === "dark" ? SVG_SUN : SVG_MOON;
   }
 
   /* ── Init ── */
@@ -357,6 +404,31 @@ const { description, title } = Astro.props;
     document.querySelectorAll("[data-animate]").forEach(function(el) {
       observer.observe(el);
     });
+
+    /* Scroll progress */
+    var prog = document.getElementById("scroll-progress");
+    if (prog) {
+      window.addEventListener("scroll", function() {
+        var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+        prog.style.width = Math.min(pct, 100) + "%";
+      }, { passive: true });
+    }
+
+    /* Active nav link tracking */
+    var sections = document.querySelectorAll("section[id], div[id]");
+    var navLinks = document.querySelectorAll(".nav-link[href^='#']");
+    if (navLinks.length && sections.length) {
+      var secObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            navLinks.forEach(function(l) {
+              l.classList.toggle("nav-active", l.getAttribute("href") === "#" + e.target.id);
+            });
+          }
+        });
+      }, { threshold: 0.35 });
+      sections.forEach(function(s) { secObserver.observe(s); });
+    }
 
     /* Spotlight cards */
     document.querySelectorAll(".spotlight").forEach(function(card) {

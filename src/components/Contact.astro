@@ -4,33 +4,27 @@ import LinkedInIcon from "../assets/media/icons/LinkedInIcon.astro";
 import MailIcon from "../assets/media/icons/MailIcon.astro";
 ---
 
-<div class="spotlight glass rounded-2xl p-8 sm:p-14 text-center" style="border-radius:20px;">
-  <div class="mx-auto mb-5 flex size-16 items-center justify-center rounded-full"
-       style="background:color-mix(in srgb,var(--accent) 12%,transparent); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);">
-    <span class="text-2xl">👋</span>
+<div class="contact-wrap">
+  <!-- Left: typography -->
+  <div class="contact-left">
+    <p class="contact-label">// Contacto</p>
+    <h2 class="contact-heading" data-i18n="c.title">¿Hablamos?</h2>
+    <p class="contact-desc" data-i18n="c.desc">
+      Estoy abierto a nuevas oportunidades, colaboraciones o simplemente a charlar sobre tecnología y datos.
+    </p>
   </div>
 
-  <h2 class="text-3xl sm:text-4xl font-bold mb-3" style="color:var(--text);"
-      data-i18n="c.title">¿Hablamos?</h2>
-
-  <p class="max-w-md mx-auto mb-8 text-base" style="color:var(--text-2);"
-     data-i18n="c.desc">
-    Estoy abierto a nuevas oportunidades, colaboraciones o simplemente a charlar sobre tecnología y datos.
-  </p>
-
-  <div class="flex flex-col sm:flex-row gap-3 justify-center">
-    <a href="mailto:fergonesteban03@gmail.com"
-       class="contact-btn contact-btn-accent">
+  <!-- Right: links -->
+  <div class="contact-links">
+    <a href="mailto:fergonesteban03@gmail.com" class="contact-btn contact-btn-primary">
       <MailIcon class="size-4" />
       fergonesteban03@gmail.com
     </a>
-    <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener"
-       class="contact-btn">
-      <LinkedInIcon class="size-4" style="color:var(--accent-2);" />
+    <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener" class="contact-btn">
+      <LinkedInIcon class="size-4" />
       LinkedIn
     </a>
-    <a href="https://github.com/fergone03" target="_blank" rel="noopener"
-       class="contact-btn">
+    <a href="https://github.com/fergone03" target="_blank" rel="noopener" class="contact-btn">
       <GitHubIcon class="size-4" />
       GitHub
     </a>
@@ -38,34 +32,84 @@ import MailIcon from "../assets/media/icons/MailIcon.astro";
 </div>
 
 <style>
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3rem 0 1rem;
+    border-top: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .contact-wrap {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 4rem;
+    }
+  }
+
+  .contact-label {
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-heading {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 40ch;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex-shrink: 0;
+  }
+
   .contact-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 0.625rem;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: var(--surface);
-    padding: 0.75rem 1.25rem;
+    padding: 0.7rem 1.2rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-2);
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-    width: 100%;
+    transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
+    white-space: nowrap;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
   }
-  @media (min-width: 640px) { .contact-btn { width: auto; } }
   .contact-btn:hover {
     color: var(--text);
+    border-color: color-mix(in srgb, var(--border) 60%, var(--accent));
     background: color-mix(in srgb, var(--surface) 50%, var(--border));
-    transform: translateY(-2px);
+    transform: translateX(4px);
   }
-  .contact-btn-accent {
+  .contact-btn:active { transform: translateX(2px) translateY(1px); }
+
+  .contact-btn-primary {
     border-color: color-mix(in srgb, var(--accent) 40%, transparent);
     color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
   }
-  .contact-btn-accent:hover {
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
+  .contact-btn-primary:hover {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
     color: var(--accent);
   }
 </style>

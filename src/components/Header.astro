@@ -4,51 +4,42 @@
 
     <!-- Logo -->
     <a href="#top" class="flex items-center gap-3 group">
-      <img
-        class="rounded-full size-9 ring-1 transition duration-300"
-        style="border-color:var(--border);"
-        src="./imgs/imgdevsteban.webp"
-        alt="Esteban Fernández"
-      />
-      <span class="hidden sm:block text-sm font-semibold transition duration-200"
+      <div class="logo-ring">
+        <img
+          class="rounded-full size-9 object-cover"
+          src="./imgs/imgdevsteban.webp"
+          alt="Esteban Fernández"
+        />
+      </div>
+      <span class="hidden sm:block text-sm font-semibold tracking-tight transition duration-200"
             style="color:var(--text-2);">
         Dev Esteban
       </span>
     </a>
 
     <!-- Nav -->
-    <nav class="flex items-center gap-1">
+    <nav class="flex items-center gap-0.5">
       <a href="#sobre-mi"    data-i18n="nav.about"      class="nav-link hidden md:block">Sobre mí</a>
       <a href="#skills"      data-i18n="nav.skills"     class="nav-link hidden lg:block">Habilidades</a>
       <a href="#proyectos"   data-i18n="nav.projects"   class="nav-link hidden sm:block">Proyectos</a>
       <a href="#experiencia" data-i18n="nav.experience" class="nav-link hidden md:block">Experiencia</a>
-      <a href="#contacto"    data-i18n="nav.contact"
-         class="ml-1 rounded-lg border px-3 py-1.5 text-sm font-medium transition duration-200"
-         style="border-color:var(--accent); color:var(--accent); background:transparent;"
-         onmouseover="this.style.background='color-mix(in srgb,var(--accent) 15%,transparent)'"
-         onmouseout="this.style.background='transparent'">
-        Contacto
-      </a>
+      <a href="#contacto"    data-i18n="nav.contact"    class="contact-cta ml-2">Contacto</a>
     </nav>
 
     <!-- Controls -->
     <div class="flex items-center gap-2 ml-3">
-      <!-- Lang toggle -->
       <button
         id="lang-btn"
-        class="rounded-lg px-2.5 py-1.5 text-xs font-bold font-mono border transition duration-200"
-        style="border-color:var(--border); color:var(--text-2); background:var(--surface);"
+        class="ctrl-btn font-mono text-xs font-bold"
         aria-label="Toggle language"
       >EN</button>
 
-      <!-- Theme toggle -->
       <button
         id="theme-btn"
-        class="rounded-lg px-2.5 py-1.5 text-sm border transition duration-200"
-        style="border-color:var(--border); background:var(--surface);"
+        class="ctrl-btn"
         aria-label="Toggle theme"
       >
-        <span id="theme-icon">☀️</span>
+        <span id="theme-icon" style="display:flex;align-items:center;"></span>
       </button>
     </div>
 
@@ -56,15 +47,82 @@
 </header>
 
 <style>
+  .logo-ring {
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    transition: opacity 0.2s;
+  }
+  .logo-ring:hover { opacity: 0.85; }
+
   .nav-link {
+    position: relative;
     border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 0.875rem;
-    color: var(--text-2);
+    padding: 6px 11px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-3);
     transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
   }
   .nav-link:hover {
     color: var(--text);
     background: var(--surface);
   }
+  .nav-link.nav-active {
+    color: var(--text);
+    background: var(--surface);
+  }
+  .nav-link.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .contact-cta:hover {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    transform: translateY(-1px);
+  }
+  .contact-cta:active { transform: translateY(0); }
+
+  .ctrl-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    font-family: inherit;
+    font-size: 0.75rem;
+  }
+  .ctrl-btn:hover {
+    background: color-mix(in srgb, var(--surface) 60%, var(--border));
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+  .ctrl-btn:active { transform: translateY(0); }
 </style>
