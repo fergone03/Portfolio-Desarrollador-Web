@@ -211,15 +211,23 @@ const TAGS = {
 };
 
 
-const CERTIFICATES = [ 
-  /*{
-    title: "Master en Ciberseguridad", 
+const CERTIFICATES = [
+  {
+    title: "Data Engineering: SQL, dbt, Snowflake, BigQuery, Power BI & Data Modeling",
     description:
-      "Certificado por la UCAM",
+      "Formación intensiva en ingeniería de datos por Cívica. Fundamentos de Data Engineering, SQL avanzado, dbt, Snowflake, BigQuery, Power BI, modelado dimensional, Data Warehousing y administración de bases de datos. Mar. 2026 – May. 2026.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },*/  
+    tags: [TAGS.Education, TAGS.Cloud, TAGS.MySql, TAGS.Other],
+  },
+  {
+    title: "Master en Ciberseguridad",
+    description:
+      "Certificado por la UCAM. Formación avanzada en seguridad ofensiva y defensiva, análisis forense, hacking ético, gestión de incidentes y normativa de ciberseguridad.",
+    link: "",
+    image: "",
+    tags: [TAGS.Ciberseguridad, TAGS.Education, TAGS.Systems],
+  },
   {
     title: "Grado Medio en Sistemas Microinformáticos y Redes",
     description:
@@ -420,91 +428,90 @@ const CERTIFICATES = [
     image: "",
     tags: [TAGS.Other],
   },
-  /*{
+  {
     title: "Prompt Engineering",
     description:
-      ".",
+      "Técnicas avanzadas de diseño de prompts para modelos de lenguaje: chain-of-thought, few-shot, instrucciones sistémicas y optimización de outputs.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+    tags: [TAGS.IA],
   },
- 
   {
     title: "AI Concepts",
     description:
-      ".",
+      "Fundamentos de inteligencia artificial: modelos de ML, redes neuronales, NLP y aplicaciones prácticas en entornos de producción.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },  
+    tags: [TAGS.IA],
+  },
   {
     title: "Python for data science",
     description:
-      ".",
+      "Análisis de datos con Python: NumPy, Pandas, Matplotlib y exploración de datasets reales.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },   
+    tags: [TAGS.Python, TAGS.IA],
+  },
   {
     title: "Python for data science, AI & Development",
     description:
-      ".",
+      "Python aplicado a ciencia de datos, inteligencia artificial y desarrollo de aplicaciones: desde exploración hasta modelos predictivos.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },  
+    tags: [TAGS.Python, TAGS.IA],
+  },
   {
     title: "Data Science 101",
     description:
-      ".",
+      "Introducción a la ciencia de datos: ciclo de vida del dato, estadística descriptiva, visualización y primeros modelos de ML.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+    tags: [TAGS.Python, TAGS.IA],
   },
   {
     title: "Chatbot",
     description:
-      ".",
+      "Diseño e implementación de chatbots conversacionales con integración de APIs de lenguaje natural.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },  
+    tags: [TAGS.IA],
+  },
   {
     title: "Text Analytics 101",
     description:
-      ".",
+      "Análisis de texto: tokenización, sentiment analysis, clasificación de documentos y extracción de entidades.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },  
+    tags: [TAGS.IA, TAGS.Python],
+  },
   {
     title: "Pytorch",
     description:
-      ".",
+      "Desarrollo de redes neuronales con PyTorch: tensores, autograd, entrenamiento de modelos y transfer learning.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
-  },  
+    tags: [TAGS.Python, TAGS.IA],
+  },
   {
     title: "Kubernetes Operators Advanced",
     description:
-      ".",
+      "Desarrollo de operadores Kubernetes personalizados: CRDs, controllers y automatización avanzada de workloads.",
     link: "",
     image: "",
     tags: [TAGS.DevOps, TAGS.Cloud],
-  },  
+  },
   {
     title: "Scalable Web Applications on Kubernetes",
     description:
-      ".",
+      "Despliegue y escalado de aplicaciones web en Kubernetes: deployments, services, ingress, HPA y estrategias de rollout.",
     link: "",
     image: "",
     tags: [TAGS.DevOps, TAGS.Cloud],
-  },  
+  },
   {
     title: "Containers, Kubernetes and OpenShift",
     description:
-      ".",
+      "Contenedores con Docker, orquestación con Kubernetes y plataforma empresarial OpenShift para entornos cloud.",
     link: "",
     image: "",
     tags: [TAGS.DevOps, TAGS.Cloud],
@@ -512,36 +519,35 @@ const CERTIFICATES = [
   {
     title: "C#",
     description:
-      ".",
+      "Programación orientada a objetos con C#: tipos, colecciones, LINQ, async/await y patrones de diseño en .NET.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+    tags: [TAGS.CSharp, TAGS.NET],
   },
   {
     title: "Google: Inteligencia Artificial y productividad",
     description:
-      ".",
+      "Uso de herramientas de IA de Google para mejorar la productividad: Gemini, Workspace AI y automatización de flujos de trabajo.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+    tags: [TAGS.IA, TAGS.Cloud],
   },
   {
     title: "Gestión de proyectos de Google",
     description:
-      ".",
+      "Certificación de Google en gestión de proyectos: metodologías ágiles, Scrum, planificación, riesgos y comunicación de equipos.",
     link: "",
     image: "",
-    tags: [TAGS.DevOps, TAGS.Cloud],
-  },  
+    tags: [TAGS.DevOps, TAGS.Other],
+  },
   {
     title: "Microsoft Azure AI",
     description:
-      ".",
+      "Servicios de inteligencia artificial en Azure: Azure OpenAI, Cognitive Services, ML Studio y despliegue de modelos en cloud.",
     link: "",
     image: "",
-    tags: [TAGS.PHP, TAGS.JavaScript, TAGS.CSS, TAGS.HTML],
+    tags: [TAGS.IA, TAGS.Cloud],
   },
-   */
 ];
 ---
 <div class="flex flex-col gap-y-16">
