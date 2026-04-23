@@ -321,6 +321,11 @@
     @media print {
       @page { size: A4; margin: 8mm 11mm; }
 
+      * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
       html, body {
         font-size: 10.5px;
         line-height: 1.38;

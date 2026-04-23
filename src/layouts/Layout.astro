@@ -357,8 +357,8 @@ const { description, title } = Astro.props;
       const key = el.dataset.i18n;
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
-    const btn = document.getElementById("lang-btn");
-    if (btn) btn.textContent = lang === "es" ? "EN" : "ES";
+    const sel = document.getElementById("lang-select");
+    if (sel) sel.value = lang;
   }
 
   /* ── Apply theme ── */
@@ -386,11 +386,10 @@ const { description, title } = Astro.props;
       applyTheme(isDark ? "light" : "dark");
     });
 
-    /* Lang toggle */
-    const langBtn = document.getElementById("lang-btn");
-    if (langBtn) langBtn.addEventListener("click", function() {
-      const cur = document.documentElement.getAttribute("lang") ?? "es";
-      applyLang(cur === "es" ? "en" : "es");
+    /* Lang select */
+    const langSel = document.getElementById("lang-select");
+    if (langSel) langSel.addEventListener("change", function() {
+      applyLang(langSel.value);
     });
 
     /* Scroll animations */

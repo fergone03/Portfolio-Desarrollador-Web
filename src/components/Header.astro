@@ -29,11 +29,10 @@
 
     <!-- Controls -->
     <div class="flex items-center gap-2 ml-3">
-      <button
-        id="lang-btn"
-        class="ctrl-btn font-mono text-xs font-bold"
-        aria-label="Toggle language"
-      >EN</button>
+      <select id="lang-select" class="ctrl-btn lang-select" aria-label="Select language">
+        <option value="es">🇪🇸</option>
+        <option value="en">🇬🇧</option>
+      </select>
 
       <button
         id="theme-btn"
@@ -126,4 +125,13 @@
     transform: translateY(-1px);
   }
   .ctrl-btn:active { transform: translateY(0); }
+
+  .lang-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 1rem;
+    text-align: center;
+  }
 </style>
