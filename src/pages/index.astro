@@ -11,6 +11,7 @@ import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
 import SobreMi from "../components/SobreMi.astro";
 import Skills from "../components/Skills.astro";
+import Certificates from "../components/Certificates.astro";
 ---
 
 <Layout
@@ -25,20 +26,25 @@ import Skills from "../components/Skills.astro";
 
         <!-- LEFT: content -->
         <div class="hero-left">
-          <div class="animate-fade-in">
+
+          <div class="hero-eyebrow animate-fade-in">
+            <span class="hero-location">Granada, España</span>
+            <span class="hero-dot" aria-hidden="true"></span>
             <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener">
               <Badge>Disponible para trabajar</Badge>
             </a>
           </div>
 
           <div class="hero-name-block animate-fade-up animate-delay-100">
-            <span class="hero-greeting" data-i18n="hero.greeting">Hey, soy</span>
             <h1>
               <span class="hero-name">Esteban</span>
               <span class="hero-surname">Fernández</span>
             </h1>
-            <p class="hero-role">Full Stack Developer <span class="hero-sep">/</span> Data Engineer</p>
           </div>
+
+          <p class="hero-role animate-fade-up animate-delay-150">
+            Full Stack Developer <span class="hero-sep">&amp;</span> Data Engineer
+          </p>
 
           <p class="hero-desc animate-fade-up animate-delay-200" data-i18n="hero.desc">
             <strong>Full Stack Developer &amp; Data Engineer</strong> con base en Granada, España.
@@ -46,17 +52,18 @@ import Skills from "../components/Skills.astro";
           </p>
 
           <nav class="hero-nav animate-fade-up animate-delay-300">
-            <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener" class="pill-btn">
-              <LinkedInIcon class="size-4" /> LinkedIn
-            </a>
-            <a href="https://github.com/fergone03" target="_blank" rel="noopener" class="pill-btn">
-              <GitHubIcon class="size-4" /> GitHub
-            </a>
-            <a href="mailto:fergonesteban03@gmail.com" class="pill-btn">
-              <MailIcon class="size-4" style="color:#4ade80;" />
-              <span data-i18n="hero.email">Correo</span>
-            </a>
-            <a href="/files/CV_Esteban_Fernandez_es.pdf" target="_blank" class="pill-btn pill-accent">
+            <div class="hero-social">
+              <a href="https://github.com/fergone03" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                <GitHubIcon class="size-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/estebanfernandezgonzalez/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                <LinkedInIcon class="size-5" />
+              </a>
+              <a href="mailto:fergonesteban03@gmail.com" class="social-link" aria-label="Email">
+                <MailIcon class="size-5" />
+              </a>
+            </div>
+            <a href="/files/CV_New_Esteban.pdf" target="_blank" class="cv-cta">
               <DownloadIcon class="size-4" />
               <span data-i18n="hero.cv">Descargar CV</span>
             </a>
@@ -102,17 +109,12 @@ import Skills from "../components/Skills.astro";
     <!-- ══ SOBRE MÍ ══ -->
     <SectionContainer id="sobre-mi">
       <div data-animate>
-        <p class="section-label">// 01</p>
         <h2 class="section-title" data-i18n="title.about">Sobre mí</h2>
         <SobreMi />
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/files/CV_Esteban_Fernandez_es.pdf" target="_blank" class="pill-btn">
+          <a href="/files/CV_New_Esteban.pdf" target="_blank" class="pill-btn">
             <DownloadIcon class="size-4" />
-            <span data-i18n="about.cv">CV Estándar</span>
-          </a>
-          <a href="/files/CV_Esteban_Fernandez_ATS_es.pdf" target="_blank" class="pill-btn">
-            <DownloadIcon class="size-4" />
-            <span data-i18n="about.cva">CV ATS</span>
+            <span data-i18n="about.cv">Descargar CV</span>
           </a>
         </div>
       </div>
@@ -121,8 +123,7 @@ import Skills from "../components/Skills.astro";
     <!-- ══ HABILIDADES ══ -->
     <SectionContainer id="skills">
       <div data-animate>
-        <p class="section-label">// 02</p>
-        <h2 class="section-title" data-i18n="title.skills">Habilidades</h2>
+        <h2 class="section-title" data-i18n="title.skills">Stack técnico</h2>
         <Skills />
       </div>
     </SectionContainer>
@@ -130,16 +131,28 @@ import Skills from "../components/Skills.astro";
     <!-- ══ PROYECTOS ══ -->
     <SectionContainer id="proyectos">
       <div data-animate>
-        <p class="section-label">// 03</p>
-        <h2 class="section-title" data-i18n="title.projects">Proyectos</h2>
+        <div class="section-title-row">
+          <h2 class="section-title" data-i18n="title.projects">Proyectos</h2>
+          <a href="https://github.com/fergone03" target="_blank" rel="noopener" class="github-more">
+            <GitHubIcon class="size-4" />
+            <span data-i18n="projects.more">más en GitHub</span>
+          </a>
+        </div>
         <Projects />
+      </div>
+    </SectionContainer>
+
+    <!-- ══ CERTIFICACIONES ══ -->
+    <SectionContainer id="certificaciones">
+      <div data-animate>
+        <h2 class="section-title" data-i18n="title.certs">Certificaciones</h2>
+        <Certificates />
       </div>
     </SectionContainer>
 
     <!-- ══ EXPERIENCIA ══ -->
     <SectionContainer id="experiencia">
       <div data-animate>
-        <p class="section-label">// 04</p>
         <h2 class="section-title" data-i18n="title.experience">Experiencia laboral</h2>
         <Experience />
       </div>
@@ -156,6 +169,35 @@ import Skills from "../components/Skills.astro";
 </Layout>
 
 <style>
+  /* ── Section title row ── */
+  .section-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .section-title-row .section-title { margin-bottom: 0; }
+
+  .github-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.3rem 0.7rem;
+    transition: color 0.2s, border-color 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .github-more:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--border) 60%, var(--text));
+    transform: translateY(-1px);
+  }
+
   /* ── Hero grid ── */
   .hero-grid {
     display: grid;
@@ -176,17 +218,28 @@ import Skills from "../components/Skills.astro";
   /* ── Hero left ── */
   .hero-left { display: flex; flex-direction: column; gap: 0; }
 
-  .hero-greeting {
-    display: block;
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0;
+  }
+  .hero-location {
     font-family: "Courier New", monospace;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-3);
-    margin-bottom: 0.5rem;
+  }
+  .hero-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-3);
+    flex-shrink: 0;
   }
 
-  .hero-name-block { margin-top: 1.5rem; margin-bottom: 0; }
+  .hero-name-block { margin-top: 1.25rem; margin-bottom: 0; }
 
   .hero-name {
     display: block;
@@ -267,6 +320,54 @@ import Skills from "../components/Skills.astro";
     border-color: color-mix(in srgb, var(--accent) 60%, transparent);
     color: var(--accent);
   }
+
+  /* ── Social + CTA row ── */
+  .hero-social {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-3);
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .social-link:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--border) 60%, var(--text));
+    background: color-mix(in srgb, var(--surface) 50%, var(--border));
+    transform: translateY(-2px);
+  }
+  .social-link:active { transform: translateY(0); }
+
+  .cv-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    padding: 0.5rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .cv-cta:hover {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+    transform: translateY(-2px);
+  }
+  .cv-cta:active { transform: translateY(0); }
 
   /* ── Hero right: terminal ── */
   .hero-right {
