@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://javiergo.es/#stack -->
+<html lang="es" style="--acid: #5cf2ff; scroll-behavior: smooth;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Javier Garrido — SOC Analyst &amp; SysAdmin · Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="https://javiergo.es/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Javier Garrido — SOC Analyst &amp; SysAdmin · Portfolio_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./Javier Garrido — SOC Analyst &amp; SysAdmin · Portfolio_files/all.min.css">
+<script src="./Javier Garrido — SOC Analyst &amp; SysAdmin · Portfolio_files/gsap.min.js"></script>
+<script src="./Javier Garrido — SOC Analyst &amp; SysAdmin · Portfolio_files/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#07080a;
+  --bg-2:#0b0d10;
+  --bg-3:#10141a;
+  --ink:#eef1ee;
+  --ink-2:#9aa0a4;
+  --ink-3:#5a5f63;
+  --line:#1c2128;
+  --line-2:#2a313a;
+  --acid:#bfff3a;          /* accent A — phosphor lime */
+  --acid-2:#7df53a;
+  --neon:#5cf2ff;          /* accent B — cyan */
+  --hot:#ff3d57;           /* danger */
+  --warn:#ffd23a;
+  --plum:#c084ff;
+  --grad: linear-gradient(90deg,#bfff3a 0%,#5cf2ff 50%,#bfff3a 100%);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  cursor:none;
+}
+@media (max-width:900px){body{cursor:auto}}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+img,svg{display:block;max-width:100%}
+
+/* === Background fabric: grain + grid === */
+.bg-fabric{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+}
+.bg-fabric::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(191,255,58,.06), transparent 60%),
+    radial-gradient(900px 500px at 100% 30%, rgba(92,242,255,.04), transparent 60%),
+    radial-gradient(800px 400px at 50% 100%, rgba(192,132,255,.04), transparent 60%);
+}
+.bg-fabric::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+.grain{
+  position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.35;mix-blend-mode:overlay;
+}
+
+/* === Custom cursor === */
+.cursor-dot,.cursor-ring{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+}
+.cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
+.cursor-ring{
+  width:36px;height:36px;border:1px solid var(--acid);border-radius:50%;
+  transition:width .25s ease, height .25s ease, border-color .25s ease, background .25s ease;
+  mix-blend-mode:difference;
+}
+.cursor-ring.hover{width:60px;height:60px;background:rgba(191,255,58,.08);border-color:var(--neon)}
+.cursor-ring.tap{width:20px;height:20px}
+.cursor-ring .lbl{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--bg);
+  background:var(--acid);border-radius:999px;opacity:0;transition:opacity .2s;
+  text-transform:uppercase;
+}
+.cursor-ring.hover .lbl{opacity:1}
+@media (max-width:900px){.cursor-dot,.cursor-ring{display:none}}
+
+/* === Boot overlay === */
+.boot{
+  position:fixed;inset:0;z-index:1000;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s, visibility .6s;
+}
+.boot.gone{opacity:0;visibility:hidden;pointer-events:none}
+.boot-inner{width:min(560px,86vw);font-family:var(--mono);color:var(--acid);font-size:13px;line-height:1.7}
+.boot-head{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid rgba(191,255,58,.2);position:relative;overflow:hidden}
+.boot-head::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(to right,transparent,var(--acid),transparent);width:50%;animation:bootScan 2s infinite linear}
+@keyframes bootScan{0%{transform:translateX(-50%)}100%{transform:translateX(200%)}}
+.boot-title{font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--ink);font-family:var(--sans);line-height:1;margin-bottom:8px;display:flex;align-items:baseline}
+.boot-title span{color:var(--acid);font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.1em;margin-left:2px}
+.boot-title::before{content:'> ';color:var(--acid);font-family:var(--mono);font-weight:400;font-size:.6em;margin-right:8px;animation:blk 1s infinite}
+.boot-sub{font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+.boot-inner .ln{opacity:0;transform:translateX(-8px);animation:bln .25s forwards}
+.boot-inner .ln span.t{color:var(--ink-2)}
+.boot-inner .ln span.ok{color:var(--acid)}
+.boot-inner .ln span.warn{color:var(--warn)}
+.boot-inner .ln span.err{color:var(--hot)}
+.boot-bar{height:2px;width:100%;background:rgba(191,255,58,.15);margin-top:12px;overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:var(--acid);box-shadow:0 0 10px var(--acid)}
+@keyframes bln{to{opacity:1;transform:translateX(0)}}
+
+/* === Layout === */
+.shell{position:relative;z-index:5;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+section{position:relative;z-index:5;padding:clamp(140px,16vh,200px) 0 clamp(100px,12vh,140px);border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+
+/* === Top nav === */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:14px 0;backdrop-filter:blur(14px);
+  background:linear-gradient(to bottom, rgba(7,8,10,.85), rgba(7,8,10,.4));
+  border-bottom:1px solid transparent;
+  transition:border-color .3s, background .3s;
+}
+.nav.scrolled{border-color:var(--line);background:rgba(7,8,10,.92)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:0;font-family:var(--mono);font-size:14px;font-weight:700;position:relative;padding:4px 2px}
+.brand .name{display:inline-flex;position:relative;overflow:hidden;height:1.4em;line-height:1.4em}
+.brand .name span{display:inline-block;transition:transform .5s cubic-bezier(.2,.8,.2,1), color .4s;color:var(--ink)}
+.brand:hover .name span{transform:translateY(-100%);color:var(--acid)}
+.brand .name::after{
+  content:attr(data-text);position:absolute;left:0;top:100%;display:inline-block;
+  color:var(--acid);transform:translateY(0);transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  font-style:italic;font-family:var(--serif);font-weight:400;font-size:1.15em;letter-spacing:-.01em;
+}
+.brand:hover .name::after{transform:translateY(-100%)}
+.brand::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.brand:hover::after{transform:scaleX(1)}
+.brand .pip{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);margin-right:10px;animation:pulse 1.4s infinite;flex-shrink:0}
+.nav-mid{display:flex;gap:4px;font-family:var(--mono);font-size:12px}
+.nav-mid a{
+  padding:8px 14px;border-radius:6px;color:var(--ink-2);
+  display:flex;align-items:center;gap:8px;transition:color .2s,background .2s;
+}
+.nav-mid a:hover,.nav-mid a.on{color:var(--acid);background:rgba(191,255,58,.06)}
+.nav-mid a .num{color:var(--ink-3);font-size:10px}
+.nav-mid a:hover .num,.nav-mid a.on .num{color:var(--acid)}
+.nav-right{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px}
+.lang{
+  display:flex;border:1px solid var(--line-2);border-radius:6px;overflow:hidden;
+}
+.lang button{padding:6px 10px;color:var(--ink-2);font-size:11px;font-family:var(--mono);transition:.2s}
+.lang button.on{background:var(--acid);color:#000}
+.status{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 10px;
+  border:1px solid var(--line-2);border-radius:6px;color:var(--ink-2);
+}
+.status .pip{width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.nav-toggle{display:none;width:36px;height:36px;border:1px solid var(--line-2);border-radius:6px;align-items:center;justify-content:center;color:var(--acid)}
+@media (max-width:1024px){.nav-mid{display:none}.nav-toggle{display:flex}}
+
+/* Mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:190;background:rgba(7,8,10,.96);backdrop-filter:blur(20px);
+  display:none;flex-direction:column;padding:90px 32px 40px;
+}
+.drawer.open{display:flex}
+.drawer a{padding:18px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:18px;display:flex;justify-content:space-between;align-items:center}
+.drawer a span{color:var(--ink-3);font-size:11px}
+
+/* === Hero === */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:120px;padding-bottom:80px;border-top:none;
+  position:relative;overflow:hidden;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center;
+}
+@media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+.hero-meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-2);
+  margin-bottom:28px;
+}
+.hero-meta .chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 12px;border:1px solid var(--line-2);border-radius:999px;
+}
+.hero-meta .chip i{color:var(--acid)}
+
+.hero h1{
+  font-family:var(--sans);
+  font-size:clamp(56px,10vw,160px);
+  font-weight:800;
+  line-height:.88;
+  letter-spacing:-0.04em;
+  margin-bottom:32px;
+  text-wrap:balance;
+}
+.hero h1 .li{display:block;overflow:hidden;font-family:var(--sans);font-weight:800;letter-spacing:-0.045em}
+.hero h1 .li > span{
+  display:inline-block;
+  transform:translateY(110%);
+  animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.hero h1 .li:nth-child(2) > span{animation-delay:.12s}
+.hero h1 .li:nth-child(3) > span{animation-delay:.24s}
+@keyframes rise{to{transform:translateY(0)}}
+.hero h1 .li .accent{color:var(--acid);position:relative;display:inline-block}
+.hero h1 .li .accent::after{content:'';position:absolute;left:0;right:0;bottom:.12em;height:.08em;background:var(--acid);transform:scaleX(0);transform-origin:left;animation:underline 1.2s 1.4s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes underline{to{transform:scaleX(1)}}
+
+.glitch{
+  display:inline-block;position:relative;
+}
+.glitch::before,.glitch::after{
+  content:attr(data-text);position:absolute;left:0;top:0;width:100%;
+  pointer-events:none;
+}
+.glitch::before{color:var(--neon);clip-path:polygon(0 0,100% 0,100% 33%,0 33%);animation:gl1 4s infinite linear}
+.glitch::after{color:var(--hot);clip-path:polygon(0 67%,100% 67%,100% 100%,0 100%);animation:gl2 4s infinite linear}
+@keyframes gl1{0%,90%,100%{transform:translate(0)}92%{transform:translate(-3px,1px)}94%{transform:translate(3px,-1px)}}
+@keyframes gl2{0%,90%,100%{transform:translate(0)}93%{transform:translate(2px,2px)}95%{transform:translate(-2px,-2px)}}
+
+.hero-lede{
+  font-size:clamp(15px,1.4vw,18px);color:var(--ink-2);max-width:560px;line-height:1.6;
+  margin-bottom:36px;
+}
+.hero-lede b{color:var(--ink);font-weight:600}
+
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{
+  --c:var(--acid);
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;border-radius:8px;font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:var(--c);color:#000;border:1px solid var(--c);
+  position:relative;overflow:hidden;transition:transform .25s, box-shadow .25s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(191,255,58,.25)}
+.btn .dot{width:6px;height:6px;border-radius:50%;background:#000;animation:pulse 1.4s infinite}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn.ghost:hover{border-color:var(--acid);color:var(--acid);box-shadow:0 12px 30px rgba(191,255,58,.1)}
+.btn.ghost .dot{background:var(--acid)}
+
+/* Hero terminal panel */
+.hero-panel{
+  background:var(--bg-2);
+  border:1px solid var(--line-2);
+  border-radius:14px;
+  overflow:hidden;
+  font-family:var(--mono);
+  position:relative;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.04);
+  animation:rise2 1s .4s both;
+}
+@keyframes rise2{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-panel::before{content:'';position:absolute;inset:0;border-radius:14px;padding:1px;
+  background:linear-gradient(135deg,rgba(191,255,58,.4),transparent 30%,transparent 70%,rgba(92,242,255,.3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+.term-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.3)}
+.term-bar i{width:10px;height:10px;border-radius:50%}
+.term-bar i:nth-child(1){background:#ff5f57}
+.term-bar i:nth-child(2){background:#ffbd2e}
+.term-bar i:nth-child(3){background:var(--acid-2)}
+.term-bar b{margin-left:8px;font-size:11px;color:var(--ink-3);font-weight:500}
+.term-bar .right{margin-left:auto;font-size:10px;color:var(--ink-3);display:flex;gap:10px}
+.term-bar .right span{display:inline-flex;align-items:center;gap:6px}
+.term-bar .right .pip{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 6px var(--acid)}
+
+.term-body{padding:18px 18px 22px;font-size:13px;line-height:1.75;min-height:260px}
+.term-line{display:flex;gap:8px;align-items:flex-start}
+.term-line .pr{color:var(--acid);flex-shrink:0}
+.term-line .out{color:var(--ink)}
+.term-line.outline{padding-left:18px;color:var(--ink-2);display:block}
+.term-line.outline em{font-family:var(--serif);font-style:italic;color:var(--acid);font-size:1.05em}
+.cursor-blink{display:inline-block;width:8px;height:14px;background:var(--acid);vertical-align:-2px;animation:blk 1s infinite}
+@keyframes blk{50%{opacity:0}}
+@keyframes hardenIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.hero h1 .scramble{display:inline-block}
+.hero h1 .scramble.scrambling{color:var(--acid);text-shadow:0 0 14px rgba(191,255,58,.5)}
+
+/* === Floating noise glyphs (hero ambient) === */
+.hero-glyphs{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.hero-glyphs span{
+  position:absolute;font-family:var(--mono);font-size:11px;color:var(--ink-3);opacity:.3;
+  animation:floatG 14s linear infinite;
+}
+@keyframes floatG{
+  0%{transform:translateY(100vh) rotate(0)}
+  100%{transform:translateY(-100px) rotate(20deg)}
+}
+.hero > *{position:relative;z-index:2}
+
+/* === Magnetic hover for buttons === */
+.btn{transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s}
+
+/* === Threat ticker (under hero) === */
+.ticker{
+  position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#000;padding:14px 0;overflow:hidden;font-family:var(--mono);font-size:12px;
+}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(to right,#000,transparent)}
+.ticker::after{right:0;background:linear-gradient(to left,#000,transparent)}
+.tick-track{display:flex;gap:60px;animation:tk 80s linear infinite;width:max-content}
+.tick-track i{display:inline-flex;align-items:center;gap:10px;color:var(--ink-2)}
+.tick-track i b{color:var(--hot);font-weight:700}
+.tick-track i .ok{color:var(--acid)}
+.tick-track i .pip{width:6px;height:6px;border-radius:50%;background:var(--hot);box-shadow:0 0 6px var(--hot);animation:pulse 1.4s infinite}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* === Big number transitions === */
+.proj-art svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.proj:hover .proj-art svg{transform:scale(1.04)}
+
+/* === Scroll progress === */
+.scroll-prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--acid),var(--neon));z-index:201;width:0;transition:width .15s}
+
+.term-foot{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line);
+}
+.term-foot div{
+  padding:12px 14px;border-right:1px solid var(--line);
+  font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;
+}
+.term-foot div:last-child{border-right:none}
+.term-foot div b{display:block;color:var(--acid);font-size:13px;text-transform:none;letter-spacing:0;margin-top:2px;font-family:var(--mono)}
+
+/* Marquee skills banner */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--bg-2);
+  padding:18px 0;overflow:hidden;
+  position:relative;
+  margin-top:60px;
+}
+.marquee::before,.marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+}
+.marquee::before{left:0;background:linear-gradient(to right,var(--bg-2),transparent)}
+.marquee::after{right:0;background:linear-gradient(to left,var(--bg-2),transparent)}
+.marquee-track{display:flex;gap:50px;animation:scroll 40s linear infinite;white-space:nowrap;width:max-content}
+.marquee-track span{font-family:var(--mono);font-size:14px;color:var(--ink-2);display:inline-flex;align-items:center;gap:14px}
+.marquee-track span i.dot{color:var(--acid)}
+.marquee-track span b{color:var(--ink);font-weight:600}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* === Section header === */
+.s-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  margin-bottom:80px;margin-top:20px;
+}
+.s-head .left{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.s-head .num{font-family:var(--mono);font-size:13px;color:var(--acid);
+  border:1px solid var(--acid);padding:4px 10px;border-radius:4px;
+  background:rgba(191,255,58,.05);
+}
+.s-head h2{
+  font-family:var(--sans);font-weight:800;letter-spacing:-0.03em;
+  font-size:clamp(40px,6vw,84px);line-height:.95;
+}
+.s-head h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acid)}
+.s-head .right{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-align:right;max-width:240px}
+
+/* === About === */
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+@media (max-width:1024px){.about-grid{grid-template-columns:1fr;gap:36px}}
+
+.id-card{
+  background:linear-gradient(180deg,var(--bg-2),var(--bg-3));
+  border:1px solid var(--line-2);
+  border-radius:14px;
+  padding:24px;
+  font-family:var(--mono);font-size:12px;
+  position:relative;
+  overflow:hidden;
+}
+.id-card::before{
+  content:'CLASIFICACIÓN: PÚBLICO';
+  position:absolute;top:14px;right:-40px;
+  background:var(--hot);color:#000;font-size:9px;font-weight:700;
+  padding:4px 50px;transform:rotate(45deg);letter-spacing:.1em;
+}
+.id-card h3{font-family:var(--sans);font-size:11px;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;margin-bottom:16px}
+.id-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);gap:20px}
+.id-row:last-of-type{border-bottom:none}
+.id-row .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:.1em}
+.id-row .v{color:var(--ink);text-align:right}
+.id-row .v.ok{color:var(--acid)}
+.id-pic{
+  height:180px;margin-bottom:18px;border-radius:8px;
+  background:
+    repeating-linear-gradient(45deg,rgba(191,255,58,.04) 0 8px,transparent 8px 16px),
+    radial-gradient(ellipse at center, rgba(191,255,58,.15), transparent 60%),
+    var(--bg-3);
+  border:1px solid var(--line);
+  display:grid;place-items:center;font-size:60px;color:var(--acid);
+  position:relative;overflow:hidden;
+}
+.id-pic .scan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--acid),transparent);animation:idscan 3s infinite}
+@keyframes idscan{0%{top:0}100%{top:100%}}
+
+.about-body p{color:var(--ink-2);font-size:16px;line-height:1.75;margin-bottom:18px;max-width:640px}
+.about-body p strong{color:var(--acid);font-weight:600;background:rgba(191,255,58,.08);padding:2px 5px;border-radius:3px}
+.about-body h4{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.18em;text-transform:uppercase;margin:32px 0 14px}
+.soft-tags{display:flex;flex-wrap:wrap;gap:8px}
+.soft-tags span{
+  padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-2);
+  display:inline-flex;align-items:center;gap:8px;transition:.2s;
+}
+.soft-tags span i{color:var(--acid);font-size:10px}
+.soft-tags span:hover{border-color:var(--acid);color:var(--acid)}
+
+/* === Skills radar === */
+.skills-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+@media (max-width:1024px){.skills-wrap{grid-template-columns:1fr}}
+
+.skill-list{display:flex;flex-direction:column;gap:6px}
+.skill-row{
+  position:relative;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+  padding:18px 4px;border-bottom:1px solid var(--line);
+  transition:.3s;cursor:default;
+}
+.skill-row:hover{padding-left:18px;background:linear-gradient(to right,rgba(191,255,58,.04),transparent)}
+.skill-row .n{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.skill-row .name{
+  font-family:var(--sans);font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:14px;
+}
+.skill-row .name i{color:var(--ink-3);font-size:.7em;transition:.3s}
+.skill-row:hover .name{color:var(--acid)}
+.skill-row:hover .name i{color:var(--acid);transform:translateX(4px)}
+.skill-row .lvl{font-family:var(--mono);font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.skill-row .lvl .bar{width:80px;height:3px;background:var(--line-2);border-radius:2px;overflow:hidden}
+.skill-row .lvl .bar i{display:block;height:100%;background:var(--acid);width:0;box-shadow:0 0 8px var(--acid);transition:width 1.2s ease}
+.skill-row.in .lvl .bar i{width:var(--w)}
+
+.skill-detail{
+  position:sticky;top:120px;
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:14px;
+  padding:32px;min-height:380px;
+  background-image: radial-gradient(circle at 80% 0%, rgba(191,255,58,.06), transparent 50%);
+}
+.skill-detail .label{font-family:var(--mono);font-size:11px;color:var(--acid);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.skill-detail .label::before{content:'';width:24px;height:1px;background:var(--acid)}
+.skill-detail h3{font-size:32px;font-weight:700;letter-spacing:-0.02em;margin-bottom:16px;line-height:1.1}
+.skill-detail h3 em{font-family:var(--serif);font-style:italic;color:var(--acid);font-weight:400}
+.skill-detail p{color:var(--ink-2);font-size:15px;line-height:1.7;margin-bottom:24px}
+.skill-detail .stack{display:flex;flex-wrap:wrap;gap:6px}
+.skill-detail .stack span{font-family:var(--mono);font-size:11px;padding:5px 10px;border:1px solid var(--line-2);border-radius:4px;color:var(--ink-2)}
+.skill-icon-big{
+  font-size:120px;color:var(--acid);opacity:.18;
+  position:absolute;right:30px;bottom:20px;pointer-events:none;
+}
+
+/* === Projects === */
+.proj-bar{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;
+  font-family:var(--mono);font-size:12px;
+}
+.proj-bar button{
+  padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;
+  color:var(--ink-2);transition:.2s;
+}
+.proj-bar button.on{background:var(--acid);color:#000;border-color:var(--acid)}
+.proj-bar button:hover:not(.on){border-color:var(--acid);color:var(--acid)}
+
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px;
+}
+.proj{
+  position:relative;
+  border:1px solid var(--line-2);border-radius:14px;overflow:hidden;
+  background:var(--bg-2);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .25s, box-shadow .3s;
+  cursor:pointer;
+  display:flex;flex-direction:column;
+  height:420px;
+}
+.proj-art{height:220px;flex:none}
+.proj:hover{border-color:var(--acid);box-shadow:0 30px 60px -25px rgba(191,255,58,.25), 0 0 0 1px rgba(191,255,58,.15)}
+.proj.lg,.proj.md,.proj.sm{grid-column:span 4}
+.proj.flagship{
+  grid-column:span 12;
+  border:1px solid rgba(191,255,58,.4);
+  background:linear-gradient(135deg, rgba(191,255,58,.04), rgba(11,13,16,.4));
+  box-shadow:0 0 0 1px rgba(191,255,58,.15), 0 40px 80px -30px rgba(191,255,58,.2);
+  display:grid;grid-template-columns:1.2fr 1fr;gap:0;
+}
+.proj.flagship .proj-art{height:auto;min-height:380px;background:#0b0d10;border-right:1px solid var(--line-2)}
+.proj.flagship .proj-meta{padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.proj.flagship .proj-meta h3{font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:0}
+.proj.flagship .proj-meta p{font-size:15px;line-height:1.55;max-width:560px;margin:0}
+.proj.flagship:hover{box-shadow:0 0 0 1px rgba(191,255,58,.4), 0 50px 100px -30px rgba(191,255,58,.35)}
+.flagship-flag{
+  position:absolute;top:14px;right:14px;z-index:5;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 12px;border:1px solid var(--acid);border-radius:999px;
+  background:rgba(11,13,16,.85);color:var(--acid);font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(8px);
+}
+.flagship-flag i{font-size:9px}
+@media (max-width:900px){
+  .proj.flagship{grid-template-columns:1fr}
+  .proj.flagship .proj-art{min-height:240px;border-right:none;border-bottom:1px solid var(--line-2)}
+  .proj.flagship .proj-meta{padding:20px}
+  .proj.flagship .proj-meta h3{font-size:22px}
+  .flagship-flag{top:10px;right:10px;font-size:9px;padding:5px 10px}
+}
+.proj-bar button.flagship-filt{
+  border-color:rgba(191,255,58,.4);color:var(--acid);
+  background:rgba(191,255,58,.06);
+}
+.proj-bar button.flagship-filt i{font-size:10px;margin-right:2px}
+.proj-bar button.flagship-filt.on{background:var(--acid);color:#000;border-color:var(--acid)}
+@media (max-width:1100px){.proj.lg,.proj.md,.proj.sm{grid-column:span 6}.proj.flagship.lg,.proj.flagship.md,.proj.flagship.sm,.proj.flagship{grid-column:span 12}}
+@media (max-width:700px){.proj.lg,.proj.md,.proj.sm{grid-column:span 12}.proj.flagship.lg,.proj.flagship.md,.proj.flagship.sm,.proj.flagship{grid-column:span 12}}
+
+.proj-art{
+  position:relative;flex:1;min-height:200px;
+  background:var(--bg-3);
+  overflow:hidden;
+  display:grid;place-items:center;
+}
+.proj-art svg{width:100%;height:100%}
+.proj-art .badge{
+  position:absolute;top:14px;left:14px;z-index:3;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid var(--line-2);border-radius:4px;
+  background:rgba(7,8,10,.7);backdrop-filter:blur(8px);
+  color:var(--acid);
+}
+.proj-art .id{
+  position:absolute;top:14px;right:14px;z-index:3;
+  font-family:var(--mono);font-size:10px;color:var(--ink-3);
+}
+.proj-art::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%), rgba(191,255,58,.18), transparent 50%);
+  opacity:0;transition:opacity .4s;
+}
+.proj:hover .proj-art::after{opacity:1}
+
+.proj-meta{padding:18px 20px 20px;border-top:1px solid var(--line)}
+.proj-meta h3{font-size:19px;font-weight:600;letter-spacing:-0.01em;margin-bottom:8px;line-height:1.25}
+.proj-meta p{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin-bottom:14px}
+.proj-meta .tech{display:flex;flex-wrap:wrap;gap:6px}
+.proj-meta .tech span{font-family:var(--mono);font-size:10.5px;padding:3px 8px;background:var(--bg-3);border:1px solid var(--line);border-radius:4px;color:var(--ink-2)}
+
+.social-pill{
+  display:inline-flex;align-items:center;gap:8px;padding:14px 16px;
+  border:1px solid var(--line-2);border-radius:8px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-2);
+  transition:.25s;
+}
+.social-pill:hover{border-color:var(--acid);color:var(--acid);transform:translateY(-2px);box-shadow:0 12px 30px rgba(191,255,58,.1)}
+.social-pill i{font-size:14px}
+
+.proj-arrow{
+  position:absolute;bottom:16px;right:16px;z-index:4;
+  width:36px;height:36px;border-radius:50%;background:var(--acid);color:#000;
+  display:grid;place-items:center;
+  transform:translateY(8px) scale(.9);opacity:0;transition:.3s;
+}
+.proj:hover .proj-arrow{transform:translateY(0) scale(1);opacity:1}
+
+/* SVG art tints */
+.art-net{--c1:#5cf2ff;--c2:#bfff3a}
+.art-fire{--c1:#ff3d57;--c2:#ffd23a}
+.art-ai{--c1:#c084ff;--c2:#5cf2ff}
+.art-osint{--c1:#ff3d57;--c2:#c084ff}
+.art-monitor{--c1:#ffd23a;--c2:#bfff3a}
+.art-vpn{--c1:#5cf2ff;--c2:#bfff3a}
+.art-forensic{--c1:#ffd23a;--c2:#ff3d57}
+.art-hardening{--c1:#bfff3a;--c2:#5cf2ff}
+.art-py{--c1:#ffd23a;--c2:#5cf2ff}
+.art-ids{--c1:#c084ff;--c2:#bfff3a}
+
+/* === Certs strip === */
+.cert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.cert{
+  border:1px solid var(--line-2);border-radius:12px;padding:20px;background:var(--bg-2);
+  transition:.25s;display:flex;flex-direction:column;gap:10px;
+  position:relative;overflow:hidden;
+}
+.cert::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.cert:hover::before{transform:scaleX(1)}
+.cert:hover{border-color:var(--acid);transform:translateY(-3px)}
+.cert .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.cert .badge-c{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 8px;border:1px solid var(--line);border-radius:4px;color:var(--ink-3);
+  white-space:nowrap;
+}
+.cert .date{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.cert h4{font-size:15px;font-weight:600;line-height:1.35;letter-spacing:-0.005em;flex:1}
+.cert .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.cert .tags span{font-family:var(--mono);font-size:10px;color:var(--ink-2);padding:3px 7px;border:1px solid var(--line);border-radius:3px}
+.cert.cisco h4::before{content:'';display:inline-block;width:6px;height:6px;background:#0074BD;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cert.aws h4::before{content:'';display:inline-block;width:6px;height:6px;background:#FF9900;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cert.linkedin h4::before{content:'';display:inline-block;width:6px;height:6px;background:#0A66C2;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cert.cambridge h4::before{content:'';display:inline-block;width:6px;height:6px;background:#E4002B;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cert.udemy h4::before{content:'';display:inline-block;width:6px;height:6px;background:#A5157D;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cert.ow h4::before{content:'';display:inline-block;width:6px;height:6px;background:#9333EA;border-radius:50%;margin-right:8px;vertical-align:1px}
+
+.gh-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.gh-row .gh-star{color:var(--warn)}
+.gh-row .gh-lang i{font-size:7px;color:var(--acid);margin-right:4px}
+.gh-row .gh-live{display:inline-flex;align-items:center;gap:6px;color:var(--acid)}
+.gh-row .gh-live .pip{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 6px var(--acid);animation:pulse 1.4s infinite}
+
+/* === Contact === */
+.contact{position:relative}
+.contact .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+@media (max-width:1024px){.contact .grid{grid-template-columns:1fr}}
+.contact h3{
+  font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-0.03em;line-height:.95;
+  margin-bottom:24px;
+}
+.contact h3 em{font-family:var(--serif);font-style:italic;color:var(--acid);font-weight:400}
+.contact p.lede{color:var(--ink-2);font-size:17px;line-height:1.65;margin-bottom:32px;max-width:480px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.contact-grid a{
+  display:flex;align-items:center;gap:14px;padding:16px;
+  border:1px solid var(--line-2);border-radius:10px;background:var(--bg-2);
+  transition:.25s;
+}
+.contact-grid a:hover{border-color:var(--acid);transform:translateY(-2px)}
+.contact-grid a .ic{
+  width:36px;height:36px;border-radius:8px;background:var(--bg-3);
+  display:grid;place-items:center;color:var(--acid);font-size:14px;
+  border:1px solid var(--line);
+}
+.contact-grid a .tx{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px}
+.contact-grid a .vx{font-size:13px;color:var(--ink);font-weight:500;word-break:break-all}
+
+.signal{
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:14px;
+  padding:32px;font-family:var(--mono);font-size:13px;line-height:1.7;
+  position:relative;overflow:hidden;
+}
+.signal::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,var(--acid),transparent);
+  animation:scanline 3s infinite;
+}
+@keyframes scanline{0%{transform:translateY(0)}100%{transform:translateY(380px)}}
+.signal h5{font-size:11px;color:var(--ink-3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.signal h5::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);animation:pulse 1.4s infinite}
+.signal .l{display:flex;gap:10px;margin-bottom:6px}
+.signal .l .pr{color:var(--acid)}
+.signal .l b{color:var(--ink);font-weight:500}
+.signal .l .ok{color:var(--acid)}
+.signal .l .warn{color:var(--warn)}
+
+.signal-cta{
+  margin-top:24px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:14px 16px;border:1px solid var(--acid);border-radius:8px;
+  background:rgba(191,255,58,.06);
+}
+.signal-cta span{color:var(--acid);font-weight:600}
+.signal-cta i{font-size:18px;color:var(--acid)}
+
+/* === Footer === */
+.foot{
+  border-top:1px solid var(--line);padding:48px 0 36px;font-family:var(--mono);font-size:11px;color:var(--ink-3);
+}
+.foot .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot a:hover{color:var(--acid)}
+.foot .ascii{color:var(--ink-3);font-size:10px;line-height:1.2;margin-top:30px;white-space:pre;overflow-x:auto}
+.foot .ascii b{color:var(--acid)}
+
+/* Reveal */
+.r{opacity:0;transform:translateY(40px);transition:opacity .8s, transform .8s}
+.r.in{opacity:1;transform:translateY(0)}
+.r-l{opacity:0;transform:translateX(-30px);transition:opacity .8s, transform .8s}
+.r-l.in{opacity:1;transform:translateX(0)}
+.r-r{opacity:0;transform:translateX(30px);transition:opacity .8s, transform .8s}
+.r-r.in{opacity:1;transform:translateX(0)}
+
+/* Tweaks panel */
+.tweak{
+  position:fixed;bottom:24px;left:24px;z-index:300;
+  background:rgba(11,13,16,.95);border:1px solid var(--line-2);border-radius:12px;
+  padding:16px;font-family:var(--mono);font-size:11px;backdrop-filter:blur(12px);
+  display:none;flex-direction:column;gap:12px;width:240px;
+}
+.tweak.open{display:flex}
+.tweak h6{font-size:11px;color:var(--ink-3);letter-spacing:.18em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.tweak h6 button{color:var(--ink-3);font-size:14px}
+.tweak label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tweak label span{color:var(--ink-2)}
+.tweak .swatches{display:flex;gap:6px}
+.tweak .sw{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:.2s}
+.tweak .sw.on{border-color:var(--ink)}
+
+@media (max-width:768px){
+  .s-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .s-head .right{text-align:left}
+  .term-foot{grid-template-columns:1fr;}
+  .term-foot div{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body style="">
+
+<!-- Custom cursor -->
+<div class="cursor-ring tap" id="cring" style="transform: translate(604.969px, 604.126px) translate(-50%, -50%);"><div class="lbl" id="clabel">open</div></div>
+<div class="cursor-dot" id="cdot" style="transform: translate(577px, 617px) translate(-50%, -50%);"></div>
+
+<!-- Background fabric -->
+<div class="bg-fabric"></div>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg">
+  <filter id="n"><feturbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"></feturbulence><fecolormatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"></fecolormatrix></filter>
+  <rect width="100%" height="100%" filter="url(#n)"></rect>
+</svg>
+
+<!-- Boot -->
+<div class="boot gone" id="boot">
+  <div class="boot-inner">
+    <div class="boot-head">
+      <div class="boot-title">javiergo<span>.es</span></div>
+      <div class="boot-sub">// initializing secure environment — v2.6.1</div>
+    </div>
+    <div id="bootIn"><div class="ln">[ <span class="ok">OK</span> ] booting kernel…</div><div class="ln">[ <span class="ok">OK</span> ] mounting /var/log/syslog</div><div class="ln">[ <span class="ok">OK</span> ] starting snort.service</div><div class="ln">[ <span class="warn">!!</span> ] firewall rules: pending</div><div class="ln">[ <span class="ok">OK</span> ] loading 14,832 detection rules</div><div class="ln">[ <span class="ok">OK</span> ] sshd online · port 2222</div><div class="ln">[ <span class="ok">OK</span> ] siem collectors armed</div><div class="ln">[ <span class="ok">OK</span> ] segmentation: GREEN/ORANGE/RED</div><div class="ln">[ <span class="ok">OK</span> ] portfolio.javier.go ready_</div><div class="boot-bar"><i style="transition: width 0.8s; width: 100%;"></i></div></div>
+  </div>
+</div>
+
+<!-- Scroll progress -->
+<div class="scroll-prog" id="sprog" style="width: 64.8266%;"></div>
+
+<!-- Nav -->
+<nav class="nav scrolled" id="nav">
+  <div class="shell nav-row">
+    <a class="brand" href="https://javiergo.es/#top" aria-label="javier garrido">
+      <span class="pip"></span>
+      <span class="name" data-text="javier.go"><span>javier.go</span></span>
+    </a>
+    <div class="nav-mid">
+      <a href="https://javiergo.es/#about" class=""><span class="num">01</span><span data-i18n="nav_about">Sobre mí</span></a>
+      <a href="https://javiergo.es/#stack" class=""><span class="num">02</span><span data-i18n="nav_skills">Stack</span></a>
+      <a href="https://javiergo.es/#projects" class="on"><span class="num">03</span><span data-i18n="nav_projects">Proyectos</span></a>
+      <a href="https://javiergo.es/#certs" class=""><span class="num">04</span><span data-i18n="nav_certs">Certs</span></a>
+      <a href="https://javiergo.es/#contact" class=""><span class="num">05</span><span data-i18n="nav_contact">Contacto</span></a>
+    </div>
+    <div class="nav-right">
+      <span class="status"><span class="pip"></span><span data-i18n="nav_avail">Disponible</span></span>
+      <div class="lang">
+        <button data-l="es" class="on">ES</button>
+        <button data-l="en" class="">EN</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="drawer" id="drawer">
+  <a href="https://javiergo.es/#about"><span data-i18n="nav_about">Sobre mí</span><span>01</span></a>
+  <a href="https://javiergo.es/#stack"><span data-i18n="nav_skills">Stack</span><span>02</span></a>
+  <a href="https://javiergo.es/#projects"><span data-i18n="nav_projects">Proyectos</span><span>03</span></a>
+  <a href="https://javiergo.es/#certs"><span data-i18n="nav_certs">Certs</span><span>04</span></a>
+  <a href="https://javiergo.es/#contact"><span data-i18n="nav_contact">Contacto</span><span>05</span></a>
+</div>
+
+<!-- HERO -->
+<header class="hero shell" id="top">
+  <div class="hero-glyphs" id="glyphs"><span style="left: 31.1157%; animation-delay: -10.2514s; animation-duration: 17.5565s;">01:fa3b</span><span style="left: 52.9734%; animation-delay: -1.99481s; animation-duration: 13.9509s;">0xDEAD</span><span style="left: 54.7718%; animation-delay: -3.74673s; animation-duration: 16.894s;">0xBEEF</span><span style="left: 22.0908%; animation-delay: -9.10472s; animation-duration: 12.9186s;">root@kali</span><span style="left: 37.1597%; animation-delay: -10.9402s; animation-duration: 16.1787s;">snort&gt;</span><span style="left: 68.5252%; animation-delay: -7.11186s; animation-duration: 17.6996s;">ufw&gt;</span><span style="left: 50.9827%; animation-delay: -3.70601s; animation-duration: 15.0158s;">192.168</span><span style="left: 54.8374%; animation-delay: -11.7003s; animation-duration: 8.48543s;">fail2ban</span><span style="left: 66.2826%; animation-delay: -2.80641s; animation-duration: 11.1368s;">tcp/443</span><span style="left: 79.0576%; animation-delay: -1.38409s; animation-duration: 12.3665s;">udp/53</span><span style="left: 26.6278%; animation-delay: -13.6325s; animation-duration: 10.8963s;">syn-flood</span><span style="left: 51.9107%; animation-delay: -3.87183s; animation-duration: 9.6313s;">port/22</span><span style="left: 58.9966%; animation-delay: -3.16251s; animation-duration: 10.6594s;">nmap</span><span style="left: 87.7691%; animation-delay: -1.56233s; animation-duration: 17.6856s;">01:fa3b</span></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-meta">
+        <span class="chip" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><i class="fas fa-shield-halved"></i> SOC · Blue Team</span>
+        <span class="chip" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><i class="fas fa-location-dot"></i> Sevilla, ES</span>
+        <span class="chip" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><i class="fas fa-graduation-cap"></i> <span data-i18n="hero_meta_edu">Máster Ciberseguridad</span></span>
+        <span class="chip" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><i class="fas fa-language"></i> C2 Cambridge</span>
+      </div>
+
+      <h1>
+        <span class="li"><span class="scramble" data-final="Javier" style="">Javier</span></span>
+        <span class="li"><span class="scramble" data-final="Garrido." data-accent="." style="">Garrido<span class="accent">.</span></span></span>
+      </h1>
+
+      <p class="hero-lede" data-i18n="hero_lede" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><b>Junior IT</b> orientado a <b>Blue Team / SOC Analyst</b> y administración de sistemas. Construyo infraestructuras que detectan, contienen y aprenden. Me obsesionan los logs, las reglas que no fallan y los servidores que no caen.</p>
+
+      <div class="hero-cta">
+        <a href="https://javiergo.es/#projects" class="btn" style="translate: none; rotate: none; scale: none; transform: translate(0px, 14px); opacity: 1;"><span class="dot"></span><span data-i18n="hero_cta_1">Ver proyectos</span></a>
+        <a href="https://javiergo.es/#contact" class="btn ghost" style="translate: none; rotate: none; scale: none; opacity: 1;"><span class="dot"></span><span data-i18n="hero_cta_2">Contratar</span></a>
+        <a href="https://www.linkedin.com/in/javier-garrido-ortiz-274bb9271/" target="_blank" rel="noopener" class="social-pill" aria-label="LinkedIn" style="translate: none; rotate: none; scale: none; transform: translate(0px, 14px); opacity: 0;"><i class="fab fa-linkedin-in"></i><span>linkedin</span></a>
+        <a href="https://github.com/jagaor" target="_blank" rel="noopener" class="social-pill" aria-label="GitHub" style="translate: none; rotate: none; scale: none; transform: translate(0px, 14px); opacity: 0;"><i class="fab fa-github"></i><span>jagaor</span></a>
+      </div>
+    </div>
+
+    <!-- Terminal panel -->
+    <div class="hero-panel" style="translate: none; rotate: none; scale: none; transform: translate(0px, 5.8873px); opacity: 0.7056;">
+      <div class="term-bar">
+        <i></i><i></i><i></i>
+        <b>~/javiergo — bash</b>
+        <div class="right">
+          <span><span class="pip"></span>online</span>
+          <span id="clock">19:46:07</span>
+        </div>
+      </div>
+      <div class="term-body" id="term">
+        <div class="term-line"><span class="pr">┌──(javier㉿kali)-[~]</span></div>
+        <div class="term-line"><span class="pr">└─$</span><span class="out">whoami</span></div>
+        <div class="term-line outline" data-i18n="term_who"><em>SOC Analyst</em> &amp; <em>SysAdmin</em> · Blue Team Junior</div>
+
+        <div class="term-line"><span class="pr">└─$</span><span class="out">cat ./status.json</span></div>
+        <div class="term-line outline">
+          { "role": "soc-junior", "shift": "ready", "coffee": <span style="color:var(--acid)">true</span>, "ego": <span style="color:var(--hot)">0</span> }
+        </div>
+
+        <div class="term-line"><span class="pr">└─$</span><span class="out" id="tw">nma</span><span class="cursor-blink"></span></div>
+      </div>
+      <div class="term-foot">
+        <div data-i18n="ft_uptime">Uptime</div>
+        <div data-i18n="ft_alerts">Alerts/day</div>
+        <div data-i18n="ft_threats">Threats blocked</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Threat ticker -->
+<div class="ticker">
+  <div class="tick-track" id="tick"><i><span class="pip"></span><b>ALERT</b> 03:14:22 · SSH brute-force · attacker=185.220.x.x · <span class="ok">blocked</span></i><i>03:14:48 · IDS rule 1:2003 · ICMP sweep · src=10.0.0.42 · <span class="ok">logged</span></i><i><span class="pip"></span><b>CRITICAL</b> 03:15:01 · SQLi attempt · /admin?id= · <span class="ok">WAF dropped</span></i><i>03:15:33 · lynis audit · score 87/100 · <span class="ok">PASS</span></i><i>03:15:57 · fail2ban · banned 12 IPs · jail=sshd</i><i><span class="pip"></span><b>WARN</b> 03:16:18 · cert expiring 14d · *.javier.go</i><i>03:16:42 · backup verified · sha256 · <span class="ok">OK</span></i><i>03:17:05 · docker ps · 12/12 healthy</i><i><span class="pip"></span><b>ALERT</b> 03:14:22 · SSH brute-force · attacker=185.220.x.x · <span class="ok">blocked</span></i><i>03:14:48 · IDS rule 1:2003 · ICMP sweep · src=10.0.0.42 · <span class="ok">logged</span></i><i><span class="pip"></span><b>CRITICAL</b> 03:15:01 · SQLi attempt · /admin?id= · <span class="ok">WAF dropped</span></i><i>03:15:33 · lynis audit · score 87/100 · <span class="ok">PASS</span></i><i>03:15:57 · fail2ban · banned 12 IPs · jail=sshd</i><i><span class="pip"></span><b>WARN</b> 03:16:18 · cert expiring 14d · *.javier.go</i><i>03:16:42 · backup verified · sha256 · <span class="ok">OK</span></i><i>03:17:05 · docker ps · 12/12 healthy</i></div>
+</div>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track" id="mq"><span><i class="fab fa-linux dot"></i><b>Linux</b></span><span><i class="fas fa-shield-halved dot"></i><b>Snort</b></span><span><i class="fas fa-chart-bar dot"></i><b>Grafana</b></span><span><i class="fas fa-fire dot"></i><b>Prometheus</b></span><span><i class="fas fa-file-lines dot"></i><b>Loki</b></span><span><i class="fas fa-fire-flame-curved dot"></i><b>IPFire</b></span><span><i class="fas fa-lock dot"></i><b>OPNSense</b></span><span><i class="fas fa-magnifying-glass dot"></i><b>Autopsy</b></span><span><i class="fab fa-docker dot"></i><b>Docker</b></span><span><i class="fas fa-terminal dot"></i><b>Bash</b></span><span><i class="fab fa-python dot"></i><b>Python</b></span><span><i class="fas fa-network-wired dot"></i><b>GNS3</b></span><span><i class="fas fa-globe dot"></i><b>SONiC</b></span><span><i class="fas fa-user-secret dot"></i><b>OSINT</b></span><span><i class="fas fa-eye dot"></i><b>Wireshark</b></span><span><i class="fas fa-ban dot"></i><b>Fail2ban</b></span><span><i class="fas fa-clipboard-check dot"></i><b>Lynis</b></span><span><i class="fab fa-windows dot"></i><b>Windows</b></span><span><i class="fab fa-git-alt dot"></i><b>Git</b></span><span><i class="fas fa-brain dot"></i><b>Ollama</b></span><span><i class="fas fa-robot dot"></i><b>Open WebUI</b></span><span><i class="fas fa-display dot"></i><b>Vulkan</b></span><span><i class="fab fa-linux dot"></i><b>Linux</b></span><span><i class="fas fa-shield-halved dot"></i><b>Snort</b></span><span><i class="fas fa-chart-bar dot"></i><b>Grafana</b></span><span><i class="fas fa-fire dot"></i><b>Prometheus</b></span><span><i class="fas fa-file-lines dot"></i><b>Loki</b></span><span><i class="fas fa-fire-flame-curved dot"></i><b>IPFire</b></span><span><i class="fas fa-lock dot"></i><b>OPNSense</b></span><span><i class="fas fa-magnifying-glass dot"></i><b>Autopsy</b></span><span><i class="fab fa-docker dot"></i><b>Docker</b></span><span><i class="fas fa-terminal dot"></i><b>Bash</b></span><span><i class="fab fa-python dot"></i><b>Python</b></span><span><i class="fas fa-network-wired dot"></i><b>GNS3</b></span><span><i class="fas fa-globe dot"></i><b>SONiC</b></span><span><i class="fas fa-user-secret dot"></i><b>OSINT</b></span><span><i class="fas fa-eye dot"></i><b>Wireshark</b></span><span><i class="fas fa-ban dot"></i><b>Fail2ban</b></span><span><i class="fas fa-clipboard-check dot"></i><b>Lynis</b></span><span><i class="fab fa-windows dot"></i><b>Windows</b></span><span><i class="fab fa-git-alt dot"></i><b>Git</b></span><span><i class="fas fa-brain dot"></i><b>Ollama</b></span><span><i class="fas fa-robot dot"></i><b>Open WebUI</b></span><span><i class="fas fa-display dot"></i><b>Vulkan</b></span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="shell">
+  <div class="s-head">
+    <div class="left">
+      <span class="num">01 / about</span>
+      <h2 class="r in"><span data-i18n="about_h" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">El analista</span> <em data-i18n="about_h2" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">detrás del log.</em></h2>
+    </div>
+    <div class="right r in" data-i18n="about_right">SOC Analyst (Blue Team) — finalizando Máster FP en Ciberseguridad. Buscando primera oportunidad profesional.</div>
+  </div>
+
+  <div class="about-grid">
+    <div class="id-card r-l in">
+      <div class="id-pic">
+        <div class="scan"></div>
+        <i class="fas fa-user-secret"></i>
+      </div>
+      <h3>// IDENTITY</h3>
+      <div class="id-row"><span class="k">Alias</span><span class="v">javier.go</span></div>
+      <div class="id-row"><span class="k">Role</span><span class="v">SOC · SysAdmin Jr.</span></div>
+      <div class="id-row"><span class="k" data-i18n="id_loc">Base</span><span class="v">Sevilla → Remoto</span></div>
+      <div class="id-row"><span class="k">English</span><span class="v">C2 Proficiency</span></div>
+      <div class="id-row"><span class="k">Stack</span><span class="v">Linux · SIEM · NGFW</span></div>
+      <div class="id-row"><span class="k">Status</span><span class="v ok">&gt; available_</span></div>
+    </div>
+
+    <div class="about-body r-r in">
+      <p data-i18n="about_p1">Soy un profesional <strong>junior IT</strong> orientado a <strong>analista SOC (Blue Team)</strong> y administración de sistemas. Me apasiona la ciberseguridad defensiva, la detección de amenazas y las infraestructuras que sostienen empresas reales.</p>
+      <p data-i18n="about_p2">Estoy finalizando el <strong>Máster en FP Ciberseguridad en Entornos de las TI</strong> (titulación oficial de la Junta de Andalucía), donde he construido una base técnica sólida orientada a entornos reales de empresa: bastionado, IDS/IPS, SIEM, segmentación, forense.</p>
+      <p data-i18n="about_p3">Busco mi primera oportunidad como <strong>SOC Analyst Junior</strong>, <strong>Administrador de Sistemas</strong> o <strong>Técnico IT</strong>. Sevilla, Málaga, Valencia, Madrid, Barcelona — o totalmente remoto.</p>
+
+      <h4>// soft.skills</h4>
+      <div class="soft-tags">
+        <span><i class="fas fa-circle"></i><span data-i18n="soft_1">Mentalidad analítica</span></span>
+        <span><i class="fas fa-circle"></i><span data-i18n="soft_2">Aprendizaje rápido</span></span>
+        <span><i class="fas fa-circle"></i><span data-i18n="soft_3">Proactividad</span></span>
+        <span><i class="fas fa-circle"></i><span data-i18n="soft_4">Trabajo en equipo</span></span>
+        <span><i class="fas fa-circle"></i><span data-i18n="soft_5">Mejora continua</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="stack" class="shell">
+  <div class="s-head">
+    <div class="left">
+      <span class="num">02 / stack</span>
+      <h2 class="r in"><span data-i18n="stack_h" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Conocimiento</span> <em data-i18n="stack_h2" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">aplicado.</em></h2>
+    </div>
+    <div class="right r in" data-i18n="stack_right">Hover en cada disciplina — el panel cambia. Auditado en proyectos reales.</div>
+  </div>
+
+  <div class="skills-wrap">
+    <div class="skill-list" id="skList">
+      <div class="skill-row in" data-key="ids" style="--w:70%">
+        <span class="n">01</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_1">Detección de Intrusiones</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 70</span>
+      </div>
+      <div class="skill-row in" data-key="siem" style="--w:65%">
+        <span class="n">02</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_2">SOC &amp; SIEM</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 65</span>
+      </div>
+      <div class="skill-row in" data-key="net" style="--w:70%">
+        <span class="n">03</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_3">Redes &amp; Firewalls</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 70</span>
+      </div>
+      <div class="skill-row in" data-key="hard" style="--w:65%">
+        <span class="n">04</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_4">Linux Hardening</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 65</span>
+      </div>
+      <div class="skill-row in" data-key="dfir" style="--w:60%">
+        <span class="n">05</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_5">DFIR &amp; Forense</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 60</span>
+      </div>
+      <div class="skill-row in" data-key="auto" style="--w:55%">
+        <span class="n">06</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_6">Scripting &amp; Automatización</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 55</span>
+      </div>
+      <div class="skill-row in" data-key="ai" style="--w:50%">
+        <span class="n">07</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_7">IA &amp; LLMs Locales</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 50</span>
+      </div>
+      <div class="skill-row in active" data-key="agent" style="--w:45%">
+        <span class="n">08</span>
+        <span class="name"><i class="fas fa-arrow-right"></i><span data-i18n="sk_8">Agentes AI &amp; Control</span></span>
+        <span class="lvl"><span class="bar"><i></i></span> 45</span>
+      </div>
+    </div>
+
+    <div class="skill-detail r-r in" id="skDetail">
+      <span class="label">// 01 — capability</span>
+      <h3 id="skTitle"><em>Agentes AI</em><br>&amp; control</h3>
+      <p id="skDesc">Open Interpreter, puentes Python-PowerShell para ejecución por lenguaje natural y automatización del SO.</p>
+      <div class="stack" id="skStack"><span>Open Interpreter</span><span>Python</span><span>PowerShell</span></div>
+      <i class="skill-icon-big fas fa-robot" id="skIco"></i>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="shell">
+  <div class="s-head">
+    <div class="left">
+      <span class="num">03 / projects</span>
+      <h2 class="r in"><span data-i18n="proj_h" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Repositorios</span> <em data-i18n="proj_h2" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">en vivo.</em></h2>
+    </div>
+    <div class="right r in" data-i18n="proj_right">Sincronizado con github.com/jagaor — actualizado en cada push.</div>
+  </div>
+
+  <div class="proj-bar" id="projBar">
+    <button class="" data-f="all"><span data-i18n="f_all">Todos</span> · 11</button>
+    <button data-f="tfm" class="flagship-filt"><i class="fas fa-star"></i> TFM</button>
+    <button data-f="bt" class="on">Blue Team</button>
+    <button data-f="net"><span data-i18n="f_net">Redes</span></button>
+    <button data-f="ai">AI</button>
+    <button data-f="dfir">DFIR</button>
+    <button data-f="osint">OSINT</button>
+  </div>
+
+  <div class="proj-grid" id="projGrid">
+    <a class="proj lg flagship" data-cat="bt dfir tfm" href="https://github.com/jagaor/tfm-defensa-activa" target="_blank" rel="noopener" data-cur="open"><span class="flagship-flag"><i class="fas fa-star"></i> Trabajo Fin de Máster · 2026</span>
+      <div class="proj-art" data-art="tfm" style="--mx: 81.95245079646621%; --my: 80.11551724137931%;">
+        <span class="badge">TFM · SOAR / DEFENSE</span>
+        <span class="id">P-000</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-tfm">
+      <defs>
+        <lineargradient id="tfmGlow" x1="0" x2="1"><stop offset="0" stop-color="#ff3d57" stop-opacity=".5"></stop><stop offset=".5" stop-color="#ffd23a" stop-opacity=".4"></stop><stop offset="1" stop-color="#bfff3a" stop-opacity=".6"></stop></lineargradient>
+      </defs>
+      <rect width="400" height="250" fill="#0b0d10"></rect>
+      <line x1="0" y1="0" x2="400" y2="0" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="15" x2="400" y2="15" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="30" x2="400" y2="30" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="45" x2="400" y2="45" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="60" x2="400" y2="60" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="75" x2="400" y2="75" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="90" x2="400" y2="90" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="105" x2="400" y2="105" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="120" x2="400" y2="120" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="135" x2="400" y2="135" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="150" x2="400" y2="150" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="165" x2="400" y2="165" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="180" x2="400" y2="180" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="195" x2="400" y2="195" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="210" x2="400" y2="210" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="225" x2="400" y2="225" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="240" x2="400" y2="240" stroke="#1c2128" stroke-width=".3"></line><line x1="0" y1="255" x2="400" y2="255" stroke="#1c2128" stroke-width=".3"></line>
+
+      <!-- Pipeline backbone -->
+      <line x1="40" y1="125" x2="360" y2="125" stroke="url(#tfmGlow)" stroke-width="1.5"></line>
+      <line x1="40" y1="125" x2="360" y2="125" stroke="#bfff3a" stroke-width=".5" stroke-dasharray="3 5" opacity=".7"><animate attributeName="stroke-dashoffset" from="0" to="-32" dur="1.4s" repeatCount="indefinite"></animate></line>
+
+      <!-- Stage 1: Attacker (red) -->
+      <g>
+        <circle cx="55" cy="125" r="20" fill="rgba(255,61,87,.15)" stroke="#ff3d57" stroke-width="1"><animate attributeName="r" values="18;22;18" dur="1.2s" repeatCount="indefinite"></animate></circle>
+        <text x="55" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#ff3d57" font-weight="800">!</text>
+        <text x="55" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff3d57" font-weight="700">SSH brute</text>
+        <text x="55" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">hydra · 8.4k/s</text>
+      </g>
+
+      <!-- Stage 2: Wazuh detect -->
+      <g>
+        <rect x="135" y="105" width="50" height="40" rx="4" fill="rgba(92,242,255,.08)" stroke="#5cf2ff" stroke-width="1"></rect>
+        <text x="160" y="121" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5cf2ff" font-weight="700">WAZUH</text>
+        <text x="160" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">level 10</text>
+        <circle cx="178" cy="112" r="3" fill="#5cf2ff"><animate attributeName="opacity" values="1;.2;1" dur=".8s" repeatCount="indefinite"></animate></circle>
+        <text x="160" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5cf2ff" font-weight="700">T1110</text>
+        <text x="160" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">ATT&amp;CK</text>
+      </g>
+
+      <!-- Stage 3: Ansible -->
+      <g>
+        <rect x="215" y="105" width="50" height="40" rx="4" fill="rgba(255,210,58,.08)" stroke="#ffd23a" stroke-width="1"></rect>
+        <text x="240" y="121" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ffd23a" font-weight="700">ANSIBLE</text>
+        <text x="240" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">playbook</text>
+        <text x="240" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ffd23a" font-weight="700">SOAR</text>
+        <text x="240" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">auto-respond</text>
+      </g>
+
+      <!-- Stage 4: Block (green) -->
+      <g>
+        <circle cx="345" cy="125" r="20" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1.5"></circle>
+        <path d="M 337 125 L 343 131 L 354 119" fill="none" stroke="#bfff3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <text x="345" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#bfff3a" font-weight="700">BLOCKED</text>
+        <text x="345" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">nftables · 27s</text>
+      </g>
+
+      <!-- Packets traveling -->
+      <circle r="2.5" fill="#ff3d57"><animatemotion path="M 75 125 L 135 125" dur="1.4s" repeatCount="indefinite"></animatemotion></circle>
+      <circle r="2.5" fill="#5cf2ff"><animatemotion path="M 185 125 L 215 125" dur="1.2s" begin=".3s" repeatCount="indefinite"></animatemotion></circle>
+      <circle r="2.5" fill="#ffd23a"><animatemotion path="M 265 125 L 325 125" dur="1.4s" begin=".6s" repeatCount="indefinite"></animatemotion></circle>
+
+      <!-- Header -->
+      <text x="20" y="32" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">TFM // ACTIVE-DEFENSE</text>
+      <text x="380" y="32" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff3d57">★ flagship</text>
+      <text x="20" y="48" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">detect → map → respond → contain</text>
+
+      <!-- Footer telemetry -->
+      <text x="20" y="225" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">MTTR ≤ 30s · zero human · cis-bench passed</text>
+      <text x="380" y="225" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">wazuh 4.7 · ubuntu 22</text>
+
+      <!-- Kill-chain scan line -->
+      <line x1="40" y1="0" x2="40" y2="250" stroke="#bfff3a" stroke-width=".4" opacity=".3"><animate attributeName="x1" values="40;360;40" dur="6s" repeatCount="indefinite"></animate><animate attributeName="x2" values="40;360;40" dur="6s" repeatCount="indefinite"></animate></line>
+    </svg>
+        <div class="proj-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="proj-meta">
+        <h3>Arquitectura de Defensa Activa Automatizada (TFM)</h3>
+        <p>SIEM/XDR con Wazuh + Ansible + bastionado CIS. Detecta fuerza bruta SSH, mapea MITRE ATT&amp;CK T1110 y bloquea al atacante en &lt;30s sin intervención humana.</p>
+        <div class="tech"><span>Wazuh 4.7</span><span>Ansible</span><span>MITRE ATT&amp;CK</span><span>nftables</span><span>Hydra</span><span>SOAR</span></div>
+        <div class="gh-row"><span class="gh-live"><span class="pip"></span> 2026-04-27</span><span class="gh-star"><i class="fas fa-star"></i> 0</span></div>
+      </div>
+    </a>
+    <a class="proj md" data-cat="bt net" href="https://github.com/jagaor/Sistema-Deteccion-Intrusos-IDS-Snort-NETinVM" target="_blank" rel="noopener" data-cur="open">
+      <div class="proj-art" data-art="ids" style="--mx: 99.1482241995589%; --my: 0.4862296785687774%;">
+        <span class="badge">IDS / BLUE TEAM</span>
+        <span class="id">P-002</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-ids">
+      <rect width="400" height="250" fill="#0b0d10"></rect>
+      <line x1="0" y1="0" x2="400" y2="0" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="15" x2="400" y2="15" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="30" x2="400" y2="30" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="45" x2="400" y2="45" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="60" x2="400" y2="60" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="75" x2="400" y2="75" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="90" x2="400" y2="90" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="105" x2="400" y2="105" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="120" x2="400" y2="120" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="135" x2="400" y2="135" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="150" x2="400" y2="150" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="165" x2="400" y2="165" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="180" x2="400" y2="180" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="195" x2="400" y2="195" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="210" x2="400" y2="210" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="225" x2="400" y2="225" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="240" x2="400" y2="240" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="255" x2="400" y2="255" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="270" x2="400" y2="270" stroke="#1c2128" stroke-width=".5"></line><line x1="0" y1="285" x2="400" y2="285" stroke="#1c2128" stroke-width=".5"></line>
+      <g><rect x="0" y="168.37733624828533" width="5" height="21.622663751714676" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="21.622663751714676;19.792481138545952;21.622663751714676" dur="1.7113211591220852s" repeatCount="indefinite"></animate><animate attributeName="y" values="168.37733624828533;170.20751886145405;168.37733624828533" dur="1.7113211591220852s" repeatCount="indefinite"></animate></rect><rect x="8" y="166.18445644718793" width="5" height="23.815543552812073" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="23.815543552812073;22.583419067215363;23.815543552812073" dur="1.7511917009602196s" repeatCount="indefinite"></animate><animate attributeName="y" values="166.18445644718793;167.41658093278463;166.18445644718793" dur="1.7511917009602196s" repeatCount="indefinite"></animate></rect><rect x="16" y="163.99157664609055" width="5" height="26.008423353909464" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="26.008423353909464;25.374356995884774;26.008423353909464" dur="1.791062242798354s" repeatCount="indefinite"></animate><animate attributeName="y" values="163.99157664609055;164.62564300411523;163.99157664609055" dur="1.791062242798354s" repeatCount="indefinite"></animate></rect><rect x="24" y="161.79869684499315" width="5" height="28.20130315500686" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="28.20130315500686;28.165294924554185;28.20130315500686" dur="1.8309327846364885s" repeatCount="indefinite"></animate><animate attributeName="y" values="161.79869684499315;161.8347050754458;161.79869684499315" dur="1.8309327846364885s" repeatCount="indefinite"></animate></rect><rect x="32" y="159.60581704389574" width="5" height="30.394182956104252" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="30.394182956104252;30.956232853223593;30.394182956104252" dur="1.8708033264746229s" repeatCount="indefinite"></animate><animate attributeName="y" values="159.60581704389574;159.04376714677642;159.60581704389574" dur="1.8708033264746229s" repeatCount="indefinite"></animate></rect><rect x="40" y="157.41293724279836" width="5" height="32.58706275720165" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="32.58706275720165;33.747170781893004;32.58706275720165" dur="1.9106738683127573s" repeatCount="indefinite"></animate><animate attributeName="y" values="157.41293724279836;156.252829218107;157.41293724279836" dur="1.9106738683127573s" repeatCount="indefinite"></animate></rect><rect x="48" y="155.22005744170096" width="5" height="34.77994255829904" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="34.77994255829904;36.53810871056241;34.77994255829904" dur="1.9505444101508917s" repeatCount="indefinite"></animate><animate attributeName="y" values="155.22005744170096;153.46189128943757;155.22005744170096" dur="1.9505444101508917s" repeatCount="indefinite"></animate></rect><rect x="56" y="153.02717764060355" width="5" height="36.97282235939643" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="36.97282235939643;39.32904663923183;36.97282235939643" dur="1.9904149519890262s" repeatCount="indefinite"></animate><animate attributeName="y" values="153.02717764060355;150.67095336076818;153.02717764060355" dur="1.9904149519890262s" repeatCount="indefinite"></animate></rect><rect x="64" y="150.83429783950618" width="5" height="39.16570216049383" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="39.16570216049383;42.119984567901234;39.16570216049383" dur="2.0302854938271606s" repeatCount="indefinite"></animate><animate attributeName="y" values="150.83429783950618;147.88001543209876;150.83429783950618" dur="2.0302854938271606s" repeatCount="indefinite"></animate></rect><rect x="72" y="148.64141803840877" width="5" height="41.35858196159122" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="41.35858196159122;44.91092249657065;41.35858196159122" dur="2.070156035665295s" repeatCount="indefinite"></animate><animate attributeName="y" values="148.64141803840877;145.08907750342934;148.64141803840877" dur="2.070156035665295s" repeatCount="indefinite"></animate></rect><rect x="80" y="146.44853823731137" width="5" height="43.55146176268862" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="43.55146176268862;47.701860425240056;43.55146176268862" dur="2.1100265775034295s" repeatCount="indefinite"></animate><animate attributeName="y" values="146.44853823731137;142.29813957475994;146.44853823731137" dur="2.1100265775034295s" repeatCount="indefinite"></animate></rect><rect x="88" y="144.255658436214" width="5" height="45.74434156378601" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="45.74434156378601;50.492798353909464;45.74434156378601" dur="2.149897119341564s" repeatCount="indefinite"></animate><animate attributeName="y" values="144.255658436214;139.50720164609055;144.255658436214" dur="2.149897119341564s" repeatCount="indefinite"></animate></rect><rect x="96" y="142.0627786351166" width="5" height="47.937221364883406" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="47.937221364883406;53.28373628257888;47.937221364883406" dur="2.1897676611796983s" repeatCount="indefinite"></animate><animate attributeName="y" values="142.0627786351166;136.71626371742113;142.0627786351166" dur="2.1897676611796983s" repeatCount="indefinite"></animate></rect><rect x="104" y="139.8698988340192" width="5" height="50.1301011659808" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="50.1301011659808;56.074674211248286;50.1301011659808" dur="2.2296382030178328s" repeatCount="indefinite"></animate><animate attributeName="y" values="139.8698988340192;133.9253257887517;139.8698988340192" dur="2.2296382030178328s" repeatCount="indefinite"></animate></rect><rect x="112" y="137.6770190329218" width="5" height="52.32298096707819" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="52.32298096707819;58.865612139917694;52.32298096707819" dur="2.269508744855967s" repeatCount="indefinite"></animate><animate attributeName="y" values="137.6770190329218;131.1343878600823;137.6770190329218" dur="2.269508744855967s" repeatCount="indefinite"></animate></rect><rect x="120" y="135.48413923182443" width="5" height="54.515860768175585" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="54.515860768175585;61.65655006858711;54.515860768175585" dur="2.3093792866941016s" repeatCount="indefinite"></animate><animate attributeName="y" values="135.48413923182443;128.3434499314129;135.48413923182443" dur="2.3093792866941016s" repeatCount="indefinite"></animate></rect><rect x="128" y="133.29125943072702" width="5" height="56.708740569272976" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="56.708740569272976;64.44748799725652;56.708740569272976" dur="2.349249828532236s" repeatCount="indefinite"></animate><animate attributeName="y" values="133.29125943072702;125.55251200274348;133.29125943072702" dur="2.349249828532236s" repeatCount="indefinite"></animate></rect><rect x="136" y="131.09837962962962" width="5" height="58.901620370370374" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="58.901620370370374;67.23842592592592;58.901620370370374" dur="2.3891203703703705s" repeatCount="indefinite"></animate><animate attributeName="y" values="131.09837962962962;122.76157407407408;131.09837962962962" dur="2.3891203703703705s" repeatCount="indefinite"></animate></rect><rect x="144" y="128.90549982853224" width="5" height="61.094500171467764" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="61.094500171467764;70.02936385459533;61.094500171467764" dur="2.428990912208505s" repeatCount="indefinite"></animate><animate attributeName="y" values="128.90549982853224;119.97063614540467;128.90549982853224" dur="2.428990912208505s" repeatCount="indefinite"></animate></rect><rect x="152" y="126.71262002743484" width="5" height="63.28737997256516" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="63.28737997256516;72.82030178326475;63.28737997256516" dur="2.4688614540466394s" repeatCount="indefinite"></animate><animate attributeName="y" values="126.71262002743484;117.17969821673525;126.71262002743484" dur="2.4688614540466394s" repeatCount="indefinite"></animate></rect><rect x="160" y="179.51974022633746" width="5" height="10.480259773662551" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="10.480259773662551;5.611239711934156;10.480259773662551" dur="1.5087319958847736s" repeatCount="indefinite"></animate><animate attributeName="y" values="179.51974022633746;184.38876028806584;179.51974022633746" dur="1.5087319958847736s" repeatCount="indefinite"></animate></rect><rect x="168" y="177.32686042524006" width="5" height="12.673139574759945" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="12.673139574759945;8.402177640603567;12.673139574759945" dur="1.548602537722908s" repeatCount="indefinite"></animate><animate attributeName="y" values="177.32686042524006;181.59782235939645;177.32686042524006" dur="1.548602537722908s" repeatCount="indefinite"></animate></rect><rect x="176" y="175.13398062414265" width="5" height="14.866019375857338" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="14.866019375857338;11.193115569272976;14.866019375857338" dur="1.5884730795610424s" repeatCount="indefinite"></animate><animate attributeName="y" values="175.13398062414265;178.80688443072702;175.13398062414265" dur="1.5884730795610424s" repeatCount="indefinite"></animate></rect><rect x="184" y="172.94110082304528" width="5" height="17.058899176954732" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="17.058899176954732;13.984053497942387;17.058899176954732" dur="1.6283436213991769s" repeatCount="indefinite"></animate><animate attributeName="y" values="172.94110082304528;176.0159465020576;172.94110082304528" dur="1.6283436213991769s" repeatCount="indefinite"></animate></rect><rect x="192" y="170.74822102194787" width="5" height="19.251778978052126" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="19.251778978052126;16.7749914266118;19.251778978052126" dur="1.6682141632373113s" repeatCount="indefinite"></animate><animate attributeName="y" values="170.74822102194787;173.2250085733882;170.74822102194787" dur="1.6682141632373113s" repeatCount="indefinite"></animate></rect><rect x="200" y="168.5553412208505" width="5" height="21.44465877914952" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="21.44465877914952;19.565929355281206;21.44465877914952" dur="1.7080847050754457s" repeatCount="indefinite"></animate><animate attributeName="y" values="168.5553412208505;170.4340706447188;168.5553412208505" dur="1.7080847050754457s" repeatCount="indefinite"></animate></rect><rect x="208" y="166.3624614197531" width="5" height="23.637538580246915" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="23.637538580246915;22.356867283950617;23.637538580246915" dur="1.7479552469135802s" repeatCount="indefinite"></animate><animate attributeName="y" values="166.3624614197531;167.6431327160494;166.3624614197531" dur="1.7479552469135802s" repeatCount="indefinite"></animate></rect><rect x="216" y="164.16958161865568" width="5" height="25.83041838134431" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="25.83041838134431;25.147805212620025;25.83041838134431" dur="1.7878257887517146s" repeatCount="indefinite"></animate><animate attributeName="y" values="164.16958161865568;164.85219478737997;164.16958161865568" dur="1.7878257887517146s" repeatCount="indefinite"></animate></rect><rect x="224" y="161.9767018175583" width="5" height="28.0232981824417" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="28.0232981824417;27.938743141289436;28.0232981824417" dur="1.827696330589849s" repeatCount="indefinite"></animate><animate attributeName="y" values="161.9767018175583;162.06125685871058;161.9767018175583" dur="1.827696330589849s" repeatCount="indefinite"></animate></rect><rect x="232" y="159.7838220164609" width="5" height="30.216177983539094" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="30.216177983539094;30.729681069958847;30.216177983539094" dur="1.8675668724279835s" repeatCount="indefinite"></animate><animate attributeName="y" values="159.7838220164609;159.27031893004116;159.7838220164609" dur="1.8675668724279835s" repeatCount="indefinite"></animate></rect><rect x="240" y="157.5909422153635" width="5" height="32.40905778463649" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="32.40905778463649;33.52061899862826;32.40905778463649" dur="1.907437414266118s" repeatCount="indefinite"></animate><animate attributeName="y" values="157.5909422153635;156.47938100137173;157.5909422153635" dur="1.907437414266118s" repeatCount="indefinite"></animate></rect><rect x="248" y="155.39806241426612" width="5" height="34.60193758573388" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="34.60193758573388;36.311556927297666;34.60193758573388" dur="1.9473079561042523s" repeatCount="indefinite"></animate><animate attributeName="y" values="155.39806241426612;153.68844307270234;155.39806241426612" dur="1.9473079561042523s" repeatCount="indefinite"></animate></rect><rect x="256" y="153.20518261316872" width="5" height="36.79481738683128" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="36.79481738683128;39.10249485596708;36.79481738683128" dur="1.9871784979423868s" repeatCount="indefinite"></animate><animate attributeName="y" values="153.20518261316872;150.89750514403292;153.20518261316872" dur="1.9871784979423868s" repeatCount="indefinite"></animate></rect><rect x="264" y="151.0123028120713" width="5" height="38.987697187928674" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="38.987697187928674;41.893432784636495;38.987697187928674" dur="2.0270490397805214s" repeatCount="indefinite"></animate><animate attributeName="y" values="151.0123028120713;148.1065672153635;151.0123028120713" dur="2.0270490397805214s" repeatCount="indefinite"></animate></rect><rect x="272" y="148.81942301097394" width="5" height="41.180576989026065" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="41.180576989026065;44.6843707133059;41.180576989026065" dur="2.066919581618656s" repeatCount="indefinite"></animate><animate attributeName="y" values="148.81942301097394;145.3156292866941;148.81942301097394" dur="2.066919581618656s" repeatCount="indefinite"></animate></rect><rect x="280" y="146.62654320987653" width="5" height="43.37345679012346" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="43.37345679012346;47.47530864197531;43.37345679012346" dur="2.1067901234567903s" repeatCount="indefinite"></animate><animate attributeName="y" values="146.62654320987653;142.52469135802468;146.62654320987653" dur="2.1067901234567903s" repeatCount="indefinite"></animate></rect><rect x="288" y="144.43366340877915" width="5" height="45.56633659122085" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="45.56633659122085;50.266246570644725;45.56633659122085" dur="2.1466606652949247s" repeatCount="indefinite"></animate><animate attributeName="y" values="144.43366340877915;139.73375342935526;144.43366340877915" dur="2.1466606652949247s" repeatCount="indefinite"></animate></rect><rect x="296" y="142.24078360768175" width="5" height="47.759216392318244" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="47.759216392318244;53.057184499314126;47.759216392318244" dur="2.1865312071330587s" repeatCount="indefinite"></animate><animate attributeName="y" values="142.24078360768175;136.94281550068587;142.24078360768175" dur="2.1865312071330587s" repeatCount="indefinite"></animate></rect><rect x="304" y="140.04790380658437" width="5" height="49.952096193415635" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="49.952096193415635;55.84812242798353;49.952096193415635" dur="2.2264017489711936s" repeatCount="indefinite"></animate><animate attributeName="y" values="140.04790380658437;134.15187757201647;140.04790380658437" dur="2.2264017489711936s" repeatCount="indefinite"></animate></rect><rect x="312" y="137.85502400548697" width="5" height="52.144975994513025" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="52.144975994513025;58.63906035665295;52.144975994513025" dur="2.2662722908093276s" repeatCount="indefinite"></animate><animate attributeName="y" values="137.85502400548697;131.36093964334705;137.85502400548697" dur="2.2662722908093276s" repeatCount="indefinite"></animate></rect><rect x="320" y="135.66214420438956" width="5" height="54.33785579561042" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="54.33785579561042;61.429998285322355;54.33785579561042" dur="2.3061428326474624s" repeatCount="indefinite"></animate><animate attributeName="y" values="135.66214420438956;128.57000171467763;135.66214420438956" dur="2.3061428326474624s" repeatCount="indefinite"></animate></rect><rect x="328" y="133.4692644032922" width="5" height="56.530735596707814" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="56.530735596707814;64.22093621399176;56.530735596707814" dur="2.3460133744855964s" repeatCount="indefinite"></animate><animate attributeName="y" values="133.4692644032922;125.77906378600824;133.4692644032922" dur="2.3460133744855964s" repeatCount="indefinite"></animate></rect><rect x="336" y="131.27638460219478" width="5" height="58.72361539780521" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="58.72361539780521;67.01187414266118;58.72361539780521" dur="2.3858839163237313s" repeatCount="indefinite"></animate><animate attributeName="y" values="131.27638460219478;122.98812585733882;131.27638460219478" dur="2.3858839163237313s" repeatCount="indefinite"></animate></rect><rect x="344" y="129.0835048010974" width="5" height="60.9164951989026" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="60.9164951989026;69.80281207133059;60.9164951989026" dur="2.4257544581618653s" repeatCount="indefinite"></animate><animate attributeName="y" values="129.0835048010974;120.19718792866941;129.0835048010974" dur="2.4257544581618653s" repeatCount="indefinite"></animate></rect><rect x="352" y="126.890625" width="5" height="63.109375" fill="#ff3d57" opacity=".8"><animate attributeName="height" values="63.109375;72.59375;63.109375" dur="2.465625s" repeatCount="indefinite"></animate><animate attributeName="y" values="126.890625;117.40625;126.890625" dur="2.465625s" repeatCount="indefinite"></animate></rect><rect x="360" y="179.6977451989026" width="5" height="10.302254801097394" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="10.302254801097394;5.38468792866941;10.302254801097394" dur="1.5054955418381344s" repeatCount="indefinite"></animate><animate attributeName="y" values="179.6977451989026;184.61531207133058;179.6977451989026" dur="1.5054955418381344s" repeatCount="indefinite"></animate></rect><rect x="368" y="177.50486539780522" width="5" height="12.495134602194788" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="12.495134602194788;8.17562585733882;12.495134602194788" dur="1.5453660836762688s" repeatCount="indefinite"></animate><animate attributeName="y" values="177.50486539780522;181.82437414266118;177.50486539780522" dur="1.5453660836762688s" repeatCount="indefinite"></animate></rect><rect x="376" y="175.3119855967078" width="5" height="14.68801440329218" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="14.68801440329218;10.96656378600823;14.68801440329218" dur="1.5852366255144033s" repeatCount="indefinite"></animate><animate attributeName="y" values="175.3119855967078;179.03343621399176;175.3119855967078" dur="1.5852366255144033s" repeatCount="indefinite"></animate></rect><rect x="384" y="173.11910579561044" width="5" height="16.880894204389573" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="16.880894204389573;13.75750171467764;16.880894204389573" dur="1.6251071673525377s" repeatCount="indefinite"></animate><animate attributeName="y" values="173.11910579561044;176.24249828532237;173.11910579561044" dur="1.6251071673525377s" repeatCount="indefinite"></animate></rect><rect x="392" y="170.92622599451303" width="5" height="19.073774005486968" fill="#bfff3a" opacity=".8"><animate attributeName="height" values="19.073774005486968;16.548439643347052;19.073774005486968" dur="1.6649777091906721s" repeatCount="indefinite"></animate><animate attributeName="y" values="170.92622599451303;173.45156035665295;170.92622599451303" dur="1.6649777091906721s" repeatCount="indefinite"></animate></rect></g>
+      <line x1="0" y1="190" x2="400" y2="190" stroke="#bfff3a" stroke-width="1"></line>
+      <line x1="0" y1="60" x2="400" y2="60" stroke="#bfff3a" stroke-width=".4" stroke-dasharray="6 6" opacity=".5"><animate attributeName="y1" values="60;58;60" dur="3s" repeatCount="indefinite"></animate></line>
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">SNORT://eth0</text>
+      <text x="20" y="56" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">14,832 rules · 3 alerts</text>
+      <circle cx="370" cy="40" r="4" fill="#ff3d57"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"></animate></circle>
+      <text x="380" y="235" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">live · port mirror</text>
+    </svg>
+        <div class="proj-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="proj-meta">
+        <h3>IDS con Snort &amp; NETinVM</h3>
+        <p>Despliegue de Snort como IDS en red virtualizada. Reglas personalizadas, identificación de escaneos ICMP y fuerza bruta HTTP.</p>
+        <div class="tech"><span>Snort</span><span>IDS</span><span>NETinVM</span><span>Blue Team</span></div>
+        <div class="gh-row"><span class="gh-live"><span class="pip"></span> 2026-03-09</span><span class="gh-star"><i class="fas fa-star"></i> 0</span></div>
+      </div>
+    </a>
+    <a class="proj sm" data-cat="bt" href="https://github.com/jagaor/Hardening-Linux-Ubuntu-INCIBE" target="_blank" rel="noopener" data-cur="open">
+      <div class="proj-art" data-art="hardening" style="--mx: 68.50711080690547%; --my: 81.2525320729237%;">
+        <span class="badge">HARDENING</span>
+        <span class="id">P-004</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-hardening">
+      <rect width="400" height="250" fill="#0b0d10"></rect>
+      <g style="opacity:0;animation:hardenIn .35s 0ms forwards"><rect x="25" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="40" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 60ms forwards"><rect x="61" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="76" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 120ms forwards"><rect x="97" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="112" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 180ms forwards"><rect x="133" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="148" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 240ms forwards"><rect x="169" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="184" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 300ms forwards"><rect x="205" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="220" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 360ms forwards"><rect x="241" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="256" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 420ms forwards"><rect x="277" y="40" width="30" height="30" rx="3" fill="rgba(255,61,87,.2)" stroke="#ff3d57" stroke-width="1"></rect><text x="292" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#ff3d57" font-weight="700">!</text></g><g style="opacity:0;animation:hardenIn .35s 480ms forwards"><rect x="313" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="328" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 540ms forwards"><rect x="349" y="40" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="364" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 600ms forwards"><rect x="25" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="40" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 660ms forwards"><rect x="61" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="76" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 720ms forwards"><rect x="97" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="112" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 780ms forwards"><rect x="133" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="148" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 840ms forwards"><rect x="169" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="184" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 900ms forwards"><rect x="205" y="76" width="30" height="30" rx="3" fill="rgba(255,61,87,.2)" stroke="#ff3d57" stroke-width="1"></rect><text x="220" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#ff3d57" font-weight="700">!</text></g><g style="opacity:0;animation:hardenIn .35s 960ms forwards"><rect x="241" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="256" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1020ms forwards"><rect x="277" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="292" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1080ms forwards"><rect x="313" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="328" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1140ms forwards"><rect x="349" y="76" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="364" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1200ms forwards"><rect x="25" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="40" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1260ms forwards"><rect x="61" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="76" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1320ms forwards"><rect x="97" y="112" width="30" height="30" rx="3" fill="rgba(255,61,87,.2)" stroke="#ff3d57" stroke-width="1"></rect><text x="112" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#ff3d57" font-weight="700">!</text></g><g style="opacity:0;animation:hardenIn .35s 1380ms forwards"><rect x="133" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="148" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1440ms forwards"><rect x="169" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="184" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1500ms forwards"><rect x="205" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="220" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1560ms forwards"><rect x="241" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="256" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1620ms forwards"><rect x="277" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="292" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1680ms forwards"><rect x="313" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="328" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1740ms forwards"><rect x="349" y="112" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="364" y="132" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1800ms forwards"><rect x="25" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="40" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1860ms forwards"><rect x="61" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="76" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1920ms forwards"><rect x="97" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="112" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 1980ms forwards"><rect x="133" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="148" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2040ms forwards"><rect x="169" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="184" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2100ms forwards"><rect x="205" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="220" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2160ms forwards"><rect x="241" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="256" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2220ms forwards"><rect x="277" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="292" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2280ms forwards"><rect x="313" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="328" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2340ms forwards"><rect x="349" y="148" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="364" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2400ms forwards"><rect x="25" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="40" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2460ms forwards"><rect x="61" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="76" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2520ms forwards"><rect x="97" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="112" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2580ms forwards"><rect x="133" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="148" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2640ms forwards"><rect x="169" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="184" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2700ms forwards"><rect x="205" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="220" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2760ms forwards"><rect x="241" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="256" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2820ms forwards"><rect x="277" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="292" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2880ms forwards"><rect x="313" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="328" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g><g style="opacity:0;animation:hardenIn .35s 2940ms forwards"><rect x="349" y="184" width="30" height="30" rx="3" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1"></rect><text x="364" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">✓</text></g>
+      <line x1="0" y1="40" x2="400" y2="40" stroke="#bfff3a" stroke-width=".4" opacity=".4"><animate attributeName="y1" values="40;220;40" dur="4s" repeatCount="indefinite"></animate><animate attributeName="y2" values="40;220;40" dur="4s" repeatCount="indefinite"></animate></line>
+      <text x="30" y="30" font-family="JetBrains Mono" font-size="10" fill="#bfff3a" font-weight="700">LYNIS / hardening audit</text>
+      <text x="30" y="240" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">INCIBE · 50 controls · 47 passed</text>
+    </svg>
+        <div class="proj-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="proj-meta">
+        <h3>Bastionado de Servidores Linux (INCIBE)</h3>
+        <p>Auditoría y fortificación de Ubuntu Server con +25 controles INCIBE: UFW, SSH, Fail2ban, Lynis.</p>
+        <div class="tech"><span>Ubuntu</span><span>Fail2ban</span><span>Lynis</span><span>UFW</span></div>
+        <div class="gh-row"><span class="gh-live"><span class="pip"></span> 2026-03-09</span><span class="gh-star"><i class="fas fa-star"></i> 0</span></div>
+      </div>
+    </a>
+    <a class="proj lg" data-cat="bt" href="https://github.com/jagaor/Monitorizacion-Logs-Prometheus-Loki-Grafana" target="_blank" rel="noopener" data-cur="open">
+      <div class="proj-art" data-art="monitor">
+        <span class="badge">MONITORING / SIEM</span>
+        <span class="id">P-005</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-monitor">
+      <rect width="400" height="250" fill="#0b0d10"></rect>
+      <line x1="0" y1="0" x2="0" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="20" y1="0" x2="20" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="40" y1="0" x2="40" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="60" y1="0" x2="60" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="80" y1="0" x2="80" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="100" y1="0" x2="100" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="120" y1="0" x2="120" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="140" y1="0" x2="140" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="160" y1="0" x2="160" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="180" y1="0" x2="180" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="200" y1="0" x2="200" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="220" y1="0" x2="220" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="240" y1="0" x2="240" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="260" y1="0" x2="260" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="280" y1="0" x2="280" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="300" y1="0" x2="300" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="320" y1="0" x2="320" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="340" y1="0" x2="340" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="360" y1="0" x2="360" y2="250" stroke="#1c2128" stroke-width=".3"></line><line x1="380" y1="0" x2="380" y2="250" stroke="#1c2128" stroke-width=".3"></line>
+      <g>
+        <path d="M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80" fill="none" stroke="#bfff3a" stroke-width="2"><animate attributeName="d" values="M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80;M0 160 Q 50 130 100 120 T 200 130 T 300 100 T 400 110;M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80" dur="6s" repeatCount="indefinite"></animate></path>
+        <path d="M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160" fill="none" stroke="#5cf2ff" stroke-width="1.5"><animate attributeName="d" values="M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160;M0 190 Q 60 200 120 170 T 240 180 T 360 150 T 400 180;M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160" dur="5s" repeatCount="indefinite"></animate></path>
+        <path d="M0 220 Q 80 200 140 210 T 260 190 T 380 210" fill="none" stroke="#ffd23a" stroke-width="1"><animate attributeName="d" values="M0 220 Q 80 200 140 210 T 260 190 T 380 210;M0 215 Q 80 220 140 200 T 260 215 T 380 195;M0 220 Q 80 200 140 210 T 260 190 T 380 210" dur="4.5s" repeatCount="indefinite"></animate></path>
+      </g>
+      <line x1="100" y1="0" x2="100" y2="250" stroke="#bfff3a" stroke-width=".5" opacity=".5"><animate attributeName="x1" values="0;400;0" dur="8s" repeatCount="indefinite"></animate><animate attributeName="x2" values="0;400;0" dur="8s" repeatCount="indefinite"></animate></line>
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">GRAFANA / 5m</text>
+      <text x="20" y="56" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">cpu · mem · net · logs</text>
+      <circle cx="380" cy="40" r="3" fill="#bfff3a"><animate attributeName="opacity" values="1;.3;1" dur="1.5s" repeatCount="indefinite"></animate></circle>
+    </svg>
+        <div class="proj-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="proj-meta">
+        <h3>Observabilidad con Loki, Prometheus &amp; Grafana</h3>
+        <p>Stack de monitorización en Docker: métricas, logs y dashboards interactivos para correlación de eventos en tiempo real.</p>
+        <div class="tech"><span>Grafana</span><span>Prometheus</span><span>Loki</span><span>Docker</span><span>Promtail</span></div>
+        <div class="gh-row"><span class="gh-live"><span class="pip"></span> 2026-03-09</span><span class="gh-star"><i class="fas fa-star"></i> 0</span></div>
+      </div>
+    </a></div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" class="shell">
+  <div class="s-head">
+    <div class="left">
+      <span class="num">04 / credentials</span>
+      <h2 class="r in"><span data-i18n="cert_h" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Certificaciones</span> <em data-i18n="cert_h2" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">&amp; cursos.</em></h2>
+    </div>
+    <div class="right r in" data-i18n="cert_right">Formación continua — Cisco, AWS, LinkedIn, Cambridge, Udemy, OpenWebinars.</div>
+  </div>
+  <div class="cert-list r in" id="certList">
+    <div class="cert cisco">
+      <div class="top">
+        <span class="badge-c">Cisco Networking Academy</span>
+        <span class="date">abr. 2026</span>
+      </div>
+      <h4>Security Operations and the Defense Analyst</h4>
+      <div class="tags"><span>Cybersecurity</span></div>
+    </div>
+    <div class="cert cisco">
+      <div class="top">
+        <span class="badge-c">Cisco</span>
+        <span class="date">abr. 2026</span>
+      </div>
+      <h4>Introduction to Cybersecurity</h4>
+      <div class="tags"><span>Cybersecurity</span><span>Cyber defence</span></div>
+    </div>
+    <div class="cert aws">
+      <div class="top">
+        <span class="badge-c">Amazon Web Services</span>
+        <span class="date">mar. 2025</span>
+      </div>
+      <h4>Amazon Practitioner Essentials</h4>
+      <div class="tags"><span>AWS</span></div>
+    </div>
+    <div class="cert linkedin">
+      <div class="top">
+        <span class="badge-c">LinkedIn</span>
+        <span class="date">abr. 2026</span>
+      </div>
+      <h4>Network Troubleshooting: Practical Diagnostics &amp; Solutions</h4>
+      <div class="tags"><span>Network Troubleshooting</span></div>
+    </div>
+    <div class="cert linkedin">
+      <div class="top">
+        <span class="badge-c">LinkedIn</span>
+        <span class="date">abr. 2026</span>
+      </div>
+      <h4>Networking Foundations: Networking Basics</h4>
+      <div class="tags"><span>Network Admin</span></div>
+    </div>
+    <div class="cert cambridge">
+      <div class="top">
+        <span class="badge-c">Cambridge</span>
+        <span class="date">dic. 2024</span>
+      </div>
+      <h4>C2 Proficiency</h4>
+      <div class="tags"><span>English C2</span></div>
+    </div>
+    <div class="cert udemy">
+      <div class="top">
+        <span class="badge-c">Udemy</span>
+        <span class="date">feb. 2025</span>
+      </div>
+      <h4>iOS and Swift Apps Development</h4>
+      <div class="tags"><span>iOS</span><span>SwiftUI</span></div>
+    </div>
+    <div class="cert ow">
+      <div class="top">
+        <span class="badge-c">OpenWebinars</span>
+        <span class="date">mar. 2024</span>
+      </div>
+      <h4>Creación de API Rest con Spring Boot</h4>
+      <div class="tags"><span>REST</span></div>
+    </div>
+    <div class="cert ow">
+      <div class="top">
+        <span class="badge-c">OpenWebinars</span>
+        <span class="date">mar. 2024</span>
+      </div>
+      <h4>Curso de Spring Framework</h4>
+      <div class="tags"><span>Spring</span></div>
+    </div>
+    <div class="cert ow">
+      <div class="top">
+        <span class="badge-c">OpenWebinars</span>
+        <span class="date">dic. 2023</span>
+      </div>
+      <h4>Dominio de ChatGPT con la API de OpenAI</h4>
+      <div class="tags"><span>ChatGPT</span></div>
+    </div></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="shell contact">
+  <div class="s-head">
+    <div class="left">
+      <span class="num">05 / contact</span>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="r-l in">
+      <h3><span data-i18n="ct_h">Abre</span> <em data-i18n="ct_h2">un canal.</em></h3>
+      <p class="lede" data-i18n="ct_lede">¿Una oportunidad SOC junior, sysadmin, técnico IT? Estoy listo para empezar. Respondo en menos de 24h.</p>
+      <div class="contact-grid">
+        <a href="mailto:javiergarridoortiz2003@gmail.com">
+          <span class="ic"><i class="fas fa-envelope"></i></span>
+          <span><span class="tx">Email</span><span class="vx">javiergarridoortiz2003@gmail.com</span></span>
+        </a>
+        <a href="https://www.linkedin.com/in/javier-garrido-ortiz-274bb9271/" target="_blank" rel="noopener">
+          <span class="ic"><i class="fab fa-linkedin-in"></i></span>
+          <span><span class="tx">LinkedIn</span><span class="vx">javier-garrido-ortiz</span></span>
+        </a>
+        <a href="https://github.com/jagaor" target="_blank" rel="noopener">
+          <span class="ic"><i class="fab fa-github"></i></span>
+          <span><span class="tx">GitHub</span><span class="vx">@jagaor</span></span>
+        </a>
+        <a href="https://javiergo.es/#">
+          <span class="ic"><i class="fas fa-location-dot"></i></span>
+          <span><span class="tx" data-i18n="ct_loc_l">Ubicación</span><span class="vx" data-i18n="ct_loc_v">Sevilla — Remoto Global</span></span>
+        </a>
+      </div>
+    </div>
+    <div class="signal r-r in">
+      <h5>secure-channel · live</h5>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_1">handshake initiated...</span></div>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_2">tls 1.3 negociado</span> <span class="ok">[OK]</span></div>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_3">verificando destinatario...</span> <span class="ok">javier.go</span></div>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_4">tamaño del payload:</span> <b>your_message</b></div>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_5">cifrando...</span> <span class="ok">aes-256-gcm</span></div>
+      <div class="l"><span class="pr">$</span><span data-i18n="sg_6">esperando transmisión</span> <span class="warn">[STANDBY]</span></div>
+
+      <a href="mailto:javiergarridoortiz2003@gmail.com?subject=Oportunidad%20SOC%20Junior" class="signal-cta">
+        <span><i class="fas fa-paper-plane"></i> <span data-i18n="sg_send">Enviar transmisión</span></span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="foot shell">
+  <div class="row">
+    <div>© 2026 Javier Garrido · <span data-i18n="ft_rights">Todos los derechos reservados</span></div>
+    <div><span data-i18n="ft_built">Diseñado &amp; construido con</span> <i class="fas fa-heart" style="color:var(--acid)"></i> <span data-i18n="ft_coffee">y mucho café</span></div>
+    <div>v2.6.1 · last_deploy: 2026.04.25</div>
+  </div>
+  <div class="ascii">
+    <b>┌─</b> javier.go ─ blue team junior ─────────────────────────────────────────── <b>─┐</b>
+    │  status: <b>open_to_work</b>   ·   shift: <b>any</b>   ·   coffee: <b>infinite</b>          │
+    <b>└────────────────────────────────────────────────────────────────────────────┘</b>
+  </div>
+</footer>
+
+<!-- Tweaks panel -->
+<div class="tweak" id="tweak">
+  <h6>// TWEAKS <button id="twkClose">×</button></h6>
+  <label><span>Accent</span>
+    <div class="swatches" id="swatches">
+      <div class="sw" data-c="lime" style="background:#bfff3a"></div>
+      <div class="sw on" data-c="cyan" style="background:#5cf2ff"></div>
+      <div class="sw" data-c="hot" style="background:#ff3d57"></div>
+      <div class="sw" data-c="plum" style="background:#c084ff"></div>
+      <div class="sw" data-c="amber" style="background:#ffd23a"></div>
+    </div>
+  </label>
+  <label><span>Matrix BG</span><input type="checkbox" id="twMatrix" checked=""></label>
+  <label><span>Glitch</span><input type="checkbox" id="twGlitch" checked=""></label>
+  <label><span>Cursor FX</span><input type="checkbox" id="twCursor" checked=""></label>
+</div>
+
+<script>
+/* ====== DATA ====== */
+const PROJECTS = [
+  {id:'P-000', cat:['bt','dfir','tfm'], lg:'lg', label:'TFM · SOAR / DEFENSE', art:'tfm', flagship:true,
+    title:'Arquitectura de Defensa Activa Automatizada (TFM)',
+    title_en:'Automated Active Defense Architecture (TFM)',
+    desc:'SIEM/XDR con Wazuh + Ansible + bastionado CIS. Detecta fuerza bruta SSH, mapea MITRE ATT&CK T1110 y bloquea al atacante en <30s sin intervención humana.',
+    desc_en:'SIEM/XDR with Wazuh + Ansible + CIS hardening. Detects SSH brute-force, maps MITRE ATT&CK T1110 and blocks the attacker in <30s with zero human input.',
+    tech:['Wazuh 4.7','Ansible','MITRE ATT&CK','nftables','Hydra','SOAR'],
+    href:'https://github.com/jagaor/tfm-defensa-activa'},
+  {id:'P-001', cat:['ai'], lg:'md', label:'AI / AUTOMATION', art:'ai',
+    title:'Control de PC con IA Local (AMD GPU)',
+    title_en:'Local AI PC Control (AMD GPU)',
+    desc:'Ecosistema AI 100% local y privado para Windows con LLMs optimizados para GPUs AMD Radeon. Control del sistema mediante lenguaje natural, inyección Vulkan y despliegue automatizado.',
+    desc_en:'100% local & private AI ecosystem for Windows with LLMs optimized for AMD Radeon GPUs. Natural language system control, Vulkan injection and automated deployment.',
+    tech:['Ollama','Open WebUI','Vulkan','Python','AMD GPU'],
+    href:'https://github.com/jagaor/Local-AI-PC-Control-AMD'},
+  {id:'P-002', cat:['bt','net'], lg:'md', label:'IDS / BLUE TEAM', art:'ids',
+    title:'IDS con Snort & NETinVM',
+    title_en:'IDS with Snort & NETinVM',
+    desc:'Despliegue de Snort como IDS en red virtualizada. Reglas personalizadas, identificación de escaneos ICMP y fuerza bruta HTTP.',
+    desc_en:'Snort IDS deployment in virtualized NETinVM. Custom detection rules, ICMP scan identification and HTTP brute-force detection.',
+    tech:['Snort','IDS','NETinVM','Blue Team'],
+    href:'https://github.com/jagaor/Sistema-Deteccion-Intrusos-IDS-Snort-NETinVM'},
+  {id:'P-003', cat:['osint'], lg:'sm', label:'OSINT', art:'osint',
+    title:'Investigación OSINT y Huella Digital',
+    title_en:'OSINT Investigation & Digital Footprint',
+    desc:'Auditoría de exposición personal: Google Dorks, FOCA, Maltego y evaluación de vectores phishing.',
+    desc_en:'Personal exposure audit: Google Dorks, FOCA, Maltego, phishing vector assessment.',
+    tech:['OSINT','Maltego','FOCA','Dorks'],
+    href:'https://github.com/jagaor/Investigacion-OSINT-Huella-Digital'},
+  {id:'P-004', cat:['bt'], lg:'sm', label:'HARDENING', art:'hardening',
+    title:'Bastionado de Servidores Linux (INCIBE)',
+    title_en:'Linux Server Hardening (INCIBE)',
+    desc:'Auditoría y fortificación de Ubuntu Server con +25 controles INCIBE: UFW, SSH, Fail2ban, Lynis.',
+    desc_en:'Ubuntu Server audit & hardening with +25 INCIBE controls: UFW, SSH, Fail2ban, Lynis.',
+    tech:['Ubuntu','Fail2ban','Lynis','UFW'],
+    href:'https://github.com/jagaor/Hardening-Linux-Ubuntu-INCIBE'},
+  {id:'P-005', cat:['bt'], lg:'lg', label:'MONITORING / SIEM', art:'monitor',
+    title:'Observabilidad con Loki, Prometheus & Grafana',
+    title_en:'Observability with Loki, Prometheus & Grafana',
+    desc:'Stack de monitorización en Docker: métricas, logs y dashboards interactivos para correlación de eventos en tiempo real.',
+    desc_en:'Docker monitoring stack: metrics, logs and interactive dashboards for event correlation.',
+    tech:['Grafana','Prometheus','Loki','Docker','Promtail'],
+    href:'https://github.com/jagaor/Monitorizacion-Logs-Prometheus-Loki-Grafana'},
+  {id:'P-006', cat:['net'], lg:'md', label:'FIREWALL / NGFW', art:'fire',
+    title:'Segmentación Perimetral con NGFW IPFire',
+    title_en:'Perimeter Segmentation with NGFW IPFire',
+    desc:'Firewall NGFW IPFire en GNS3. Segmentación GREEN/ORANGE/RED, reglas y DHCP.',
+    desc_en:'NGFW IPFire in GNS3. GREEN/ORANGE/RED segmentation, rules and DHCP.',
+    tech:['IPFire','GNS3','DMZ','Rules'],
+    href:'https://github.com/jagaor/NGFW-IPFire-GNS3-Configuracion'},
+  {id:'P-007', cat:['net'], lg:'md', label:'NETWORKING', art:'net',
+    title:'Infraestructura de Red con Dell SONiC & BGP',
+    title_en:'Network Infrastructure with Dell SONiC & BGP',
+    desc:'Red enrutada y segmentada en GNS3 con Dell Enterprise SONiC. Full-mesh, BGP, VRF, filtrado de rutas.',
+    desc_en:'Routed segmented network in GNS3 with Dell SONiC. Full-mesh, BGP, VRF, route filtering.',
+    tech:['SONiC','BGP','VRF','GNS3','QEMU'],
+    href:'https://github.com/jagaor/Infraestructura-Redes-SONiC-BGP-VRF'},
+  {id:'P-008', cat:['net'], lg:'md', label:'VPN / TUNNELING', art:'vpn',
+    title:'VPNs Multiprotocolo y Evasión',
+    title_en:'Multi-Protocol VPNs & Evasion',
+    desc:'VPNs IPsec/SSL con OPNSense + evasión vía túneles SSH y encapsulación HTTP/SSL.',
+    desc_en:'IPsec/SSL VPNs with OPNSense + evasion via SSH tunnels and HTTP/SSL encapsulation.',
+    tech:['OPNSense','IPsec','SSH','httptunnel'],
+    href:'https://github.com/jagaor/Creacion-VPNs-HTTP-SSH-IPsec'},
+  {id:'P-009', cat:['dfir'], lg:'md', label:'DFIR', art:'forensic',
+    title:'Análisis Forense: Fuga de Datos',
+    title_en:'Forensic Analysis: Data Breach',
+    desc:'Forense sobre imagen Windows por exfiltración (Insider Threat). Timelines, registro, USB, anti-forense.',
+    desc_en:'Windows disk forensic for data exfiltration (Insider Threat). Timelines, registry, USB, anti-forensics.',
+    tech:['Autopsy','DFIR','Registry'],
+    href:'https://github.com/jagaor/Analisis-Forense-Fuga-Informacion-Autopsy'},
+  {id:'P-010', cat:['osint'], lg:'sm', label:'PYTHON / AUDIT', art:'py',
+    title:'Auditoría WiFi en Python (Evil Twin)',
+    title_en:'WiFi Audit Tool in Python (Evil Twin)',
+    desc:'Script Python para verificar seguridad en WiFi pública. Detección Evil Twin y validación DNS.',
+    desc_en:'Python script to verify public WiFi security. Evil Twin detection and DNS integrity check.',
+    tech:['Python','NetworkManager','DNS'],
+    href:'https://github.com/jagaor/Auditoria-WiFi-EvilTwin-Python?tab=readme-ov-file'},
+];
+
+const CERTS = [
+  {p:'Cisco Networking Academy', cls:'cisco', t:'Security Operations and the Defense Analyst', d:'abr. 2026', d_en:'Apr. 2026', tags:['Cybersecurity']},
+  {p:'Cisco', cls:'cisco', t:'Introduction to Cybersecurity', d:'abr. 2026', d_en:'Apr. 2026', tags:['Cybersecurity','Cyber defence']},
+  {p:'Amazon Web Services', cls:'aws', t:'Amazon Practitioner Essentials', d:'mar. 2025', d_en:'Mar. 2025', tags:['AWS']},
+  {p:'LinkedIn', cls:'linkedin', t:'Network Troubleshooting: Practical Diagnostics & Solutions', d:'abr. 2026', d_en:'Apr. 2026', tags:['Network Troubleshooting']},
+  {p:'LinkedIn', cls:'linkedin', t:'Networking Foundations: Networking Basics', d:'abr. 2026', d_en:'Apr. 2026', tags:['Network Admin']},
+  {p:'Cambridge', cls:'cambridge', t:'C2 Proficiency', d:'dic. 2024', d_en:'Dec. 2024', tags:['English C2']},
+  {p:'Udemy', cls:'udemy', t:'iOS and Swift Apps Development', d:'feb. 2025', d_en:'Feb. 2025', tags:['iOS','SwiftUI']},
+  {p:'OpenWebinars', cls:'ow', t:'Creación de API Rest con Spring Boot', d:'mar. 2024', d_en:'Mar. 2024', tags:['REST']},
+  {p:'OpenWebinars', cls:'ow', t:'Curso de Spring Framework', d:'mar. 2024', d_en:'Mar. 2024', tags:['Spring']},
+  {p:'OpenWebinars', cls:'ow', t:'Dominio de ChatGPT con la API de OpenAI', d:'dic. 2023', d_en:'Dec. 2023', tags:['ChatGPT']},
+];
+
+const SK_DETAILS = {
+  ids:   {t:'<em>Detección</em><br>de Intrusiones', t_en:'<em>Intrusion</em><br>Detection', d:'Monitorización de redes, reglas IDS/IPS (Snort), correlación de eventos y detección de amenazas en tiempo real.', d_en:'Network monitoring, IDS/IPS rules (Snort), event correlation and real-time threat detection.', s:['Snort','Wireshark','Suricata','tcpdump'], i:'shield-halved'},
+  siem:  {t:'<em>SOC</em> &amp; SIEM', t_en:'<em>SOC</em> &amp; SIEM', d:'Monitorización centralizada, dashboards de observabilidad y correlación de logs con stack open-source.', d_en:'Centralized monitoring, observability dashboards and log correlation.', s:['Grafana','Prometheus','Loki','Promtail'], i:'eye'},
+  net:   {t:'<em>Redes</em> &amp; Firewalls', t_en:'<em>Networking</em> &amp; Firewalls', d:'Configuración de red, BGP, segmentación con VRF, NGFW (IPFire, OPNSense), reglas de filtrado.', d_en:'Network config, BGP, VRF segmentation, NGFW (IPFire, OPNSense), filtering rules.', s:['BGP','VRF','IPFire','OPNSense','GNS3','SONiC'], i:'network-wired'},
+  hard:  {t:'<em>Linux</em> Hardening', t_en:'<em>Linux</em> Hardening', d:'Bastionado según guías INCIBE: UFW, Fail2ban, SSH hardening, auditorías con Lynis.', d_en:'Hardening per INCIBE: UFW, Fail2ban, SSH, Lynis audits.', s:['UFW','Fail2ban','Lynis','SSH'], i:'lock'},
+  dfir:  {t:'<em>DFIR</em> &amp; Forense', t_en:'<em>DFIR</em> &amp; Forensics', d:'Análisis forense digital, reconstrucción de timelines, registro Windows, Autopsy, OSINT.', d_en:'Digital forensics, timeline reconstruction, Windows registry, Autopsy, OSINT.', s:['Autopsy','Volatility','Registry','OSINT'], i:'magnifying-glass'},
+  auto:  {t:'<em>Scripting</em><br>&amp; Automatización', t_en:'<em>Scripting</em><br>&amp; Automation', d:'Python para herramientas de auditoría, Bash para automatización de tareas operativas.', d_en:'Python for audit tooling, Bash for operational task automation.', s:['Python','Bash','Cron','PowerShell'], i:'terminal'},
+  ai:    {t:'<em>IA</em> &amp; LLMs Locales', t_en:'<em>Local AI</em> &amp; LLMs', d:'Despliegue y optimización de LLMs locales (Ollama), Vulkan en GPUs AMD Radeon en Windows.', d_en:'Local LLM deployment (Ollama), Vulkan on AMD Radeon GPUs on Windows.', s:['Ollama','Qwen2.5','Vulkan','AMD'], i:'brain'},
+  agent: {t:'<em>Agentes AI</em><br>&amp; control', t_en:'<em>AI Agents</em><br>&amp; control', d:'Open Interpreter, puentes Python-PowerShell para ejecución por lenguaje natural y automatización del SO.', d_en:'Open Interpreter, Python-PowerShell bridges for NLP execution and OS automation.', s:['Open Interpreter','Python','PowerShell'], i:'robot'},
+};
+
+const I18N = {
+  es: {
+    nav_about:'Sobre mí', nav_skills:'Stack', nav_projects:'Proyectos', nav_certs:'Certs', nav_contact:'Contacto', nav_avail:'Disponible',
+    hero_meta_edu:'Máster Ciberseguridad',
+    hero_lede:'<b>Junior IT</b> orientado a <b>Blue Team / SOC Analyst</b> y administración de sistemas. Construyo infraestructuras que detectan, contienen y aprenden. Me obsesionan los logs, las reglas que no fallan y los servidores que no caen.',
+    hero_cta_1:'Ver proyectos', hero_cta_2:'Contratar',
+    term_who:'<em>SOC Analyst</em> &amp; <em>SysAdmin</em> · Blue Team Junior',
+    ft_uptime:'Uptime', ft_alerts:'Alerts/day', ft_threats:'Threats blocked',
+    about_h:'El analista', about_h2:'detrás del log.',
+    about_right:'SOC Analyst (Blue Team) — finalizando Máster FP en Ciberseguridad. Buscando primera oportunidad profesional.',
+    id_loc:'Base',
+    about_p1:'Soy un profesional <strong>junior IT</strong> orientado a <strong>analista SOC (Blue Team)</strong> y administración de sistemas. Me apasiona la ciberseguridad defensiva, la detección de amenazas y las infraestructuras que sostienen empresas reales.',
+    about_p2:'Estoy finalizando el <strong>Máster en FP Ciberseguridad en Entornos de las TI</strong> (titulación oficial de la Junta de Andalucía), donde he construido una base técnica sólida orientada a entornos reales de empresa: bastionado, IDS/IPS, SIEM, segmentación, forense.',
+    about_p3:'Busco mi primera oportunidad como <strong>SOC Analyst Junior</strong>, <strong>Administrador de Sistemas</strong> o <strong>Técnico IT</strong>. Sevilla, Málaga, Valencia, Madrid, Barcelona — o totalmente remoto.',
+    soft_1:'Mentalidad analítica', soft_2:'Aprendizaje rápido', soft_3:'Proactividad', soft_4:'Trabajo en equipo', soft_5:'Mejora continua',
+    stack_h:'Conocimiento', stack_h2:'aplicado.',
+    stack_right:'Hover en cada disciplina — el panel cambia. Auditado en proyectos reales.',
+    sk_1:'Detección de Intrusiones', sk_2:'SOC & SIEM', sk_3:'Redes & Firewalls', sk_4:'Linux Hardening', sk_5:'DFIR & Forense', sk_6:'Scripting & Automatización', sk_7:'IA & LLMs Locales', sk_8:'Agentes AI & Control',
+    proj_h:'Repositorios', proj_h2:'en vivo.',
+    proj_right:'Sincronizado con github.com/jagaor — actualizado en cada push.',
+    f_all:'Todos', f_net:'Redes',
+    cert_h:'Certificaciones', cert_h2:'& cursos.',
+    cert_right:'Formación continua — Cisco, AWS, LinkedIn, Cambridge, Udemy, OpenWebinars.',
+    ct_h:'Abre', ct_h2:'un canal.',
+    ct_lede:'¿Una oportunidad SOC junior, sysadmin, técnico IT? Estoy listo para empezar. Respondo en menos de 24h.',
+    ct_loc_l:'Ubicación', ct_loc_v:'Sevilla — Remoto Global',
+    sg_1:'handshake initiated...', sg_2:'tls 1.3 negociado', sg_3:'verificando destinatario...', sg_4:'tamaño del payload:', sg_5:'cifrando...', sg_6:'esperando transmisión', sg_send:'Enviar transmisión',
+    ft_rights:'Todos los derechos reservados', ft_built:'Diseñado & construido con', ft_coffee:'y mucho café',
+  },
+  en: {
+    nav_about:'About', nav_skills:'Stack', nav_projects:'Projects', nav_certs:'Certs', nav_contact:'Contact', nav_avail:'Available',
+    hero_meta_edu:"Master's Cybersecurity",
+    hero_lede:'<b>IT Junior</b> oriented to <b>Blue Team / SOC Analyst</b> and system administration. I build infrastructure that detects, contains and learns. I\'m obsessed with logs, rules that don\'t fail and servers that don\'t fall.',
+    hero_cta_1:'See projects', hero_cta_2:'Hire me',
+    term_who:'<em>SOC Analyst</em> &amp; <em>SysAdmin</em> · Junior Blue Team',
+    ft_uptime:'Uptime', ft_alerts:'Alerts/day', ft_threats:'Threats blocked',
+    about_h:'The analyst', about_h2:'behind the log.',
+    about_right:'SOC Analyst (Blue Team) — finishing Master\'s FP in Cybersecurity. Looking for first professional opportunity.',
+    id_loc:'Base',
+    about_p1:"I'm an <strong>IT junior</strong> oriented to <strong>SOC Analyst (Blue Team)</strong> and system admin. Passionate about defensive cybersecurity, threat detection and the infrastructures that hold real companies together.",
+    about_p2:"I'm finishing the <strong>Master's in FP Cybersecurity in IT Environments</strong> (official Junta de Andalucía qualification), where I built a solid technical foundation: hardening, IDS/IPS, SIEM, segmentation, forensics.",
+    about_p3:"I'm looking for my first opportunity as <strong>Junior SOC Analyst</strong>, <strong>System Administrator</strong> or <strong>IT Technician</strong>. Seville, Málaga, Valencia, Madrid, Barcelona — or fully remote.",
+    soft_1:'Analytical mindset', soft_2:'Fast learner', soft_3:'Proactivity', soft_4:'Teamwork', soft_5:'Continuous improvement',
+    stack_h:'Knowledge', stack_h2:'applied.',
+    stack_right:'Hover each discipline — the panel changes. Audited in real projects.',
+    sk_1:'Intrusion Detection', sk_2:'SOC & SIEM', sk_3:'Networking & Firewalls', sk_4:'Linux Hardening', sk_5:'DFIR & Forensics', sk_6:'Scripting & Automation', sk_7:'Local AI & LLMs', sk_8:'AI Agents & Control',
+    proj_h:'Repos', proj_h2:'live.',
+    proj_right:'Synced with github.com/jagaor — updates on every push.',
+    f_all:'All', f_net:'Network',
+    cert_h:'Certifications', cert_h2:'& courses.',
+    cert_right:'Continuous learning — Cisco, AWS, LinkedIn, Cambridge, Udemy, OpenWebinars.',
+    ct_h:'Open', ct_h2:'a channel.',
+    ct_lede:"A junior SOC, sysadmin or IT tech opportunity? I'm ready to start. I reply in under 24h.",
+    ct_loc_l:'Location', ct_loc_v:'Seville — Global Remote',
+    sg_1:'handshake initiated...', sg_2:'tls 1.3 negotiated', sg_3:'verifying recipient...', sg_4:'payload size:', sg_5:'encrypting...', sg_6:'awaiting transmission', sg_send:'Send transmission',
+    ft_rights:'All rights reserved', ft_built:'Designed & built with', ft_coffee:'and lots of coffee',
+  }
+};
+
+let LANG = 'es';
+
+/* ====== ART SVGs ====== */
+function art(kind){
+  switch(kind){
+    case 'tfm': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-tfm">
+      <defs>
+        <linearGradient id="tfmGlow" x1="0" x2="1"><stop offset="0" stop-color="#ff3d57" stop-opacity=".5"/><stop offset=".5" stop-color="#ffd23a" stop-opacity=".4"/><stop offset="1" stop-color="#bfff3a" stop-opacity=".6"/></linearGradient>
+      </defs>
+      <rect width="400" height="250" fill="#0b0d10"/>
+      ${Array.from({length:18},(_,i)=>`<line x1="0" y1="${i*15}" x2="400" y2="${i*15}" stroke="#1c2128" stroke-width=".3"/>`).join('')}
+
+      <!-- Pipeline backbone -->
+      <line x1="40" y1="125" x2="360" y2="125" stroke="url(#tfmGlow)" stroke-width="1.5"/>
+      <line x1="40" y1="125" x2="360" y2="125" stroke="#bfff3a" stroke-width=".5" stroke-dasharray="3 5" opacity=".7"><animate attributeName="stroke-dashoffset" from="0" to="-32" dur="1.4s" repeatCount="indefinite"/></line>
+
+      <!-- Stage 1: Attacker (red) -->
+      <g>
+        <circle cx="55" cy="125" r="20" fill="rgba(255,61,87,.15)" stroke="#ff3d57" stroke-width="1"><animate attributeName="r" values="18;22;18" dur="1.2s" repeatCount="indefinite"/></circle>
+        <text x="55" y="129" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#ff3d57" font-weight="800">!</text>
+        <text x="55" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff3d57" font-weight="700">SSH brute</text>
+        <text x="55" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">hydra · 8.4k/s</text>
+      </g>
+
+      <!-- Stage 2: Wazuh detect -->
+      <g>
+        <rect x="135" y="105" width="50" height="40" rx="4" fill="rgba(92,242,255,.08)" stroke="#5cf2ff" stroke-width="1"/>
+        <text x="160" y="121" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5cf2ff" font-weight="700">WAZUH</text>
+        <text x="160" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">level 10</text>
+        <circle cx="178" cy="112" r="3" fill="#5cf2ff"><animate attributeName="opacity" values="1;.2;1" dur=".8s" repeatCount="indefinite"/></circle>
+        <text x="160" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5cf2ff" font-weight="700">T1110</text>
+        <text x="160" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">ATT&amp;CK</text>
+      </g>
+
+      <!-- Stage 3: Ansible -->
+      <g>
+        <rect x="215" y="105" width="50" height="40" rx="4" fill="rgba(255,210,58,.08)" stroke="#ffd23a" stroke-width="1"/>
+        <text x="240" y="121" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ffd23a" font-weight="700">ANSIBLE</text>
+        <text x="240" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">playbook</text>
+        <text x="240" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ffd23a" font-weight="700">SOAR</text>
+        <text x="240" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">auto-respond</text>
+      </g>
+
+      <!-- Stage 4: Block (green) -->
+      <g>
+        <circle cx="345" cy="125" r="20" fill="rgba(191,255,58,.18)" stroke="#bfff3a" stroke-width="1.5"/>
+        <path d="M 337 125 L 343 131 L 354 119" fill="none" stroke="#bfff3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="345" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#bfff3a" font-weight="700">BLOCKED</text>
+        <text x="345" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#9aa0a4">nftables · 27s</text>
+      </g>
+
+      <!-- Packets traveling -->
+      <circle r="2.5" fill="#ff3d57"><animateMotion path="M 75 125 L 135 125" dur="1.4s" repeatCount="indefinite"/></circle>
+      <circle r="2.5" fill="#5cf2ff"><animateMotion path="M 185 125 L 215 125" dur="1.2s" begin=".3s" repeatCount="indefinite"/></circle>
+      <circle r="2.5" fill="#ffd23a"><animateMotion path="M 265 125 L 325 125" dur="1.4s" begin=".6s" repeatCount="indefinite"/></circle>
+
+      <!-- Header -->
+      <text x="20" y="32" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">TFM // ACTIVE-DEFENSE</text>
+      <text x="380" y="32" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff3d57">★ flagship</text>
+      <text x="20" y="48" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">detect → map → respond → contain</text>
+
+      <!-- Footer telemetry -->
+      <text x="20" y="225" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">MTTR ≤ 30s · zero human · cis-bench passed</text>
+      <text x="380" y="225" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">wazuh 4.7 · ubuntu 22</text>
+
+      <!-- Kill-chain scan line -->
+      <line x1="40" y1="0" x2="40" y2="250" stroke="#bfff3a" stroke-width=".4" opacity=".3"><animate attributeName="x1" values="40;360;40" dur="6s" repeatCount="indefinite"/><animate attributeName="x2" values="40;360;40" dur="6s" repeatCount="indefinite"/></line>
+    </svg>`;
+
+    case 'ai': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-ai">
+      <defs><radialGradient id="g1" cx=".5" cy=".5"><stop offset="0" stop-color="#c084ff" stop-opacity=".4"/><stop offset="1" stop-color="#5cf2ff" stop-opacity="0"/></radialGradient></defs>
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <circle cx="200" cy="125" r="120" fill="url(#g1)"><animate attributeName="r" values="110;130;110" dur="4s" repeatCount="indefinite"/></circle>
+      <g><animateTransform attributeName="transform" type="rotate" from="0 200 125" to="360 200 125" dur="40s" repeatCount="indefinite"/>
+      ${Array.from({length:30},(_,i)=>{const a=i/30*Math.PI*2;const r=60+(i%3)*20;return `<circle cx="${200+Math.cos(a)*r}" cy="${125+Math.sin(a)*r}" r="${1+(i%3)*0.6}" fill="#c084ff"/>`}).join('')}
+      ${Array.from({length:14},(_,i)=>{const a1=(i*73)%360/180*Math.PI,a2=(i*157)%360/180*Math.PI;const r1=40+(i%3)*25,r2=50+(i%4)*20;return `<line x1="${200+Math.cos(a1)*r1}" y1="${125+Math.sin(a1)*r1}" x2="${200+Math.cos(a2)*r2}" y2="${125+Math.sin(a2)*r2}" stroke="#5cf2ff" stroke-width=".5" opacity=".4"/>`}).join('')}
+      </g>
+      <circle cx="200" cy="125" r="6" fill="#bfff3a"><animate attributeName="r" values="5;9;5" dur="1.4s" repeatCount="indefinite"/></circle>
+      <circle cx="200" cy="125" r="6" fill="none" stroke="#bfff3a" stroke-width="1"><animate attributeName="r" values="6;30;6" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;0" dur="2.4s" repeatCount="indefinite"/></circle>
+      <text x="20" y="30" font-family="JetBrains Mono" font-size="11" fill="#c084ff" font-weight="700">OLLAMA / vulkan-amd</text>
+      <text x="20" y="230" font-family="JetBrains Mono" font-size="10" fill="#5a5f63">qwen2.5:7b · 38 tok/s</text>
+    </svg>`;
+
+    case 'ids': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-ids">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      ${Array.from({length:20},(_,i)=>`<line x1="0" y1="${i*15}" x2="400" y2="${i*15}" stroke="#1c2128" stroke-width=".5"/>`).join('')}
+      <g>${Array.from({length:50},(_,i)=>{const seed=(i*9301+49297)%233280/233280;const h=10+seed*55;const c=seed>.85?'#ff3d57':'#bfff3a';return `<rect x="${i*8}" y="${190-h}" width="5" height="${h}" fill="${c}" opacity=".8"><animate attributeName="height" values="${h};${5+seed*70};${h}" dur="${1.5+seed}s" repeatCount="indefinite"/><animate attributeName="y" values="${190-h};${190-(5+seed*70)};${190-h}" dur="${1.5+seed}s" repeatCount="indefinite"/></rect>`}).join('')}</g>
+      <line x1="0" y1="190" x2="400" y2="190" stroke="#bfff3a" stroke-width="1"/>
+      <line x1="0" y1="60" x2="400" y2="60" stroke="#bfff3a" stroke-width=".4" stroke-dasharray="6 6" opacity=".5"><animate attributeName="y1" values="60;58;60" dur="3s" repeatCount="indefinite"/></line>
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">SNORT://eth0</text>
+      <text x="20" y="56" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">14,832 rules · 3 alerts</text>
+      <circle cx="370" cy="40" r="4" fill="#ff3d57"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></circle>
+      <text x="380" y="235" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">live · port mirror</text>
+    </svg>`;
+
+    case 'osint': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-osint">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <circle cx="200" cy="125" r="100" fill="none" stroke="#1c2128"/>
+      <circle cx="200" cy="125" r="70" fill="none" stroke="#1c2128"/>
+      <circle cx="200" cy="125" r="40" fill="none" stroke="#1c2128"/>
+      <g><animateTransform attributeName="transform" type="rotate" from="0 200 125" to="360 200 125" dur="6s" repeatCount="indefinite"/>
+        <path d="M 200 125 L 300 125 A 100 100 0 0 0 270 56 Z" fill="#c084ff" opacity=".15"/>
+        <line x1="200" y1="125" x2="300" y2="125" stroke="#c084ff" stroke-width="1"/>
+      </g>
+      <circle cx="200" cy="125" r="6" fill="#ff3d57"><animate attributeName="r" values="5;8;5" dur="1.5s" repeatCount="indefinite"/></circle>
+      ${Array.from({length:8},(_,i)=>{const a=i/8*Math.PI*2;const r=40+(i%3)*25;const x=200+Math.cos(a)*r;const y=125+Math.sin(a)*r;return `<g><line x1="200" y1="125" x2="${x}" y2="${y}" stroke="#c084ff" stroke-width=".5" opacity=".5"/><circle cx="${x}" cy="${y}" r="3" fill="#c084ff"><animate attributeName="r" values="2;4;2" dur="${1.5+i*0.2}s" repeatCount="indefinite"/></circle></g>`}).join('')}
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#c084ff" font-weight="700">MALTEGO://target</text>
+      <text x="20" y="230" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">8 nodes · 12 edges · scanning</text>
+    </svg>`;
+
+    case 'hardening': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-hardening">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      ${(()=>{let s='';const fails=[7,15,22];for(let r=0;r<5;r++){for(let c=0;c<10;c++){const idx=r*10+c;const ok=!fails.includes(idx);const x=25+c*36,y=40+r*36;const delay=(idx*60)+'ms';s+=`<g style="opacity:0;animation:hardenIn .35s ${delay} forwards"><rect x="${x}" y="${y}" width="30" height="30" rx="3" fill="${ok?'rgba(191,255,58,.18)':'rgba(255,61,87,.2)'}" stroke="${ok?'#bfff3a':'#ff3d57'}" stroke-width="1"/><text x="${x+15}" y="${y+20}" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="${ok?'#bfff3a':'#ff3d57'}" font-weight="700">${ok?'✓':'!'}</text></g>`}}return s;})()}
+      <line x1="0" y1="40" x2="400" y2="40" stroke="#bfff3a" stroke-width=".4" opacity=".4"><animate attributeName="y1" values="40;220;40" dur="4s" repeatCount="indefinite"/><animate attributeName="y2" values="40;220;40" dur="4s" repeatCount="indefinite"/></line>
+      <text x="30" y="30" font-family="JetBrains Mono" font-size="10" fill="#bfff3a" font-weight="700">LYNIS / hardening audit</text>
+      <text x="30" y="240" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">INCIBE · 50 controls · 47 passed</text>
+    </svg>`;
+
+    case 'monitor': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-monitor">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      ${Array.from({length:20},(_,i)=>`<line x1="${i*20}" y1="0" x2="${i*20}" y2="250" stroke="#1c2128" stroke-width=".3"/>`).join('')}
+      <g>
+        <path d="M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80" fill="none" stroke="#bfff3a" stroke-width="2"><animate attributeName="d" values="M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80;M0 160 Q 50 130 100 120 T 200 130 T 300 100 T 400 110;M0 180 Q 50 120 100 140 T 200 100 T 300 130 T 400 80" dur="6s" repeatCount="indefinite"/></path>
+        <path d="M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160" fill="none" stroke="#5cf2ff" stroke-width="1.5"><animate attributeName="d" values="M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160;M0 190 Q 60 200 120 170 T 240 180 T 360 150 T 400 180;M0 200 Q 60 170 120 180 T 240 150 T 360 180 T 400 160" dur="5s" repeatCount="indefinite"/></path>
+        <path d="M0 220 Q 80 200 140 210 T 260 190 T 380 210" fill="none" stroke="#ffd23a" stroke-width="1"><animate attributeName="d" values="M0 220 Q 80 200 140 210 T 260 190 T 380 210;M0 215 Q 80 220 140 200 T 260 215 T 380 195;M0 220 Q 80 200 140 210 T 260 190 T 380 210" dur="4.5s" repeatCount="indefinite"/></path>
+      </g>
+      <line x1="100" y1="0" x2="100" y2="250" stroke="#bfff3a" stroke-width=".5" opacity=".5"><animate attributeName="x1" values="0;400;0" dur="8s" repeatCount="indefinite"/><animate attributeName="x2" values="0;400;0" dur="8s" repeatCount="indefinite"/></line>
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">GRAFANA / 5m</text>
+      <text x="20" y="56" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">cpu · mem · net · logs</text>
+      <circle cx="380" cy="40" r="3" fill="#bfff3a"><animate attributeName="opacity" values="1;.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+    </svg>`;
+
+    case 'fire': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-fire">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <g>
+        <rect x="30" y="70" width="90" height="110" rx="6" fill="rgba(191,255,58,.08)" stroke="#bfff3a" stroke-width="1"/>
+        <text x="75" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#bfff3a" font-weight="700">GREEN</text>
+        <text x="75" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">LAN</text>
+        <text x="75" y="148" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">10.0.0/24</text>
+        <circle cx="55" cy="165" r="2.5" fill="#bfff3a"><animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/></circle>
+        <circle cx="75" cy="165" r="2.5" fill="#bfff3a"><animate attributeName="opacity" values=".2;1;.2" dur="1.4s" repeatCount="indefinite"/></circle>
+        <circle cx="95" cy="165" r="2.5" fill="#bfff3a"><animate attributeName="opacity" values="1;.2;1" dur="1.4s" begin=".7s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <rect x="155" y="70" width="90" height="110" rx="6" fill="rgba(255,210,58,.08)" stroke="#ffd23a" stroke-width="1"/>
+        <text x="200" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#ffd23a" font-weight="700">ORANGE</text>
+        <text x="200" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">DMZ</text>
+        <text x="200" y="148" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">srv.public</text>
+        <circle cx="180" cy="165" r="2.5" fill="#ffd23a"><animate attributeName="opacity" values=".2;1;.2" dur="1.6s" repeatCount="indefinite"/></circle>
+        <circle cx="220" cy="165" r="2.5" fill="#ffd23a"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" begin=".4s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <rect x="280" y="70" width="90" height="110" rx="6" fill="rgba(255,61,87,.08)" stroke="#ff3d57" stroke-width="1"/>
+        <text x="325" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#ff3d57" font-weight="700">RED</text>
+        <text x="325" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">WAN</text>
+        <text x="325" y="148" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a5f63">internet</text>
+      </g>
+      <g stroke-width="1.4" fill="none" stroke-linecap="round">
+        <path d="M 120 110 L 155 110" stroke="#bfff3a" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" from="0" to="-16" dur="1s" repeatCount="indefinite"/></path>
+        <path d="M 245 110 L 280 110" stroke="#ffd23a" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" from="0" to="-16" dur="1s" repeatCount="indefinite"/></path>
+      </g>
+      <g>
+        <rect x="175" y="22" width="50" height="24" rx="4" fill="#0b0d10" stroke="#bfff3a" stroke-width="1"/>
+        <text x="200" y="38" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#bfff3a" font-weight="700">IPFire</text>
+        <line x1="200" y1="46" x2="200" y2="70" stroke="#bfff3a" stroke-width=".8" stroke-dasharray="2 2"/>
+      </g>
+      <text x="30" y="230" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">NGFW · 3-zone segmentation · GNS3</text>
+    </svg>`;
+
+    case 'net': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-net">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      ${(()=>{const nodes=[[80,80],[200,60],[320,80],[80,170],[200,200],[320,170],[200,125]];let s='';let edges=[];nodes.forEach((n,i)=>{nodes.forEach((m,j)=>{if(j>i){edges.push([n,m,i+j]);s+=`<line x1="${n[0]}" y1="${n[1]}" x2="${m[0]}" y2="${m[1]}" stroke="#5cf2ff" stroke-width=".5" opacity=".3"/>`}})});edges.slice(0,6).forEach((e,k)=>{s+=`<circle r="2.5" fill="#bfff3a"><animateMotion path="M ${e[0][0]} ${e[0][1]} L ${e[1][0]} ${e[1][1]}" dur="${1.6+k*0.3}s" repeatCount="indefinite"/></circle>`});nodes.forEach((n,i)=>{s+=`<circle cx="${n[0]}" cy="${n[1]}" r="${i===6?10:7}" fill="${i===6?'#bfff3a':'#5cf2ff'}"><animate attributeName="r" values="${i===6?9:6};${i===6?12:9};${i===6?9:6}" dur="${1.8+i*0.15}s" repeatCount="indefinite"/></circle><text x="${n[0]}" y="${n[1]+25}" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">AS${65000+i}</text>`});return s;})()}
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#bfff3a" font-weight="700">SONiC // BGP MESH</text>
+      <text x="380" y="40" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">7 peers · OK</text>
+    </svg>`;
+
+    case 'vpn': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-vpn">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <circle cx="80" cy="125" r="40" fill="none" stroke="#bfff3a" stroke-width="1"/>
+      <circle cx="320" cy="125" r="40" fill="none" stroke="#5cf2ff" stroke-width="1"/>
+      <text x="80" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#bfff3a">SITE-A</text>
+      <text x="320" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#5cf2ff">SITE-B</text>
+      <path d="M 120 125 Q 200 70 280 125" fill="none" stroke="#bfff3a" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <path d="M 120 125 Q 200 180 280 125" fill="none" stroke="#5cf2ff" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <text x="200" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#bfff3a" font-weight="700">IPsec</text>
+      <text x="200" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#5cf2ff" font-weight="700">SSL/TLS</text>
+      <circle cx="200" cy="80" r="3" fill="#bfff3a"><animate attributeName="cx" from="120" to="280" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="200" cy="170" r="3" fill="#5cf2ff"><animate attributeName="cx" from="280" to="120" dur="2.5s" repeatCount="indefinite"/></circle>
+    </svg>`;
+
+    case 'forensic': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-forensic">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <line x1="20" y1="125" x2="380" y2="125" stroke="#1c2128" stroke-width="1"/>
+      <line x1="20" y1="125" x2="380" y2="125" stroke="#ffd23a" stroke-width="1" stroke-dasharray="360" stroke-dashoffset="360"><animate attributeName="stroke-dashoffset" values="360;0;0;360" dur="6s" repeatCount="indefinite"/></line>
+      ${[[60,'10:14','login'],[120,'10:32','USB'],[180,'11:04','copy'],[240,'11:18','del'],[300,'11:42','wipe'],[360,'11:55','logout']].map(([x,t,l],i)=>`<g><line x1="${x}" y1="120" x2="${x}" y2="130" stroke="#9aa0a4"/><circle cx="${x}" cy="125" r="${i===2||i===4?5:3}" fill="${i===2||i===4?'#ff3d57':'#ffd23a'}">${i===2||i===4?'<animate attributeName="r" values="4;7;4" dur="1s" repeatCount="indefinite"/>':''}</circle><text x="${x}" y="110" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9aa0a4">${t}</text><text x="${x}" y="150" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="${i===2||i===4?'#ff3d57':'#ffd23a'}">${l}</text></g>`).join('')}
+      <circle r="4" fill="#ffd23a"><animateMotion path="M 20 125 L 380 125" dur="6s" repeatCount="indefinite"/></circle>
+      <text x="20" y="40" font-family="JetBrains Mono" font-size="11" fill="#ffd23a" font-weight="700">AUTOPSY / TIMELINE</text>
+      <text x="20" y="56" font-family="JetBrains Mono" font-size="9" fill="#ff3d57">⚠ exfiltration detected</text>
+    </svg>`;
+
+    case 'py': return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" class="art-py">
+      <rect width="400" height="250" fill="#0b0d10"/>
+      <g transform="translate(200,125)">
+        <circle r="90" fill="none" stroke="#1c2128" stroke-width="1"/>
+        <circle r="60" fill="none" stroke="#1c2128" stroke-width="1"/>
+        <circle r="30" fill="none" stroke="#1c2128" stroke-width="1"/>
+        <g><line x1="-95" y1="0" x2="95" y2="0" stroke="#ffd23a" stroke-width="1.2" opacity=".8"><animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></line><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/></g>
+        <circle r="6" fill="#ffd23a"/>
+        <g fill="#5cf2ff"><circle cx="55" cy="-30" r="4"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="-65" cy="20" r="4"><animate attributeName="opacity" values=".4;1;.4" dur="1.7s" repeatCount="indefinite"/></circle><circle cx="30" cy="60" r="4"><animate attributeName="opacity" values="1;.5;1" dur="2.3s" repeatCount="indefinite"/></circle></g>
+        <g fill="#ff3d57"><circle cx="40" cy="-50" r="5"><animate attributeName="r" values="4;7;4" dur="1.2s" repeatCount="indefinite"/></circle><circle cx="45" cy="-45" r="5"><animate attributeName="r" values="4;7;4" dur="1.2s" begin=".3s" repeatCount="indefinite"/></circle><circle cx="35" cy="-55" r="5"><animate attributeName="r" values="4;7;4" dur="1.2s" begin=".6s" repeatCount="indefinite"/></circle></g>
+      </g>
+      <text x="20" y="30" font-family="JetBrains Mono" font-size="10" fill="#ffd23a" font-weight="700">wifi_audit.py</text>
+      <text x="20" y="235" font-family="JetBrains Mono" font-size="9" fill="#ff3d57">⚠ EVIL_TWIN × 3 — "Free_WiFi"</text>
+      <text x="380" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#5a5f63">scanning...</text>
+      <text x="380" y="235" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#bfff3a">DNS ✓</text>
+    </svg>`;
+  }
+  return '';
+}
+
+/* ====== Cursor ====== */
+const cring=document.getElementById('cring'), cdot=document.getElementById('cdot'), clabel=document.getElementById('clabel');
+let mx=0,my=0,rx=0,ry=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cdot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
+function tick(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;cring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(tick)}tick();
+document.addEventListener('mousedown',()=>cring.classList.add('tap'));
+document.addEventListener('mouseup',()=>cring.classList.remove('tap'));
+
+/* ====== Boot ====== */
+const bootLines=[
+  ['[ <span class="ok">OK</span> ] booting kernel…',60],
+  ['[ <span class="ok">OK</span> ] mounting /var/log/syslog',40],
+  ['[ <span class="ok">OK</span> ] starting snort.service',60],
+  ['[ <span class="warn">!!</span> ] firewall rules: pending',50],
+  ['[ <span class="ok">OK</span> ] loading 14,832 detection rules',60],
+  ['[ <span class="ok">OK</span> ] sshd online · port 2222',40],
+  ['[ <span class="ok">OK</span> ] siem collectors armed',50],
+  ['[ <span class="ok">OK</span> ] segmentation: GREEN/ORANGE/RED',50],
+  ['[ <span class="ok">OK</span> ] portfolio.javier.go ready_',80],
+];
+async function runBoot(){
+  const c=document.getElementById('bootIn');
+  for(const [t,d] of bootLines){
+    const el=document.createElement('div');el.className='ln';el.innerHTML=t;c.appendChild(el);
+    await new Promise(r=>setTimeout(r,d+Math.random()*60));
+  }
+  const bar=document.createElement('div');bar.className='boot-bar';bar.innerHTML='<i></i>';c.appendChild(bar);
+  await new Promise(r=>setTimeout(r,40));bar.querySelector('i').style.transition='width .8s';bar.querySelector('i').style.width='100%';
+  await new Promise(r=>setTimeout(r,900));
+  document.getElementById('boot').classList.add('gone');
+}
+
+/* ====== i18n ====== */
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(I18N[l][k]!=null){
+      if(I18N[l][k].includes('<')) el.innerHTML=I18N[l][k];
+      else el.textContent=I18N[l][k];
+    }
+  });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  renderProjects(); renderCerts(); updateSkillDetail(currentSkill);
+}
+
+/* ====== Marquee ====== */
+const mqItems=[
+  ['fab fa-linux','Linux'],['fas fa-shield-halved','Snort'],['fas fa-chart-bar','Grafana'],['fas fa-fire','Prometheus'],
+  ['fas fa-file-lines','Loki'],['fas fa-fire-flame-curved','IPFire'],['fas fa-lock','OPNSense'],
+  ['fas fa-magnifying-glass','Autopsy'],['fab fa-docker','Docker'],['fas fa-terminal','Bash'],['fab fa-python','Python'],
+  ['fas fa-network-wired','GNS3'],['fas fa-globe','SONiC'],['fas fa-user-secret','OSINT'],['fas fa-eye','Wireshark'],
+  ['fas fa-ban','Fail2ban'],['fas fa-clipboard-check','Lynis'],['fab fa-windows','Windows'],['fab fa-git-alt','Git'],
+  ['fas fa-brain','Ollama'],['fas fa-robot','Open WebUI'],['fas fa-display','Vulkan'],
+];
+const mq=document.getElementById('mq');
+const mqHTML=mqItems.map(([i,n])=>`<span><i class="${i} dot"></i><b>${n}</b></span>`).join('');
+mq.innerHTML=mqHTML+mqHTML;
+
+/* ====== Typewriter ====== */
+const cmds=[
+  'snort -c /etc/snort/rules/custom.rules -i eth0',
+  'grep -r "failed password" /var/log/auth.log',
+  'nmap -sV -sC -oA scan 10.10.10.0/24',
+  'sudo ufw status verbose',
+  'docker ps --filter "status=running"',
+  'lynis audit system --quiet',
+];
+let tci=0,cci=0,del=false;
+function tw(){
+  const cmd=cmds[tci],el=document.getElementById('tw');if(!el)return;
+  if(del){cci--;el.textContent=cmd.slice(0,cci);if(cci===0){del=false;tci=(tci+1)%cmds.length;setTimeout(tw,400);return}setTimeout(tw,25)}
+  else{cci++;el.textContent=cmd.slice(0,cci);if(cci===cmd.length){setTimeout(()=>{del=true;tw()},2200);return}setTimeout(tw,40+Math.random()*40)}
+}
+
+/* ====== Clock ====== */
+function clock(){const d=new Date();document.getElementById('clock').textContent=d.toTimeString().slice(0,8)}
+setInterval(clock,1000);clock();
+
+/* ====== Skills ====== */
+let currentSkill='ids';
+function updateSkillDetail(k){
+  const d=SK_DETAILS[k];if(!d)return;
+  currentSkill=k;
+  document.getElementById('skTitle').innerHTML=LANG==='en'?d.t_en:d.t;
+  document.getElementById('skDesc').textContent=LANG==='en'?d.d_en:d.d;
+  document.getElementById('skStack').innerHTML=d.s.map(x=>`<span>${x}</span>`).join('');
+  document.getElementById('skIco').className=`skill-icon-big fas fa-${d.i}`;
+  document.querySelectorAll('.skill-row').forEach(r=>r.classList.toggle('active',r.dataset.key===k));
+}
+document.querySelectorAll('.skill-row').forEach(r=>{
+  r.addEventListener('mouseenter',()=>updateSkillDetail(r.dataset.key));
+});
+
+/* ====== Projects ====== */
+const projGrid=document.getElementById('projGrid');
+
+async function fetchGitHubRepos(){
+  try{
+    const r=await fetch('https://api.github.com/users/jagaor/repos?per_page=100&sort=updated');
+    if(!r.ok) throw new Error('gh');
+    const data=await r.json();
+    // build map for enrichment
+    const map={};
+    data.forEach(repo=>{map[repo.html_url.toLowerCase()]={stars:repo.stargazers_count, lang:repo.language, updated:repo.pushed_at}});
+    return map;
+  }catch(e){return {}}
+}
+
+let GH_DATA={};
+
+function renderProjects(filter='all'){
+  projGrid.innerHTML=PROJECTS.filter(p=>filter==='all'||p.cat.includes(filter)).map(p=>{
+    const gh=GH_DATA[p.href.toLowerCase().split('?')[0]]||{};
+    const updated=gh.updated?new Date(gh.updated).toISOString().slice(0,10):'';
+    const star=gh.stars!=null?`<span class="gh-star"><i class="fas fa-star"></i> ${gh.stars}</span>`:'';
+    const lang=gh.lang?`<span class="gh-lang"><i class="fas fa-circle"></i> ${gh.lang}</span>`:'';
+    const live=updated?`<span class="gh-live"><span class="pip"></span> ${updated}</span>`:'';
+    return `
+    <a class="proj ${p.lg}${p.flagship?' flagship':''}" data-cat="${p.cat.join(' ')}" href="${p.href}" target="_blank" rel="noopener" data-cur="open">${p.flagship?`<span class="flagship-flag"><i class="fas fa-star"></i> ${LANG==='en'?'Master Thesis · 2026':'Trabajo Fin de Máster · 2026'}</span>`:''}
+      <div class="proj-art" data-art="${p.art}">
+        <span class="badge">${p.label}</span>
+        <span class="id">${p.id}</span>
+        ${art(p.art)}
+        <div class="proj-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="proj-meta">
+        <h3>${LANG==='en'?p.title_en:p.title}</h3>
+        <p>${LANG==='en'?p.desc_en:p.desc}</p>
+        <div class="tech">${p.tech.map(x=>`<span>${x}</span>`).join('')}</div>
+        <div class="gh-row">${live}${lang}${star}</div>
+      </div>
+    </a>`}).join('');
+  projGrid.querySelectorAll('.proj-art').forEach(a=>{
+    a.addEventListener('mousemove',e=>{
+      const r=a.getBoundingClientRect();
+      a.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+      a.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+    });
+  });
+}
+document.getElementById('projBar').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#projBar button').forEach(x=>x.classList.toggle('on',x===b));
+  renderProjects(b.dataset.f);
+});
+
+/* ====== Certs ====== */
+function renderCerts(){
+  document.getElementById('certList').innerHTML=CERTS.map(c=>`
+    <div class="cert ${c.cls}">
+      <div class="top">
+        <span class="badge-c">${c.p}</span>
+        <span class="date">${LANG==='en'?c.d_en:c.d}</span>
+      </div>
+      <h4>${c.t}</h4>
+      <div class="tags">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+/* ====== Reveal ====== */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('skill-row'))e.target.classList.add('in')}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+function bindReveal(){document.querySelectorAll('.r,.r-l,.r-r,.skill-row').forEach(el=>io.observe(el))}
+
+/* ====== Nav scroll ====== */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+  // active section
+  const links=document.querySelectorAll('.nav-mid a');
+  let cur='';
+  document.querySelectorAll('section').forEach(s=>{if(scrollY>=s.offsetTop-200)cur=s.id});
+  links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+cur));
+});
+
+/* ====== Drawer ====== */
+const drawer=document.getElementById('drawer'),navToggle=document.getElementById('navToggle');
+navToggle?.addEventListener('click',()=>drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+
+/* ====== Hover cursor ====== */
+document.addEventListener('mouseover',e=>{
+  const el=e.target.closest('a,button,.proj,.skill-row,.cert');
+  if(el){const isCert=el.classList.contains('cert');if(isCert){cring.classList.remove('hover');return}cring.classList.add('hover');const lbl=el.dataset.cur||(el.tagName==='A'?'open':el.tagName==='BUTTON'?'tap':'view');clabel.textContent=lbl}
+});
+document.addEventListener('mouseout',e=>{
+  if(!e.relatedTarget||!e.relatedTarget.closest('a,button,.proj,.skill-row,.cert')) cring.classList.remove('hover');
+});
+
+/* ====== Lang buttons ====== */
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
+
+/* ====== Tweaks ====== */
+const tweak=document.getElementById('tweak');
+const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
+  "accent": "cyan"
+}/*EDITMODE-END*/;
+const accents={lime:'#bfff3a',cyan:'#5cf2ff',hot:'#ff3d57',plum:'#c084ff',amber:'#ffd23a'};
+function setAccent(k){document.documentElement.style.setProperty('--acid',accents[k]);document.querySelectorAll('.sw').forEach(s=>s.classList.toggle('on',s.dataset.c===k))}
+document.querySelectorAll('.sw').forEach(s=>s.addEventListener('click',()=>{setAccent(s.dataset.c);try{window.parent.postMessage({type:'__edit_mode_set_keys',edits:{accent:s.dataset.c}},'*')}catch(e){}}));
+document.getElementById('twkClose').addEventListener('click',()=>{tweak.classList.remove('open');try{window.parent.postMessage({type:'__edit_mode_dismissed'},'*')}catch(e){}});
+
+window.addEventListener('message',(e)=>{
+  if(!e.data)return;
+  if(e.data.type==='__activate_edit_mode')tweak.classList.add('open');
+  if(e.data.type==='__deactivate_edit_mode')tweak.classList.remove('open');
+});
+try{window.parent.postMessage({type:'__edit_mode_available'},'*')}catch(e){}
+
+/* ====== Init ====== */
+window.addEventListener('load',async ()=>{
+  runBoot();
+  renderProjects();
+  renderCerts();
+  bindReveal();
+  // hero text reveal with GSAP
+  if(window.gsap){
+    gsap.from('.hero h1 .li > span',{yPercent:120,duration:1.1,ease:'expo.out',stagger:.12,delay:.2,clearProps:'all',onComplete:runScramble});
+  }else{setTimeout(runScramble,800)}
+  function runScramble(){
+    const chars='ÇÑ#$%&*+-=01¡!?/\\¬|<>[]{}@€'.split('');
+    document.querySelectorAll('.hero h1 .scramble').forEach((el,idx)=>{
+      const final=el.dataset.final;
+      const acc=el.dataset.accent||'';
+      el.classList.add('scrambling');
+      let iter=0;const total=18+idx*4;
+      const tick=()=>{
+        iter++;
+        const out=final.split('').map((c,i)=>{
+          if(c===' ')return ' ';
+          const reveal=Math.floor(iter*final.length/total);
+          if(i<reveal)return c;
+          return chars[(Math.random()*chars.length)|0];
+        }).join('');
+        if(acc&&iter>=total){
+          el.innerHTML=out.replace(acc,`<span class="accent">${acc}</span>`);
+        }else{
+          el.textContent=out;
+        }
+        if(iter<total)setTimeout(tick,40+Math.random()*30);
+        else{el.classList.remove('scrambling');if(acc)el.innerHTML=final.replace(acc,`<span class="accent">${acc}</span>`);else el.textContent=final;}
+      };
+      setTimeout(tick,200+idx*250);
+    });
+  }
+  setInterval(runScramble,6500);
+  if(window.gsap){
+    gsap.from('.hero-meta .chip',{opacity:0,y:14,duration:.6,stagger:.06,delay:.3,ease:'power3.out'});
+    gsap.from('.hero-lede',{opacity:0,y:18,duration:.8,delay:.6,ease:'power3.out'});
+    gsap.from('.hero-cta > *',{opacity:0,y:14,duration:.6,delay:.8,stagger:.08,ease:'power3.out'});
+    gsap.from('.hero-panel',{opacity:0,y:30,duration:1,delay:.5,ease:'power3.out'});
+    if(window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.s-head h2 > *').forEach(el=>{
+        gsap.from(el,{yPercent:60,opacity:0,duration:.9,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 85%'}});
+      });
+    }
+  }
+  fetchGitHubRepos().then(d=>{GH_DATA=d;renderProjects(document.querySelector('#projBar button.on')?.dataset.f||'all')});
+  tw();
+  setAccent(TWEAK_DEFAULS.accent||'lime');
+  // hero glyphs
+  const g=document.getElementById('glyphs');
+  if(g){const chars='01:fa3b 0xDEAD 0xBEEF root@kali snort> ufw> 192.168 fail2ban tcp/443 udp/53 syn-flood port/22 nmap'.split(' ');
+    for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent=chars[i%chars.length];s.style.left=Math.random()*100+'%';s.style.animationDelay=(Math.random()*-14)+'s';s.style.animationDuration=(8+Math.random()*10)+'s';g.appendChild(s)}}
+  // ticker
+  const t=document.getElementById('tick');
+  if(t){const items=[
+    '<i><span class="pip"></span><b>ALERT</b> 03:14:22 · SSH brute-force · attacker=185.220.x.x · <span class="ok">blocked</span></i>',
+    '<i>03:14:48 · IDS rule 1:2003 · ICMP sweep · src=10.0.0.42 · <span class="ok">logged</span></i>',
+    '<i><span class="pip"></span><b>CRITICAL</b> 03:15:01 · SQLi attempt · /admin?id= · <span class="ok">WAF dropped</span></i>',
+    '<i>03:15:33 · lynis audit · score 87/100 · <span class="ok">PASS</span></i>',
+    '<i>03:15:57 · fail2ban · banned 12 IPs · jail=sshd</i>',
+    '<i><span class="pip"></span><b>WARN</b> 03:16:18 · cert expiring 14d · *.javier.go</i>',
+    '<i>03:16:42 · backup verified · sha256 · <span class="ok">OK</span></i>',
+    '<i>03:17:05 · docker ps · 12/12 healthy</i>',
+  ];t.innerHTML=(items.join('')+items.join(''));}
+  // scroll progress
+  document.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('sprog').style.width=p+'%';
+  },{passive:true});
+  // magnetic buttons
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;b.style.transform=`translate(${x*.2}px,${y*.2}px)`});
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+});
+</script>
+
+
+</body></html>
