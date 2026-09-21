@@ -9,13 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.5",
-    "@fontsource-variable/onest": "^5.1.1",
-    "astro": "^5.1.10",
-    "tailwindcss": "^3.4.17"
-  },
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "rollup": "^4.34.0"
+    "@fontsource-variable/onest": "^5.3.1",
+    "astro": "^7.3.3",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19"
   }
 }

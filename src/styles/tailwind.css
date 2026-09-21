@@ -1,0 +1,4 @@
+/* Lo que antes inyectaba @astrojs/tailwind en cada página. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
