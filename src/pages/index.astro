@@ -12,6 +12,8 @@ import Contact from "../components/Contact.astro";
 import SobreMi from "../components/SobreMi.astro";
 import Skills from "../components/Skills.astro";
 import Certificates from "../components/Certificates.astro";
+// Ruta base del sitio (base de astro.config), sin barra final.
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -63,7 +65,7 @@ import Certificates from "../components/Certificates.astro";
                 <MailIcon class="size-5" />
               </a>
             </div>
-            <a href="/files/CV_New_Esteban.pdf" target="_blank" class="cv-cta">
+            <a href={`${base}/files/CV_New_Esteban.pdf`} target="_blank" class="cv-cta">
               <DownloadIcon class="size-4" />
               <span data-i18n="hero.cv">Descargar CV</span>
             </a>
@@ -112,7 +114,7 @@ import Certificates from "../components/Certificates.astro";
         <h2 class="section-title" data-i18n="title.about">Sobre mí</h2>
         <SobreMi />
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/files/CV_New_Esteban.pdf" target="_blank" class="pill-btn">
+          <a href={`${base}/files/CV_New_Esteban.pdf`} target="_blank" class="pill-btn">
             <DownloadIcon class="size-4" />
             <span data-i18n="about.cv">Descargar CV</span>
           </a>

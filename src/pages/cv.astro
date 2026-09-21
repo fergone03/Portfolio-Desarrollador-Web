@@ -1,5 +1,7 @@
 ---
 // Self-contained CV page — no Layout dependency so print/PDF stays clean
+// Ruta base del sitio (base de astro.config), sin barra final.
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -10,7 +12,7 @@
   <title>CV — Esteban Fernández | Full Stack Developer & Data Engineer</title>
   <meta name="description" content="Curriculum Vitae de Esteban Fernández González, Full Stack Developer y Data Engineer con base en Granada, España." />
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/svg+xml" href="/code.svg" />
+  <link rel="icon" type="image/svg+xml" href={`${base}/code.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -420,7 +422,7 @@
 
   <!-- Controls (screen only) -->
   <nav class="controls">
-    <a href="/" class="btn-back">
+    <a href={`${base}/`} class="btn-back">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
@@ -444,7 +446,7 @@
 
       <!-- ── HEADER ── -->
       <header class="cv-header">
-        <img src="/imgs/1775413944881.jpg" alt="Esteban Fernández" class="cv-photo" />
+        <img src={`${base}/imgs/1775413944881.jpg`} alt="Esteban Fernández" class="cv-photo" />
         <div class="cv-header-text">
         <h1 class="cv-name">Esteban Fernández</h1>
         <p class="cv-title">Full Stack Developer &amp; Data Engineer</p>

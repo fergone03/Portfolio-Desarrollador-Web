@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
+// Ruta base del sitio (base de astro.config), sin barra final.
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -17,7 +19,7 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/code.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/code.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <!-- Anti-FOUC: apply theme before paint -->
