@@ -1,6 +1,6 @@
 ---
 import "../styles/tailwind.css";
-// Self-contained CV page — no Layout dependency so print/PDF stays clean
+// Self-contained CV page - no Layout dependency so print/PDF stays clean
 // Ruta base del sitio (base de astro.config), sin barra final.
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL;
 ---
@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CV — Esteban Fernández | Full Stack Developer & Data Engineer</title>
+  <title>CV - Esteban Fernández | Full Stack Developer & Data Engineer</title>
   <meta name="description" content="Curriculum Vitae de Esteban Fernández González, Full Stack Developer y Data Engineer con base en Granada, España." />
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/svg+xml" href={`${base}/code.svg`} />
@@ -367,7 +367,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
       .cv { box-shadow: none; border-radius: 0; }
 
       /* Header */
-      .cv-header { padding: 13px 22px 11px; gap: 16px; }
+      .cv-header { padding: 11px 22px 9px; gap: 16px; }
       .cv-photo  { width: 64px; height: 64px; border-width: 2px; }
       .cv-name   { font-size: 21px; margin-bottom: 2px; }
       .cv-title  { font-size: 10px; margin-bottom: 9px; }
@@ -375,11 +375,11 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
       .cv-contact-item svg { width: 10px; height: 10px; }
 
       /* Body */
-      .cv-body { padding: 10px 22px 10px; }
-      .cv-section { margin-bottom: 9px; }
-      .section-label { font-size: 7.5px; margin-bottom: 4px; padding-bottom: 3px; }
+      .cv-body { padding: 8px 22px 6px; }
+      .cv-section { margin-bottom: 7px; }
+      .section-label { font-size: 7.5px; margin-bottom: 3px; padding-bottom: 3px; }
 
-      /* Summary — 2 lines max */
+      /* Summary - 2 lines max */
       .summary-text { font-size: 10.5px; line-height: 1.38; }
 
       /* Voluntariado badge */
@@ -393,13 +393,13 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
       .skills-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 3px 18px;
+        gap: 2px 18px;
       }
       .skill-cat   { min-width: 74px; font-size: 10px; }
       .skill-values { font-size: 10px; line-height: 1.38; }
 
       /* Experience */
-      .exp-list   { gap: 7px; }
+      .exp-list   { gap: 6px; }
       .exp-role   { font-size: 11px; }
       .exp-company { font-size: 10px; margin-bottom: 3px; }
       .exp-date   { font-size: 9.5px; }
@@ -411,7 +411,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
       .proj-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4px 18px;
+        gap: 3px 18px;
       }
       .proj-name  { font-size: 10.5px; }
       .proj-stack { font-size: 9px; }
@@ -514,13 +514,13 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             </svg>
             github.com/fergone03
           </a>
-          <a href="https://devsteban.netlify.app" target="_blank" rel="noopener" class="cv-contact-item">
+          <a href="https://consultorialocal.es/dev-steban-portfolio" target="_blank" rel="noopener" class="cv-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="11" height="11">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="2" y1="12" x2="22" y2="12"></line>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
-            devsteban.netlify.app
+            consultorialocal.es/dev-steban-portfolio
           </a>
         </div>
         </div>
@@ -533,7 +533,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
         <section class="cv-section">
           <h2 class="section-label">Perfil Profesional</h2>
           <p class="summary-text">
-            Full Stack Developer y Data Engineer con experiencia demostrada en pipelines ETL, dashboards en tiempo real y plataformas web escalables con React, TypeScript y Supabase. Autodidacta por convicción — Docker, Symfony y dbt aprendidos fuera del temario. Busco entorno técnico donde crecer a largo plazo y aportar valor desde el primer día.
+            Full Stack Developer y Data Engineer con experiencia demostrada en pipelines ETL, dashboards en tiempo real y plataformas web escalables con React, TypeScript y Supabase. Autodidacta: gran parte de lo que sé lo he aprendido mucho más por mi cuenta, fuera del temario (Docker, Symfony y dbt). Busco un entorno técnico donde crecer a largo plazo y aportar valor desde el primer día.
           </p>
         </section>
 
@@ -554,6 +554,13 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
                 <span class="proj-stack">React · TypeScript · Node.js · PostgreSQL</span>
               </div>
               <p class="proj-desc">Plataforma de gestión para sector automoción con módulos de inventario, clientes y seguimiento de operaciones comerciales.</p>
+            </div>
+            <div class="proj-item">
+              <div class="proj-top">
+                <span class="proj-name">GitHub Finder</span>
+                <span class="proj-stack">React · PHP · Bootstrap</span>
+              </div>
+              <p class="proj-desc">Consulta de perfiles de GitHub mediante API REST con backend propio en PHP; estado con hooks personalizados y diseño responsivo.</p>
             </div>
             <div class="proj-item">
               <div class="proj-top">
@@ -578,6 +585,13 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             </div>
             <div class="proj-item">
               <div class="proj-top">
+                <span class="proj-name">49% - Página de agencia</span>
+                <span class="proj-stack">React · JavaScript · CSS Modules</span>
+              </div>
+              <p class="proj-desc">Landing page de agencia con formulario de contacto funcional, animaciones suaves y código modular con hooks personalizados.</p>
+            </div>
+            <div class="proj-item">
+              <div class="proj-top">
                 <span class="proj-name">Material para desarrolladores</span>
                 <span class="proj-stack">React · TypeScript · Bootstrap</span>
               </div>
@@ -593,8 +607,8 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
 
             <div class="exp-item">
               <div class="exp-top">
-                <span class="exp-role">Data Engineer</span>
-                <span class="exp-date">Mar 2026 — Jun 2026</span>
+                <span class="exp-role">Founding Data Engineer</span>
+                <span class="exp-date">Mar 2026 - Sep 2026</span>
               </div>
               <div class="exp-company">Realidad Docente <span class="exp-badge">voluntariado</span></div>
               <ul class="exp-bullets">
@@ -605,7 +619,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             <div class="exp-item">
               <div class="exp-top">
                 <span class="exp-role">Técnico de Sistemas Cloud de Google</span>
-                <span class="exp-date">Ene 2026 — Actualidad</span>
+                <span class="exp-date">Ene 2026 - Actualidad</span>
               </div>
               <div class="exp-company">TDTandem</div>
               <ul class="exp-bullets">
@@ -616,7 +630,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             <div class="exp-item">
               <div class="exp-top">
                 <span class="exp-role">Fullstack Developer</span>
-                <span class="exp-date">Ene 2026 — Mar 2026</span>
+                <span class="exp-date">Ene 2026 - Mar 2026</span>
               </div>
               <div class="exp-company">Realidad Docente <span class="exp-badge">voluntariado</span></div>
               <ul class="exp-bullets">
@@ -627,7 +641,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             <div class="exp-item">
               <div class="exp-top">
                 <span class="exp-role">Fullstack Developer &amp; Creador de Contenido</span>
-                <span class="exp-date">Oct 2025 — Mar 2026</span>
+                <span class="exp-date">Oct 2025 - Mar 2026</span>
               </div>
               <div class="exp-company">Grupo Ecos</div>
               <ul class="exp-bullets">
@@ -660,7 +674,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             <span class="cert-item">Gestión de proyectos de Google</span>
             <span class="cert-item">Fundamentos de Inteligencia Artificial</span>
             <span class="cert-item">Agile Development and Scrum</span>
-            <span class="cert-item">Data Engineering: dbt · Snowflake · BigQuery · Power BI — Cívica (2026)</span>
+            <span class="cert-item">Data Engineering: dbt · Snowflake · BigQuery · Power BI - Cívica (2026)</span>
           </div>
         </section>
 
@@ -672,7 +686,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
             <div class="edu-list">
               <div class="edu-item">
                 <div class="edu-top">
-                  <span class="edu-degree">FP Grado Superior — Desarrollo de Aplicaciones Web (DAW)</span>
+                  <span class="edu-degree">FP Grado Superior - Desarrollo de Aplicaciones Web (DAW)</span>
                   <span class="edu-year">2023 – 2025</span>
                 </div>
                 <div class="edu-school">Formación Profesional, Granada</div>
@@ -680,7 +694,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
               </div>
               <div class="edu-item">
                 <div class="edu-top">
-                  <span class="edu-degree">FP Grado Medio — Sistemas Microinformáticos y Redes (SMR)</span>
+                  <span class="edu-degree">FP Grado Medio - Sistemas Microinformáticos y Redes (SMR)</span>
                   <span class="edu-year">2021 – 2023</span>
                 </div>
                 <div class="edu-school">Formación Profesional, Granada</div>
@@ -697,7 +711,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.s
               </div>
               <div class="lang-item">
                 <span class="lang-name">Inglés</span>
-                <span class="lang-level">B2 — Cambridge</span>
+                <span class="lang-level">B2 - Cambridge</span>
               </div>
             </div>
           </section>
